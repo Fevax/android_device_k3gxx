@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<device name="Android">
+    <item name="screen.on">58</item>
+    <item name="bluetooth.active">98</item>
+    <item name="bluetooth.on">0.4</item>
+    <item name="screen.full">228</item>
+    <item name="wifi.on">0.5</item>
+    <item name="wifi.active">187</item>
+    <item name="wifi.scan">114</item>
+    <item name="dsp.audio">40</item>
+    <item name="dsp.video">251</item>
+    <item name="radio.active">155</item>
+    <item name="radio.scanning">25</item>
+    <item name="gps.on">0.3</item>
+    <array name="radio.on">
+        <value>5.4</value>
+        <value>5.4</value>
+    </array>
+    <array name="cpu.speeds">
+        <value>1900000</value>
+        <value>1800000</value>
+        <value>1700000</value>
+        <value>1600000</value>
+        <value>1500000</value>
+        <value>1400000</value>
+        <value>1300000</value>
+        <value>1200000</value>
+        <value>1100000</value>
+        <value>1000000</value>
+        <value>900000</value>
+        <value>800000</value>
+        <value>650000</value>
+        <value>600000</value>
+        <value>550000</value>
+        <value>500000</value>
+        <value>450000</value>
+        <value>400000</value>
+        <value>350000</value>
+        <value>300000</value>
+        <value>250000</value>
+    </array>
+    <item name="cpu.idle">2.5</item>
+    <item name="cpu.awake">62.3</item>
+    <array name="cpu.active">
+        <value>1575</value>
+        <value>1475</value>
+        <value>1345</value>
+        <value>1260</value>
+        <value>1119</value>
+        <value>1093</value>
+        <value>943</value>
+        <value>841</value>
+        <value>704</value>
+        <value>571</value>
+        <value>455</value>
+        <value>387</value>
+        <value>182</value>
+        <value>146</value>
+        <value>118</value>
+        <value>94</value>
+        <value>75</value>
+        <value>60</value>
+        <value>45</value>
+        <value>35</value>
+    </array>
+    <item name="battery.capacity">3200</item>
+</device>

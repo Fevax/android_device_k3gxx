@@ -1,0 +1,11 @@
+allow system_server sysfs_input_file:file rw_file_perms;
+allow system_server efs_file:file { read open write };
+allow system_server efs_file:dir search;
+allow system_server sysfs_vibeamp:dir search;
+allow system_server sysfs_vibeamp:file { open read write };
+allow system_server sensors_efs_file:file { open read };
+
+# Label the .gps.interface.pipe.to_jni pipe with gps_data_file.
+type_transition system_server system_data_file:fifo_file gps_data_file ".gps.interface.pipe.to_jni";
+allow system_server gps_data_file:fifo_file create_file_perms;
+allow system_server gps_data_file:dir rw_dir_perms;

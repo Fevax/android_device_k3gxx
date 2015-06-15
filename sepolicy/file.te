@@ -1,0 +1,7 @@
+type sysfs_input_file, fs_type, sysfs_type;
+type sysfs_display, fs_type, sysfs_type;
+type sysfs_vibeamp, fs_type, sysfs_type;
+type sysfs_sec, fs_type, sysfs_type;
+type wifi_efs_file, fs_type;
+type radio_efs_file, fs_type;
+type sensors_efs_file, file_type;

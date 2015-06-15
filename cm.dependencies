@@ -1,0 +1,23 @@
+[
+
+    {
+        "repository": "android_hardware_samsung",
+        "target_path": "hardware/samsung"
+    },
+    {
+        "repository": "android_hardware_samsung_slsi_exynos",
+        "target_path": "hardware/samsung_slsi/exynos"
+    },
+    {
+        "repository": "android_hardware_samsung_slsi_exynos5-insignal",
+        "target_path": "hardware/samsung_slsi/exynos5-insignal"
+    },
+    {
+        "repository": "android_hardware_samsung_slsi_exynos5422",
+        "target_path": "hardware/samsung_slsi/exynos5422"
+    },
+    {
+        "repository": "android_hardware_samsung_slsi_openmax",
+        "target_path": "hardware/samsung_slsi/openmax"
+    }
+]

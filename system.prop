@@ -1,0 +1,29 @@
+ro.arch=exynos5422
+ro.chipname=universal5422
+persist.timed.enable=true
+keyguard.no_require_sim=true
+drm.service.enabled=true
+ro.hdcp2.rx=tz
+ro.secwvk=220
+
+# Media
+ro.sf.lcd_density=480
+ro.opengles.version=196608
+media.enable-commonsource=true
+persist.hdmi.hdcp_enabled=1
+
+# Radio
+rild.libargs=-d /dev/ttyS0
+rild.libpath=/system/lib/libsec-ril.so
+ro.telephony.ril_class=k3gxxRIL
+ro.telephony.default_network=0
+telephony.lteOnCdmaDevice=0
+
+
+# Default USB mode
+persist.sys.usb.config=mtp
+persist.sys.isUsbOtgEnabled=true
+
+# Wifi
+wifi.interface=wlan0
+wlan.wfd.hdcp=disable
