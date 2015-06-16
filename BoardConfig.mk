@@ -62,18 +62,18 @@ CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 
 # Kernel
 
-#BOARD_CUSTOM_BOOTIMG_MK := device/samsung/k3gxx/mkdtbhbootimg.mk
+BOARD_CUSTOM_BOOTIMG_MK := device/samsung/k3gxx/mkdtbhbootimg.mk
 BOARD_CUSTOM_MKBOOTIMG := mkdtbhbootimg
-#BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --tags_offset 0x10000100
-#BOARD_MKBOOTIMG_ARGS += --dt_dir $(KERNEL_OUT)/arch/arm/boot/dts/
-BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --dt device/samsung/k3gxx/recovery/dt.img --tags_offset 0x10000100
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --tags_offset 0x10000100
+BOARD_MKBOOTIMG_ARGS += --dt_dir $(KERNEL_OUT)/arch/arm/boot/dts/
+#BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --dt device/samsung/k3gxx/recovery/dt.img --tags_offset 0x10000100
 #BOARD_KERNEL_SEPARATED_DT := true
 #TARGET_PREBUILT_KERNEL := device/samsung/k3gxx/recovery/zImage
 TARGET_KERNEL_SOURCE := kernel/samsung/exynos5422
 TARGET_KERNEL_CONFIG := exynos5422-k3g_00_defconfig
-#TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
+TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
 #BOARD_KERNEL_CMDLINE := console=null vmalloc=512M androidboot.console=null user_debug=31
-#BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 
