@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/samsung/k3gxx
+LOCAL_PATH := device/samsung/picassowifi
 
 # Platform
 BOARD_VENDOR := samsung
@@ -29,33 +29,27 @@ TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
 TARGET_CPU_VARIANT := cortex-a15
-ARCH_ARM_HAVE_TLS_REGISTER := true
-
-
-# Bootloader
-TARGET_OTA_ASSERT_DEVICE := k3gxx
-TARGET_BOOTLOADER_BOARD_NAME := universal5422
-TARGET_NO_BOOTLOADER := true
-TARGET_NO_RADIOIMAGE := true
 
 # Audio
 BOARD_USES_LIBMEDIA_WITH_AUDIOPARAMETER := true
 
+# Bluetooth
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_BCM := true
+BOARD_BLUEDROID_VENDOR_CONF := $(LOCAL_PATH)/bluetooth/libbt_vndcfg.txt
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
+
+# Bootloader
+TARGET_OTA_ASSERT_DEVICE := k3g,k3gxx
+
 # Camera
+# COMMON_GLOBAL_CFLAGS += -DUSE_MEMORY_HEAP_ION
 BOARD_NEEDS_MEMORYHEAPION := true
 COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
 COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
 COMMON_GLOBAL_CFLAGS += -DSAMSUNG_DVFS
 
-# HEALTH DAEMON (CHARGER) DEFINES
-RED_LED_PATH := "/sys/devices/virtual/sec/led/led_r"
-GREEN_LED_PATH := "/sys/devices/virtual/sec/led/led_g"
-BLUE_LED_PATH := "/sys/devices/virtual/sec/led/led_b"
-BACKLIGHT_PATH := "/sys/devices/virtual/backlight/panel/brightness"
-CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
-
 # Kernel
-
 BOARD_CUSTOM_BOOTIMG_MK := device/samsung/k3gxx/mkdtbhbootimg.mk
 BOARD_CUSTOM_MKBOOTIMG := mkdtbhbootimg
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --tags_offset 0x10000100
@@ -66,34 +60,61 @@ BOARD_MKBOOTIMG_ARGS += --dt_dir $(KERNEL_OUT)/arch/arm/boot/dts/
 TARGET_KERNEL_SOURCE := kernel/samsung/exynos5422
 TARGET_KERNEL_CONFIG := exynos5422-k3g_00_defconfig
 TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
-#BOARD_KERNEL_CMDLINE := console=null vmalloc=512M androidboot.console=null user_debug=31
 BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 
-# adb has root
-ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
-ADDITIONAL_DEFAULT_PROPERTIES += ro.allow.mock.location=1
-
 # Battery
-BOARD_CHARGER_ENABLE_SUSPEND := true
-CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 BOARD_BATTERY_DEVICE_NAME := battery
+
+# Bootloader
+TARGET_BOOTLOADER_BOARD_NAME := universal5422
+TARGET_NO_BOOTLOADER := true
+TARGET_NO_RADIOIMAGE := true
 
 # FIMG2D
 BOARD_USES_SKIA_FIMGAPI := true
 BOARD_USES_NEON_BLITANTIH := true
 
-# GSC
-BOARD_USES_ONLY_GSC0_GSC1 := true
+# Graphics
+USE_OPENGL_RENDERER := true
+BOARD_EGL_CFG := $(LOCAL_PATH)/configs/egl.cfg
+BOARD_EGL_SYSTEMUI_PBSIZE_HACK := true
+BOARD_EGL_WORKAROUND_BUG_10194508 := true
+BOARD_USE_BGRA_8888 := true
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 5
+# OVERRIDE_RS_DRIVER := libRSDriverArm.so
 
-# HDMI
-BOARD_USES_GSC_VIDEO := true
-BOARD_USES_CEC := true
+# HWCServices
+BOARD_USES_HWC_SERVICES := true
 
 # Include path
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
+# Hardware
+BOARD_HARDWARE_CLASS += device/samsung/k3gxx/cmhw
+
+# Init
+TARGET_NR_SVC_SUPP_GIDS := 20
+
+# Media
+COMMON_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED # use format from fw/native
+COMMON_GLOBAL_CFLAGS += -DWIDEVINE_PLUGIN_PRE_NOTIFY_ERROR
+
+# OpenMAX Video
+BOARD_USE_STOREMETADATA := true
+BOARD_USE_METADATABUFFERTYPE := true
+BOARD_USE_S3D_SUPPORT := true
+BOARD_USE_DMA_BUF := true
+BOARD_USE_ANB_OUTBUF_SHARE := true
+BOARD_USE_GSC_RGB_ENCODER := true
+BOARD_USE_IMPROVED_BUFFER := true
+BOARD_USE_CSC_HW := false
+BOARD_USE_H264_PREPEND_SPS_PPS := false
+BOARD_USE_QOS_CTRL := false
+BOARD_USE_VP8ENC_SUPPORT := true
+BOARD_USE_ENCODER_RGBINPUT_SUPPORT := true
+BOARD_USE_DUALDPB_MODE := true
 
 # Partitions
 BOARD_HAS_LARGE_FILESYSTEM := true
@@ -104,28 +125,24 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 12721324032
 BOARD_CACHEIMAGE_PARTITION_SIZE := 209715200
 BOARD_FLASH_BLOCK_SIZE := 131072
 
-
-# Radio
-BOARD_PROVIDES_LIBRIL := true
-BOARD_MODEM_TYPE := xmm6360
-# we need define it (because audio.primary.universal5422.so requires it)
-COMMON_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
-BOARD_RIL_CLASS := ../../../device/samsung/k3gxx/ril
+# PowerHAL
+TARGET_POWERHAL_VARIANT := k3gxx
 
 # Recovery
+COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
+BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
+BOARD_HAS_NO_SELECT_BUTTON := true
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.universal5422
+TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_RECOVERY_SWIPE := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
-BOARD_HAS_NO_SELECT_BUTTON := true
-COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun0/file
-#BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/k3gxx/recovery/recovery_keys.c
-BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
-TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/recovery.fstab
+
+# Scaler
+BOARD_USES_SCALER := true
 
 # SELinux
-BOARD_SEPOLICY_DIRS += \
+BOARD_SEPOLICY_DIRS := \
     device/samsung/k3gxx/sepolicy
 
 BOARD_SEPOLICY_UNION += \
@@ -145,49 +162,26 @@ BOARD_SEPOLICY_UNION += \
     vold.te \
     wpa.te
 
-# Graphics
-USE_OPENGL_RENDERER := true
-BOARD_EGL_CFG := $(LOCAL_PATH)/configs/egl.cfg
-BOARD_EGL_SYSTEMUI_PBSIZE_HACK := true
-BOARD_EGL_WORKAROUND_BUG_10194508 := true
-BOARD_USE_BGRA_8888 := true
-NUM_FRAMEBUFFER_SURFACE_BUFFERS := 5
-ENABLE_WEBGL := true
-#OVERRIDE_RS_DRIVER := libRSDriverArm.so
-
-# HWCServices
-BOARD_USES_HWC_SERVICES := true
-
-# OpenMAX Video
-BOARD_USE_STOREMETADATA := true
-BOARD_USE_METADATABUFFERTYPE := true
-BOARD_USE_S3D_SUPPORT := true
-BOARD_USE_DMA_BUF := true
-BOARD_USE_ANB_OUTBUF_SHARE := true
-BOARD_USE_GSC_RGB_ENCODER := true
-BOARD_USE_IMPROVED_BUFFER := true
-BOARD_USE_CSC_HW := false
-BOARD_USE_H264_PREPEND_SPS_PPS := false
-BOARD_USE_QOS_CTRL := false
-BOARD_USE_VP8ENC_SUPPORT := true
-BOARD_USE_ENCODER_RGBINPUT_SUPPORT := true
-BOARD_USE_DUALDPB_MODE := true
-
-# Scaler
-BOARD_USES_SCALER := true
-
 # SurfaceFlinger
 BOARD_USES_SYNC_MODE_FOR_MEDIA := true
 
-# Samsung Gralloc agregado
-TARGET_SAMSUNG_GRALLOC_EXTERNAL_USECASES := true
+# Webkit
+ENABLE_WEBGL := true
 
 # WFD
 BOARD_USES_WFD_SERVICE := true
 BOARD_USES_WFD := true
 
-# CMHW
-BOARD_HARDWARE_CLASS += hardware/samsung/cmhw
+# Wifi
+BOARD_HAVE_SAMSUNG_WIFI          := true
+BOARD_WLAN_DEVICE                := bcmdhd
+WPA_SUPPLICANT_VERSION           := VER_0_8_X
+BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
+BOARD_HOSTAPD_DRIVER             := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
+WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/dhd/parameters/firmware_path"
+WIFI_DRIVER_FW_PATH_STA          := "/system/etc/wifi/bcmdhd_sta.bin"
 
 # inherit from the proprietary version
 -include vendor/samsung/k3gxx/BoardConfigVendor.mk
