@@ -19,7 +19,7 @@ LOCAL_PATH := device/samsung/k3gxx
 # Platform
 BOARD_VENDOR := samsung
 TARGET_BOARD_PLATFORM := exynos5
-TARGET_SLSI_VARIANT := insignal
+#TARGET_SLSI_VARIANT := insignal
 TARGET_SOC := exynos5422
 
 # Architecture
@@ -39,7 +39,10 @@ TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
 # Audio
-BOARD_USES_LIBMEDIA_WITH_AUDIOPARAMETER := true
+BOARD_USES_GENERIC_AUDIO := false
+BOARD_USES_I2S_AUDIO := true
+BOARD_USES_PCM_AUDIO := false
+BOARD_USES_SPDIF_AUDIO := false
 
 # Camera
 BOARD_NEEDS_MEMORYHEAPION := true
@@ -83,6 +86,7 @@ BOARD_BATTERY_DEVICE_NAME := battery
 # FIMG2D
 BOARD_USES_SKIA_FIMGAPI := true
 BOARD_USES_NEON_BLITANTIH := true
+BOARD_USES_FIMGAPI_V4L2 := false
 
 # GSC
 BOARD_USES_ONLY_GSC0_GSC1 := true
@@ -125,25 +129,25 @@ BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/recovery.fstab
 
 # SELinux
-BOARD_SEPOLICY_DIRS += \
-    device/samsung/k3gxx/sepolicy
-
-BOARD_SEPOLICY_UNION += \
-    file_contexts \
-    service_contexts \
-    device.te \
-    domain.te \
-    drmserver.te \
-    file.te \
-    gpsd.te \
-    macloader.te \
-    mediaserver.te \
-    rild.te \
-    servicemanager.te \
-    system_app.te \
-    system_server.te \
-    vold.te \
-    wpa.te
+#BOARD_SEPOLICY_DIRS += \
+#    device/samsung/k3gxx/sepolicy
+#
+#BOARD_SEPOLICY_UNION += \
+#    file_contexts \
+#    service_contexts \
+#    device.te \
+#    domain.te \
+#    drmserver.te \
+#    file.te \
+#    gpsd.te \
+#    macloader.te \
+#    mediaserver.te \
+#    rild.te \
+#    servicemanager.te \
+#    system_app.te \
+#    system_server.te \
+#    vold.te \
+#    wpa.te
 
 # Graphics
 USE_OPENGL_RENDERER := true
@@ -151,7 +155,7 @@ BOARD_EGL_CFG := $(LOCAL_PATH)/configs/egl.cfg
 BOARD_EGL_SYSTEMUI_PBSIZE_HACK := true
 BOARD_EGL_WORKAROUND_BUG_10194508 := true
 BOARD_USE_BGRA_8888 := true
-NUM_FRAMEBUFFER_SURFACE_BUFFERS := 5
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 ENABLE_WEBGL := true
 #OVERRIDE_RS_DRIVER := libRSDriverArm.so
 
@@ -161,20 +165,21 @@ BOARD_USES_HWC_SERVICES := true
 # OpenMAX Video
 BOARD_USE_STOREMETADATA := true
 BOARD_USE_METADATABUFFERTYPE := true
-BOARD_USE_S3D_SUPPORT := true
 BOARD_USE_DMA_BUF := true
 BOARD_USE_ANB_OUTBUF_SHARE := true
-BOARD_USE_GSC_RGB_ENCODER := true
 BOARD_USE_IMPROVED_BUFFER := true
+BOARD_USE_NON_CACHED_GRAPHICBUFFER := true
+BOARD_USE_GSC_RGB_ENCODER := true
 BOARD_USE_CSC_HW := false
-BOARD_USE_H264_PREPEND_SPS_PPS := false
 BOARD_USE_QOS_CTRL := false
+BOARD_USE_S3D_SUPPORT := true
 BOARD_USE_VP8ENC_SUPPORT := true
-BOARD_USE_ENCODER_RGBINPUT_SUPPORT := true
-BOARD_USE_DUALDPB_MODE := true
 
 # Scaler
 BOARD_USES_SCALER := true
+
+# Keymaster
+BOARD_USES_TRUST_KEYMASTER := false
 
 # SurfaceFlinger
 BOARD_USES_SYNC_MODE_FOR_MEDIA := true

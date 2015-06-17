@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Feature for SamsungLinkPlatform -->
+<permissions>
+    <feature name="com.sec.feature.samsunglinkplatform" />
+</permissions>

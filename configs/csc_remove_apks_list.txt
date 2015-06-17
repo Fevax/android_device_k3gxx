@@ -1,0 +1,2 @@
+/system/app/smarttutor_V1.2_B103.apk
+/system/app/VivaElFutbol-release-Feb26-2015.apk

@@ -11,7 +11,7 @@ LOCAL_MODULE := mkdtbhbootimg
 include $(BUILD_HOST_EXECUTABLE)
 
 include $(CLEAR_VARS)
-LOCAL_SRC_FILES := unpackbootimg.c
+LOCAL_SRC_FILES := unpackbootimg2.c
 LOCAL_MODULE := unpackbootimg2
 include $(BUILD_HOST_EXECUTABLE)
 
@@ -29,11 +29,11 @@ LOCAL_FORCE_STATIC_EXECUTABLE := true
 include $(BUILD_EXECUTABLE)
 
 include $(CLEAR_VARS)
-LOCAL_SRC_FILES := unpackbootimg.c
+LOCAL_SRC_FILES := unpackbootimg2.c
 LOCAL_STATIC_LIBRARIES := libcutils libc
 LOCAL_MODULE := utility_unpackbootimg2
 LOCAL_MODULE_TAGS := eng
-LOCAL_MODULE_STEM := unpackbootimg
+LOCAL_MODULE_STEM := unpackbootimg2
 LOCAL_MODULE_CLASS := UTILITY_EXECUTABLES
 LOCAL_UNSTRIPPED_PATH := $(PRODUCT_OUT)/symbols/utilities
 LOCAL_MODULE_PATH := $(PRODUCT_OUT)/utilities

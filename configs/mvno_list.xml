@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+mvnoList attributes:
+	simIMSI: MCC+MNC+SPcode from IMSI - this attribute identifies the MVNO operator
+	operator: MCC+MNC from the operator that provides the infrastructure for that MVNO
+	mvnoName: name to be used as replacement of the original PLMN
+	sku: list of SKUs directly affected by that MVNO
+
+examples:
+	<mvno simIMSI="73009" operator="73001" mvnoName="Nextel R" sku="CHX,CHO"/
+-->
+
+<mvnoList>
+
+<!-- CHILE -->
+
+    <carrier plmn="73001">
+        <mvno simIMSI="73009"      mvnoName="Nextel R"         />
+		<mvno simIMSI="73001300"   mvnoName="Falabella"        />
+		<mvno simIMSI="73010300"   mvnoName="Falabella"        />
+	</carrier>
+
+    <carrier plmn="73002">
+		<mvno simIMSI="7300701"    mvnoName="Gtd_Telsur"       />
+		<mvno simIMSI="7300703"    mvnoName="GTEL Netline"     />
+		<mvno simIMSI="73008"      mvnoName="vtr"              />
+		<mvno simIMSI="7300702"    mvnoName="Virgin"           />
+		<mvno simIMSI="7300704"    mvnoName="Colo-Colo"        />
+	</carrier>
+
+    <carrier plmn="73010">
+		<mvno simIMSI="73009"      mvnoName="Nextel R"         />
+		<mvno simIMSI="73010300"   mvnoName="Falabella"        />
+		<mvno simIMSI="73001300"   mvnoName="Falabella"        />
+    </carrier>
+
+
+<!-- COLOMBIA -->
+
+    <carrier plmn="732103">
+		<mvno simIMSI="732130"     mvnoName="Avantel 4G LTE"   />
+		<mvno simIMSI="732103018"  mvnoName="Uff Movil"        />
+		<mvno simIMSI="732103019"  mvnoName="Uff Movil"        />
+		<mvno simIMSI="732103054"  mvnoName="Exito"            />
+		<mvno simIMSI="732103055"  mvnoName="Exito"            />
+		<mvno simIMSI="732103017"  mvnoName="ETB 4G"           />
+		<mvno simIMSI="732187"     mvnoName="ETB 4G"           />
+	</carrier>
+
+    <carrier plmn="732123">
+		<mvno simIMSI="732130"     mvnoName="Avantel 4G LTE"   />
+		<mvno simIMSI="732154"     mvnoName="Virgin Mobile"    />
+		<mvno simIMSI="732123900"  mvnoName="Virgin Mobile"    />
+	</carrier>
+
+    <carrier plmn="732101">
+		<mvno simIMSI="732130"     mvnoName="Avantel 4G LTE"   />
+	</carrier>
+
+
+<!-- MEXICO -->
+
+    <carrier plmn="33403">
+		<mvno simIMSI="334090"     mvnoName="NextelXT"   />
+	</carrier>
+
+    <carrier plmn="334030">
+		<mvno simIMSI="334090"     mvnoName="NextelXT"   />
+	</carrier>
+
+<!-- ECUADOR -->
+
+    <carrier plmn="74000">
+		<mvno simIMSI="74002"     mvnoName="CNT"   />
+	</carrier>
+
+</mvnoList>
