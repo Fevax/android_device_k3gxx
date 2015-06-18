@@ -39,16 +39,16 @@ import com.android.internal.telephony.uicc.IccCardStatus;
  * RIL for the Samsung exynos5422 family.
  * {@hide}
  */
-public class k3gRIL extends RIL implements CommandsInterface {
+public class k3gxxRIL extends RIL implements CommandsInterface {
 
     private boolean newril = needsOldRilFeature("newril"); //4.4.4 verson of Samsung RIL
 
-    public k3gRIL(Context context, int preferredNetworkType,
+    public k3gxxRIL(Context context, int preferredNetworkType,
             int cdmaSubscription, Integer instanceId) {
         super(context, preferredNetworkType, cdmaSubscription, instanceId);
     }
 
-    public k3gRIL(Context context, int networkMode,
+    public k3gxxRIL(Context context, int networkMode,
             int cdmaSubscription) {
         super(context, networkMode, cdmaSubscription);
     }

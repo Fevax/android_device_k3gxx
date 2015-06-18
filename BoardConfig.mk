@@ -59,24 +59,20 @@ CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 
 # Kernel
 
-BOARD_CUSTOM_BOOTIMG_MK := device/samsung/k3gxx/mkdtbhbootimg.mk
-BOARD_CUSTOM_MKBOOTIMG := mkdtbhbootimg
+#BOARD_CUSTOM_BOOTIMG_MK := device/samsung/k3gxx/mkdtbhbootimg.mk
+#BOARD_CUSTOM_MKBOOTIMG := mkdtbhbootimg
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --tags_offset 0x10000100
-BOARD_MKBOOTIMG_ARGS += --dt_dir $(KERNEL_OUT)/arch/arm/boot/dts/
+BOARD_MKBOOTIMG_ARGS += --dt_dir $(OUT)/obj/KERNEL_OBJ/arch/arm/boot/dts/
 #BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --dt device/samsung/k3gxx/recovery/dt.img --tags_offset 0x10000100
 #BOARD_KERNEL_SEPARATED_DT := true
 #TARGET_PREBUILT_KERNEL := device/samsung/k3gxx/recovery/zImage
 TARGET_KERNEL_SOURCE := kernel/samsung/exynos5422
 TARGET_KERNEL_CONFIG := exynos5422-k3g_00_defconfig
 TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
-#BOARD_KERNEL_CMDLINE := console=null vmalloc=512M androidboot.console=null user_debug=31
-BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive
+#BOARD_KERNEL_CMDLINE := console=ram vmalloc=256m androidboot.console=null user_debug=31
+#BOARD_KERNEL_CMDLINE := androidboot.selinux=enforcing
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
-
-# adb has root
-ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
-ADDITIONAL_DEFAULT_PROPERTIES += ro.allow.mock.location=1
 
 # Battery
 BOARD_CHARGER_ENABLE_SUSPEND := true
@@ -122,7 +118,7 @@ BOARD_RECOVERY_SWIPE := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun0/file
 #BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/k3gxx/recovery/recovery_keys.c
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
@@ -131,7 +127,7 @@ TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/recovery.fstab
 # SELinux
 #BOARD_SEPOLICY_DIRS += \
 #    device/samsung/k3gxx/sepolicy
-#
+
 #BOARD_SEPOLICY_UNION += \
 #    file_contexts \
 #    service_contexts \
