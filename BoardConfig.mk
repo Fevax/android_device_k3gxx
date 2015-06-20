@@ -68,9 +68,8 @@ BOARD_MKBOOTIMG_ARGS += --dt_dir $(OUT)/obj/KERNEL_OBJ/arch/arm/boot/dts/
 #TARGET_PREBUILT_KERNEL := device/samsung/k3gxx/recovery/zImage
 TARGET_KERNEL_SOURCE := kernel/samsung/exynos5422
 TARGET_KERNEL_CONFIG := exynos5422-k3g_00_defconfig
-TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
 #BOARD_KERNEL_CMDLINE := console=ram vmalloc=256m androidboot.console=null user_debug=31
-#BOARD_KERNEL_CMDLINE := androidboot.selinux=enforcing
+#BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive user_debug=31
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 
@@ -125,25 +124,25 @@ BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/recovery.fstab
 
 # SELinux
-#BOARD_SEPOLICY_DIRS += \
-#    device/samsung/k3gxx/sepolicy
+BOARD_SEPOLICY_DIRS += \
+    device/samsung/k3gxx/sepolicy
 
-#BOARD_SEPOLICY_UNION += \
-#    file_contexts \
-#    service_contexts \
-#    device.te \
-#    domain.te \
-#    drmserver.te \
-#    file.te \
-#    gpsd.te \
-#    macloader.te \
-#    mediaserver.te \
-#    rild.te \
-#    servicemanager.te \
-#    system_app.te \
-#    system_server.te \
-#    vold.te \
-#    wpa.te
+BOARD_SEPOLICY_UNION += \
+    file_contexts \
+    service_contexts \
+    device.te \
+    domain.te \
+    drmserver.te \
+    file.te \
+    gpsd.te \
+    macloader.te \
+    mediaserver.te \
+    rild.te \
+    servicemanager.te \
+    system_app.te \
+    system_server.te \
+    vold.te \
+    wpa.te
 
 # Graphics
 USE_OPENGL_RENDERER := true

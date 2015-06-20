@@ -1,81 +1,102 @@
-/dev/mali0              u:object_r:gpu_device:s0
-
-/dev/ttySAC0            u:object_r:hci_attach_dev:s0
-/dev/ttySAC1            u:object_r:gps_device:s0
-/dev/ttySAC2            u:object_r:radio_device:s0
-/dev/s5p-smem           u:object_r:secmem_device:s0
-/dev/ump                u:object_r:ump_device:s0
-
-/dev/mobicore           u:object_r:tee_device:s0
-/dev/mobicore-user      u:object_r:tee_device:s0
-
-/dev/v4l-subdev[0-9]*   u:object_r:video_device:s0
-/dev/media0             u:object_r:video_device:s0
-/dev/media1             u:object_r:video_device:s0
-
-/dev/video16            u:object_r:video_device:s0
-/dev/video17            u:object_r:video_device:s0
-/dev/video18            u:object_r:video_device:s0
-/dev/video19            u:object_r:video_device:s0
-
-/dev/fimg2d             u:object_r:video_device:s0
-
-/dev/video40            u:object_r:camera_device:s0
-/dev/video41            u:object_r:camera_device:s0
-/dev/video42            u:object_r:camera_device:s0
-/dev/video43            u:object_r:camera_device:s0
-/dev/video44            u:object_r:camera_device:s0
-/dev/media2             u:object_r:camera_device:s0
-
-/data/system/gps/\.gps\.interface\.pipe\.to_gpsd	u:object_r:gps_data_file:s0
-/data/system/gps/\.gps\.interface\.pipe\.to_jni	  u:object_r:gps_data_file:s0
-/data/system/gps/\.gpsd\.lock                     u:object_r:gps_data_file:s0
-
-/data/app/tlcd_sock     u:object_r:drmserver_socket:s0
-
-/data/.wifiver.info     u:object_r:wifi_data_file:s0
-/efs/wifi(/.*)?         u:object_r:wifi_efs_file:s0
-/efs/wifi/.mac.info     u:object_r:wifi_efs_file:s0
-/system/bin/macloader   u:object_r:macloader_exec:s0
-
-/system/bin/mcDriverDaemon  --  u:object_r:tee_exec:s0
-/system/bin/gpsd                u:object_r:gpsd_exec:s0
-
-/dev/mbin0              u:object_r:radio_device:s0
-/dev/umts_boot0         u:object_r:radio_device:s0
-/dev/umts_csd           u:object_r:radio_device:s0
-/dev/umts_dm0           u:object_r:radio_device:s0
-/dev/umts_ipc0          u:object_r:radio_device:s0
-/dev/umts_log           u:object_r:radio_device:s0
-/dev/umts_rfs0          u:object_r:radio_device:s0
-/dev/umts_router        u:object_r:radio_device:s0
-
-/efs/FactoryApp(/.*)?   u:object_r:efs_file:s0
-/efs/imei	            u:object_r:efs_file:s0
-
-# NFC
-/dev/bcm2079x           u:object_r:nfc_device:s0
-/data/bcmnfc(/.*)?      u:object_r:nfc_data_file:s0
-
-# SEC
-/sys/devices/virtual/sec/sec_key/hall_detect          u:object_r:sysfs_sec:s0
-
-# CMHW
-/sys/devices/virtual/timed_output/vibrator(/.*)?     u:object_r:sysfs_vibeamp:s0
-
-# Display
-/sys/class/lcd/panel/power_reduce    u:object_r:sysfs_display:s0
-
-# Sensor
-/dev/ssp_sensorhub      u:object_r:sensors_device:s0
-/dev/batch_io           u:object_r:sensors_device:s0
-/dev/iio:device[0-9]*   u:object_r:sensors_device:s0
-/sys/devices/platform/s3c64xx-spi.0/spi_master/spi0/spi0.0/iio:device[0-9]* u:object_r:sensors_device:s0
-/dev/shtc1_sensor       u:object_r:sensors_device:s0
-/efs/FactoryApp/baro_delta    u:object_r:sensors_efs_file:s0
-/efs/gyro_cal_data       u:object_r:sensors_efs_file:s0
-
-/sys/devices/platform/bcm4339_bluetooth/rfkill/rfkill0/state -- u:object_r:sysfs_bluetooth_writable:s0
-/sys/devices/platform/bcm4339_bluetooth/rfkill/rfkill0/type -- u:object_r:sysfs_bluetooth_writable:s0
-/sys/devices/virtual/sec/sec_touchkey/tsp_keys_enabled u:object_r:sysfs_input_file:s0
-/efs/bluetooth(/.*)?					               u:object_r:bluetooth_efs_file:s0
+/dev/kgsl-3d0              u:object_r:gpu_device:s0
+/dev/msm_.*                     u:object_r:audio_device:s0
+/dev/sensors                           u:object_r:sensors_device:s0
+/dev/msm_dsps                          u:object_r:sensors_device:s0
+/dev/ttyHSL0                  u:object_r:console_device:s0
+/dev/ttyHS[0-9]*              u:object_r:serial_device:s0
+/data/misc/location(/.*)?	u:object_r:gps_data_file:s0
+/dev/efs_bridge	                u:object_r:radio_device:s0
+/dev/efs_hsic_bridge            u:object_r:radio_device:s0
+/dev/jpeg[0-2]*		        u:object_r:camera_device:s0
+/dev/ks_bridge	                u:object_r:radio_device:s0
+/dev/ks_hsic_bridge	        u:object_r:radio_device:s0
+/dev/media[0-3]*	        u:object_r:camera_device:s0
+/dev/rmnet_mux_ctrl	        u:object_r:radio_device:s0
+/dev/ttyHSL[0-9]*	        u:object_r:radio_device:s0
+/data/data/com.android.providers.downloads/cache u:object_r:download_file:s0
+/data/data/.drm(/.*)?	u:object_r:drm_data_file:s0
+/dev/__kmsg	u:object_r:klog_device:s0
+/dev/alps_io	u:object_r:input_device:s0
+/dev/android_ssusbcon(/.*)?		u:object_r:usb_device:s0
+/dev/bcm2079x	u:object_r:nfc_device:s0
+/dev/cdma_.*		u:object_r:radio_device:s0
+/dev/ionfd2phys         u:object_r:ion_device:s0
+/dev/pn547		u:object_r:nfc_device:s0
+/dev/sec-nfc		u:object_r:nfc_device:s0
+/dev/sec-nfc-fn		u:object_r:nfc_device:s0
+/dev/socket/bluetooth	u:object_r:bluetooth_socket:s0
+/dev/socket/dir_enc_report	u:object_r:vold_socket:s0
+/dev/socket/rild[0-9]*	u:object_r:rild_socket:s0
+/dev/socket/rild-debug[0-9]* u:object_r:rild_debug_socket:s0
+/dev/sound_trigger_boost        u:object_r:audio_device:s0
+/dev/ssp_sensorhub	u:object_r:input_device:s0
+/dev/ttyUSB[0-9]*	u:object_r:usb_device:s0
+/dev/usb(/.*)?	u:object_r:usb_device:s0
+/dev/usb.*	u:object_r:usb_device:s0
+/dev/usb/tty.*	u:object_r:usb_device:s0
+/dev/usb_mtp_gadget.*	u:object_r:mtp_device:s0
+/dev/video4[0-9]        u:object_r:camera_device:s0
+/dev/android_rndis_qc	u:object_r:radio_device:s0
+/dev/audience_a2220	u:object_r:audio_device:s0
+/dev/btlock	u:object_r:hci_attach_dev:s0
+/dev/gemini0	u:object_r:camera_device:s0
+/dev/gsm_.*	u:object_r:radio_device:s0
+/dev/mdm	u:object_r:radio_device:s0
+/dev/msm_aac	u:object_r:audio_device:s0
+/dev/msm_aac_in	u:object_r:audio_device:s0
+/dev/msm_acdb	u:object_r:audio_device:s0
+/dev/msm_amrnb	u:object_r:audio_device:s0
+/dev/msm_amrnb_in	u:object_r:audio_device:s0
+/dev/msm_amrwb	u:object_r:audio_device:s0
+/dev/msm_amrwb_in	u:object_r:audio_device:s0
+/dev/msm_amrwbplus	u:object_r:audio_device:s0
+/dev/msm_camera(/.*)?	u:object_r:camera_device:s0
+/dev/msm_evrc	u:object_r:audio_device:s0
+/dev/msm_evrc_in	u:object_r:audio_device:s0
+/dev/msm_mp3	u:object_r:audio_device:s0
+/dev/msm_multi_aac	u:object_r:audio_device:s0
+/dev/msm_qcelp	u:object_r:audio_device:s0
+/dev/msm_qcelp_in	u:object_r:audio_device:s0
+/dev/msm_rotator u:object_r:graphics_device:s0
+/dev/msm_rtac	u:object_r:audio_device:s0
+/dev/msm_sps	u:object_r:input_device:s0
+/dev/msm_vidc_.*	u:object_r:audio_device:s0
+/dev/msm_wma	u:object_r:audio_device:s0
+/dev/msm_wmapro	u:object_r:audio_device:s0
+/dev/msm_wma_pro	u:object_r:audio_device:s0
+/dev/network_latency	u:object_r:radio_device:s0
+/dev/network_throughput	u:object_r:radio_device:s0
+/dev/nmea	u:object_r:radio_device:s0
+/dev/pmem_audio u:object_r:audio_device:s0
+/dev/qmi[0-9]*	u:object_r:radio_device:s0
+/dev/umts_ipc0	u:object_r:radio_device:s0
+/dev/v4l-subdev[0-9]*	u:object_r:camera_device:s0
+/dev/gps_geofence_wake			u:object_r:gps_device:s0 
+/dev/link_pm		u:object_r:radio_device:s0
+/dev/mali	u:object_r:gpu_device:s0
+/dev/mali[0-9]	u:object_r:gpu_device:s0
+/sys/class/rfkill/rfkill[0-9]*/state -- u:object_r:sysfs_bluetooth_writable:s0
+/sys/class/rfkill/rfkill[0-9]*/type -- u:object_r:sysfs_bluetooth_writable:s0
+/sys/class/sec(/.*)?                --               u:object_r:sysfs_sec:s0
+/system/bin/app_process	u:object_r:zygote_exec:s0
+/system/bin/mksh	u:object_r:shell_exec:s0
+/system/bin/wpa_supplicant_real u:object_r:wpa_exec:s0
+/system/bin/macloader	u:object_r:macloader_exec:s0
+/system/bin/gpsd        u:object_r:gpsd_exec:s0 
+/system/bin/secgpsd     u:object_r:gpsd_exec:s0
+/data/bcmnfc(/.*)?	u:object_r:nfc_data_file:s0
+/data/data/.*		u:object_r:app_data_file:s0
+/data/data/com.android.settings/files/wallpaper	u:object_r:wallpaper_file:s0
+/data/data/com.android.shell(/.*)?		u:object_r:shell_data_file:s0
+/data/data/imsqmisocket	u:object_r:system_data_file:s0
+/data/media.tmp(/.*)?	u:object_r:media_rw_data_file:s0
+/data/system/users(/.*)/wallpaper	u:object_r:wallpaper_file:s0
+/data/tee(/.*)?	                        u:object_r:tee_data_file:s0
+/mnt/shell/emulated/([1-9])?[0-9](/.*)?  u:object_r:media_rw_data_file:s0
+/data/misc/gpsone_d(/.*)?	u:object_r:gps_data_file:s0
+/efs/bluetooth(/.*)?	u:object_r:bluetooth_efs_file:s0
+/efs/wifi(/.*)?	u:object_r:wifi_efs_file:s0
+/tombstone(/.*)?   u:object_r:tombstone_data_file:s0
+/tombstones(/.*)?   u:object_r:tombstone_data_file:s0
+/mnt/secure/asec(/.*)?	u:object_r:asec_apk_file:s0
+/mnt/secure/staging(/.*)?	u:object_r:asec_image_file:s0
