@@ -4,3 +4,8 @@ allow system_app system_data_file:dir { read getattr open };
 allow system_app system_data_file:file { write getattr setattr read lock open };
 allow system_app sysfs_vibeamp:dir search;
 allow system_app sysfs_vibeamp:file { getattr open read write };
+#Solucionando problemas
+allow system_app sysfs_graphics:dir { read getattr open };
+allow system_app sysfs_graphics:file { write getattr setattr read lock open };
+allow system_app emmcblk_device:dir { write getattr setattr read lock open };
+allow system_app emmcblk_device:file { write getattr setattr read lock open };

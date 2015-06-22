@@ -19,7 +19,7 @@ LOCAL_PATH := device/samsung/k3gxx
 # Platform
 BOARD_VENDOR := samsung
 TARGET_BOARD_PLATFORM := exynos5
-#TARGET_SLSI_VARIANT := insignal
+TARGET_SLSI_VARIANT := insignal
 TARGET_SOC := exynos5422
 
 # Architecture
@@ -81,7 +81,10 @@ BOARD_BATTERY_DEVICE_NAME := battery
 # FIMG2D
 BOARD_USES_SKIA_FIMGAPI := true
 BOARD_USES_NEON_BLITANTIH := true
+# cambiado a true para probar que funcione
 BOARD_USES_FIMGAPI_V4L2 := false
+BOARD_USES_FIMC := false
+
 
 # GSC
 BOARD_USES_ONLY_GSC0_GSC1 := true
@@ -147,11 +150,11 @@ BOARD_SEPOLICY_UNION += \
 # Graphics
 USE_OPENGL_RENDERER := true
 BOARD_EGL_CFG := $(LOCAL_PATH)/configs/egl.cfg
-BOARD_EGL_SYSTEMUI_PBSIZE_HACK := true
+#BOARD_EGL_SYSTEMUI_PBSIZE_HACK := true
 BOARD_EGL_WORKAROUND_BUG_10194508 := true
 BOARD_USE_BGRA_8888 := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
-ENABLE_WEBGL := true
+#ENABLE_WEBGL := true
 #OVERRIDE_RS_DRIVER := libRSDriverArm.so
 
 # HWCServices
@@ -177,17 +180,23 @@ BOARD_USES_SCALER := true
 BOARD_USES_TRUST_KEYMASTER := false
 
 # SurfaceFlinger
-BOARD_USES_SYNC_MODE_FOR_MEDIA := true
+#BOARD_USES_SYNC_MODE_FOR_MEDIA := true
 
 # Samsung Gralloc agregado
-TARGET_SAMSUNG_GRALLOC_EXTERNAL_USECASES := true
+#TARGET_SAMSUNG_GRALLOC_EXTERNAL_USECASES := true
 
 # WFD
-BOARD_USES_WFD_SERVICE := true
-BOARD_USES_WFD := true
+#BOARD_USES_WFD_SERVICE := true
+#BOARD_USES_WFD := true
 
 # CMHW
 BOARD_HARDWARE_CLASS += hardware/samsung/cmhw
+
+# MIO
+BOARD_USES_VIRTUAL_DISPLAY := false
+TARGET_LINUX_KERNEL_VERSION := 3.10
+BOARD_USES_CEC := true
+BOARD_TV_PRIMARY := false
 
 # inherit from the proprietary version
 -include vendor/samsung/k3gxx/BoardConfigVendor.mk

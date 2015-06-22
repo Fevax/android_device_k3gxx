@@ -23,6 +23,7 @@ telephony.lteOnCdmaDevice=0
 # Default USB mode
 persist.sys.usb.config=mtp
 persist.sys.isUsbOtgEnabled=true
+debug.db.uid
 
 # Wifi
 wifi.interface=wlan0

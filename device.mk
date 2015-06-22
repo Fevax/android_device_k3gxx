@@ -43,6 +43,11 @@ PRODUCT_COPY_FILES += \
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
 
+# AGREGADO MIO
+PRODUCT_PACKAGES += \
+	libion_exynos   \
+	libExynosHWCService
+
 # Camera
 PRODUCT_PACKAGES += \
     libhwjpeg \
@@ -54,10 +59,34 @@ PRODUCT_PACKAGES += \
     e2fsck \
     setup_fs
 
+# MobiCore
+PRODUCT_PACKAGES += \
+	mcDriverDaemon
+
 # Display
-#PRODUCT_PACKAGES += \
-#    libExynosHWCService \
-#    libfimg
+PRODUCT_PACKAGES += \
+	hwcomposer.exynos5 \
+	libcec
+	
+# stagefright and device specific modules
+PRODUCT_PACKAGES += \
+	libstagefrighthw \
+	libExynosOMX_Core	
+
+# codecs
+PRODUCT_PACKAGES := \
+	libOMX.Exynos.MPEG4.Decoder \
+	libOMX.Exynos.AVC.Decoder \
+	libOMX.Exynos.VP8.Decoder \
+	libOMX.Exynos.VP8.Encoder \
+	libOMX.Exynos.MPEG4.Encoder \
+	libOMX.Exynos.AVC.Encoder
+
+# Keymaster
+ifeq ($(BOARD_USES_TRUST_KEYMASTER), true)
+PRODUCT_PACKAGES += \
+	keystore.exynos5
+endif
 
 # GPS
 PRODUCT_COPY_FILES += \

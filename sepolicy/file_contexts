@@ -100,3 +100,19 @@
 /tombstones(/.*)?   u:object_r:tombstone_data_file:s0
 /mnt/secure/asec(/.*)?	u:object_r:asec_apk_file:s0
 /mnt/secure/staging(/.*)?	u:object_r:asec_image_file:s0
+
+
+
+/sys/class/graphics/fb[0-9](/.*)?	-- u:object_r:sysfs_graphics:s0
+/sys/devices/virtual/graphics/fb0/idle_time u:object_r:sysfs_graphics:s0
+/sys/class/graphics/fb0/mdp/caps u:object_r:sysfs_graphics:s0
+/sys/devices/virtual/graphics/fb1/vendor_name u:object_r:sysfs_graphics:s0
+/sys/devices/virtual/graphics/fb1/product_description u:object_r:sysfs_graphics:s0
+media.wifi_display       u:object_r:default_android_service:s0
+#/dev/s5p-smem           u:object_r:secmem_device:s0
+#/dev/video16            u:object_r:video_device:s0
+#/dev/video17            u:object_r:video_device:s0
+#/dev/video18            u:object_r:video_device:s0
+#/dev/video19            u:object_r:video_device:s0
+#/sys/class/lcd/panel/power_reduce    u:object_r:sysfs_display:s0
+#/dev/ump                u:object_r:ump_device:s0

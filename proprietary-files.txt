@@ -27,6 +27,7 @@ app/mcRegistry/ffffffffd00000000000000000000016.tlbin
 
 bin/drmserver
 bin/gpsd
+bin/lpm
 bin/scranton_RD
 bin/sensorhubservice
 
@@ -79,6 +80,7 @@ lib/hw/gps.default.so
 lib/hw/sensors.universal5422.so
 lib/hw/nfc_nci.universal5422.so
 
+
 lib/omx/libOMX.Exynos.AVC.Decoder.so    
 lib/omx/libOMX.Exynos.VP8.Decoder.so
 lib/omx/libOMX.Exynos.AVC.Encoder.so    
@@ -127,3 +129,32 @@ vendor/lib/libWVStreamControlAPI_L1.so
 vendor/media/LMspeed_508.emd
 vendor/media/PFFprec_600.emd
 
+#agregados mios
+
+lib/hw/hwcomposer.exynos5.so
+lib/libQmageDecoder.so
+lib/libcec.so
+lib/libion.so
+lib/libion_exynos.so
+lib/libfimg.so
+lib/libfimg2d_board.so
+lib/libdisplay.so
+lib/libdisplaymodule.so
+lib/libvirtualdisplay.so
+lib/libvirtualdisplaymodule.so
+lib/libhdmi.so
+lib/libhdmimodule.so
+lib/libExynosHWCService.so
+lib/libhwcutils.so
+lib/libhwcutilsmodule.so
+lib/libmpp.so
+lib/libMcClient.so
+lib/libcsc.so
+lib/libexynosutils.so
+lib/libexynosv4l2.so
+lib/libmedia.so
+lib/libnbaio.so
+lib/libsamsungvad.so
+lib/lib_SamsungVAD_v01007.so
+bin/dex2oat
+bin/rild
