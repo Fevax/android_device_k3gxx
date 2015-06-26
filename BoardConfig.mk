@@ -94,7 +94,7 @@ BOARD_USES_GSC_VIDEO := true
 BOARD_USES_CEC := true
 
 # Include path
-TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
+TARGET_SPECIFIC_HEADER_PATH := device/samsung/k3gxx/include
 
 
 # Partitions
@@ -124,7 +124,7 @@ TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun0/file
 #BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/k3gxx/recovery/recovery_keys.c
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
-TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/recovery.fstab
+TARGET_RECOVERY_FSTAB := device/samsung/k3gxx/rootdir/etc/recovery.fstab
 
 # SELinux
 BOARD_SEPOLICY_DIRS += \
@@ -149,13 +149,13 @@ BOARD_SEPOLICY_UNION += \
 
 # Graphics
 USE_OPENGL_RENDERER := true
-BOARD_EGL_CFG := $(LOCAL_PATH)/configs/egl.cfg
+BOARD_EGL_CFG := device/samsung/k3gxx/configs/egl.cfg
 #BOARD_EGL_SYSTEMUI_PBSIZE_HACK := true
-BOARD_EGL_WORKAROUND_BUG_10194508 := true
-BOARD_USE_BGRA_8888 := true
-NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
-#ENABLE_WEBGL := true
-#OVERRIDE_RS_DRIVER := libRSDriverArm.so
+#BOARD_EGL_WORKAROUND_BUG_10194508 := true
+#BOARD_USE_BGRA_8888 := true
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 5
+ENABLE_WEBGL := true
+OVERRIDE_RS_DRIVER := libRSDriverArm.so
 
 # HWCServices
 BOARD_USES_HWC_SERVICES := true

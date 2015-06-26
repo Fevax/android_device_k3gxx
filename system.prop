@@ -4,7 +4,7 @@ persist.timed.enable=true
 keyguard.no_require_sim=true
 drm.service.enabled=true
 ro.hdcp2.rx=tz
-ro.secwvk=220
+ro.secwvk=144
 
 # Media
 ro.sf.lcd_density=480
@@ -24,7 +24,9 @@ telephony.lteOnCdmaDevice=0
 persist.sys.usb.config=mtp
 persist.sys.isUsbOtgEnabled=true
 debug.db.uid
+ro.adb.secure=0
 
 # Wifi
 wifi.interface=wlan0
 wlan.wfd.hdcp=disable
+

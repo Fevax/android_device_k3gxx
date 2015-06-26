@@ -42,7 +42,7 @@ on boot
 
 # enable Google-specific location features,
 # like NetworkLocationProvider and LocationCollector
-    setprop ro.com.google.locationfeatures 1
+#    setprop ro.com.google.locationfeatures 1
 
 # For the emulator, which bypasses Setup Wizard, you can specify
 # account info for the device via these two properties.  Google
