@@ -153,7 +153,7 @@ lib/libmedia.so
 lib/libnbaio.so
 lib/libsamsungvad.so
 lib/lib_SamsungVAD_v01007.so
-bin/dex2oat
+-bin/dex2oat
 bin/rild
 bin/surfaceflinger
 
@@ -182,3 +182,6 @@ lib/egl/libGLES_android.so
 lib/libEGL.so
 lib/libmedia_jni.so
 lib/libart.so
+lib/hw/gralloc.default.so
+-lib/hw/gralloc.exynos5.so
+lib/libandroid_runtime.so

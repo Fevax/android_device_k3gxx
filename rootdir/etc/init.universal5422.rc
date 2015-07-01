@@ -9,12 +9,12 @@ on init
 
     # See storage config details at http://source.android.com/tech/storage/
     mkdir /mnt/media_rw/extSdCard 0700 media_rw media_rw
-    mkdir /mnt/media_rw/UsbDriveA 0700 media_rw media_rw
-    mkdir /mnt/media_rw/UsbDriveB 0700 media_rw media_rw
-    mkdir /mnt/media_rw/UsbDriveC 0700 media_rw media_rw
-    mkdir /mnt/media_rw/UsbDriveD 0700 media_rw media_rw
-    mkdir /mnt/media_rw/UsbDriveE 0700 media_rw media_rw
-    mkdir /mnt/media_rw/UsbDriveF 0700 media_rw media_rw
+#    mkdir /mnt/media_rw/UsbDriveA 0700 media_rw media_rw
+#    mkdir /mnt/media_rw/UsbDriveB 0700 media_rw media_rw
+#    mkdir /mnt/media_rw/UsbDriveC 0700 media_rw media_rw
+#    mkdir /mnt/media_rw/UsbDriveD 0700 media_rw media_rw
+#    mkdir /mnt/media_rw/UsbDriveE 0700 media_rw media_rw
+#    mkdir /mnt/media_rw/UsbDriveF 0700 media_rw media_rw
     
     # See storage config details at http://source.android.com/tech/storage/
     mkdir /mnt/shell/emulated 0700 shell shell
@@ -32,22 +32,22 @@ on init
 
     # map "real" external storages paths also in same way. backwards compatibility.
     symlink /storage/extSdCard /mnt/extSdCard
-    symlink /storage/UsbDriveA /mnt/UsbDriveA
-    symlink /storage/UsbDriveB /mnt/UsbDriveB
-    symlink /storage/UsbDriveC /mnt/UsbDriveC
-    symlink /storage/UsbDriveD /mnt/UsbDriveD
-    symlink /storage/UsbDriveE /mnt/UsbDriveE
-    symlink /storage/UsbDriveF /mnt/UsbDriveF
+#    symlink /storage/UsbDriveA /mnt/UsbDriveA
+#    symlink /storage/UsbDriveB /mnt/UsbDriveB
+#    symlink /storage/UsbDriveC /mnt/UsbDriveC
+#    symlink /storage/UsbDriveD /mnt/UsbDriveD
+#    symlink /storage/UsbDriveE /mnt/UsbDriveE
+#    symlink /storage/UsbDriveF /mnt/UsbDriveF
 
     export SECONDARY_STORAGE /storage/extSdCard
     
     mkdir /storage/extSdCard 0700 root root
-    mkdir /storage/UsbDriveA 0700 root root
-    mkdir /storage/UsbDriveB 0700 root root
-    mkdir /storage/UsbDriveC 0700 root root
-    mkdir /storage/UsbDriveD 0700 root root
-    mkdir /storage/UsbDriveE 0700 root root
-    mkdir /storage/UsbDriveF 0700 root root
+#    mkdir /storage/UsbDriveA 0700 root root
+#    mkdir /storage/UsbDriveB 0700 root root
+#    mkdir /storage/UsbDriveC 0700 root root
+#    mkdir /storage/UsbDriveD 0700 root root
+#    mkdir /storage/UsbDriveE 0700 root root
+#    mkdir /storage/UsbDriveF 0700 root root
 
     symlink /data/app /factory
 
@@ -60,11 +60,21 @@ on init
     symlink /dev/block/mmcblk0p8 /dev/block/param
 
 #Private Mode
-    mkdir /mnt/shell/privatemode 0700 system system
-    mkdir /storage/Private 0000 system system
+#    mkdir /mnt/shell/privatemode 0700 system system
+#    mkdir /storage/Private 0000 system system
+
+on early-init
+    write /sys/block/179:0/queue/read_ahead_kb 512
+    write /sys/block/179:1/queue/read_ahead_kb 512
+    write /sys/block/179:0/queue/scheduler noop
+
+on property:sys.boot_completed=1
+    write /sys/block/179:0/queue/scheduler row
+
 
 on post-fs-data
     mkdir /data/media 0770 media_rw media_rw
+    chown media_rw media_rw /data/media
 
     setprop vold.post_fs_data_done 1
 
@@ -84,9 +94,9 @@ on post-fs-data
     chown system system /sys/devices/virtual/sec/sec_misc/drop_caches
 
 #Private Mode
-    mkdir /data/privatemode 0770 system system
-    chown system system /data/privatemode
-    restorecon /data/privatemode
+#    mkdir /data/privatemode 0770 system system
+#    chown system system /data/privatemode
+#    restorecon /data/privatemode
 
 on boot
     # Permissions for bluetooth
@@ -365,7 +375,7 @@ on boot
 
 on fs
     mount_all /fstab.universal5422
-    setprop ro.crypto.fuse_sdcard true
+#    setprop ro.crypto.fuse_sdcard true
 
     chown radio radio /sys/devices/virtual/misc/multipdp/waketime
     chmod 0660 /sys/devices/virtual/misc/umts_dm0/dm_state
@@ -381,7 +391,7 @@ on fs
     mkdir /persdata/absolute 0750 system system 
       
     wait /dev/block/mmcblk0p16
-    check_fs /dev/block/mmcblk0p16 ext4 
+#    check_fs /dev/block/mmcblk0p16 ext4 
     mount ext4 /dev/block/mmcblk0p16 /persdata/absolute nosuid nodev barrier=1 
      
     chown system system /persdata 
@@ -571,9 +581,9 @@ service exyrngd /system/bin/exyrngd -b
     oneshot
 
 #Private Mode
-service privatemode /system/bin/sdcard -r /data/privatemode /mnt/shell/privatemode 1000 1000
-    class late_start
-    oneshot
+#service privatemode /system/bin/sdcard -r /data/privatemode /mnt/shell/privatemode 1000 1000
+#    class late_start
+#    oneshot
 
 # MobiCore startup
 service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF000000000000000000000001.drbin -r /system/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin -r /system/app/mcRegistry/ffffffffd00000000000000000000016.tlbin
@@ -582,44 +592,44 @@ service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF0000000000000
     group system
 
 # virtual sdcard daemon running as media_rw (1023)
-service sdcard /system/bin/sdcard -u 1023 -g 1023 -l -r /data/media /mnt/shell/emulated
+service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
     class late_start
     oneshot
     
-service fuse_extSdCard /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d -f /mnt/media_rw/extSdCard /storage/extSdCard
+service fuse_extSdCard /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/extSdCard /storage/extSdCard
     class late_start
     disabled
     oneshot
 
-service fuse_UsbDriveA /system/bin/sdcard -u 1023 -g 1023 -d -f /mnt/media_rw/UsbDriveA /storage/UsbDriveA
-    class late_start
-    disabled
-    oneshot
+#service fuse_UsbDriveA /system/bin/sdcard -u 1023 -g 1023 -d -f /mnt/media_rw/UsbDriveA /storage/UsbDriveA
+#    class late_start
+#    disabled
+#    oneshot
 
-service fuse_UsbDriveB /system/bin/sdcard -u 1023 -g 1023 -d -f /mnt/media_rw/UsbDriveB /storage/UsbDriveB
-    class late_start
-    disabled
-    oneshot
+#service fuse_UsbDriveB /system/bin/sdcard -u 1023 -g 1023 -d -f /mnt/media_rw/UsbDriveB /storage/UsbDriveB
+#    class late_start
+#    disabled
+#    oneshot
 
-service fuse_UsbDriveC /system/bin/sdcard -u 1023 -g 1023 -d -f /mnt/media_rw/UsbDriveC /storage/UsbDriveC
-    class late_start
-    disabled
-    oneshot
+#service fuse_UsbDriveC /system/bin/sdcard -u 1023 -g 1023 -d -f /mnt/media_rw/UsbDriveC /storage/UsbDriveC
+#    class late_start
+#    disabled
+#    oneshot
 
-service fuse_UsbDriveD /system/bin/sdcard -u 1023 -g 1023 -d -f /mnt/media_rw/UsbDriveD /storage/UsbDriveD
-    class late_start
-    disabled
-    oneshot
+#service fuse_UsbDriveD /system/bin/sdcard -u 1023 -g 1023 -d -f /mnt/media_rw/UsbDriveD /storage/UsbDriveD
+#    class late_start
+#    disabled
+#    oneshot
 
-service fuse_UsbDriveE /system/bin/sdcard -u 1023 -g 1023 -d -f /mnt/media_rw/UsbDriveE /storage/UsbDriveE
-    class late_start
-    disabled
-    oneshot
+#service fuse_UsbDriveE /system/bin/sdcard -u 1023 -g 1023 -d -f /mnt/media_rw/UsbDriveE /storage/UsbDriveE
+#    class late_start
+#    disabled
+#    oneshot
 
-service fuse_UsbDriveF /system/bin/sdcard -u 1023 -g 1023 -d -f /mnt/media_rw/UsbDriveF /storage/UsbDriveF
-    class late_start
-    disabled
-    oneshot
+#service fuse_UsbDriveF /system/bin/sdcard -u 1023 -g 1023 -d -f /mnt/media_rw/UsbDriveF /storage/UsbDriveF
+#    class late_start
+#    disabled
+#    oneshot
 
 # Set watchdog timer to 30 seconds and pet it every 10 seconds to get a 20 second margin
 service watchdogd /sbin/watchdogd 10 20
@@ -638,18 +648,18 @@ on property:ro.debuggable=1
     write /sys/module/kgdboc/parameters/kgdboc ttyFIQ1
     write /sys/module/fiq_debugger/parameters/kgdb_enable 1
 # SecEDS
-service TvoutService_C /system/bin/bintvoutservice
-     class main
-     user system
-     group graphics
-on property:ro.SecEDS.enable=false
-    stop TvoutService_C
+#service TvoutService_C /system/bin/bintvoutservice
+#     class main
+#     user system
+#     group graphics
+#on property:ro.SecEDS.enable=false
+#    stop TvoutService_C
 
 # SENSOR FRAMEWORK : starts fingerprintService
-service vcsFPService /system/bin/vcsFPService
-    class late_start
-    user system
-    group system
+#service vcsFPService /system/bin/vcsFPService
+#    class late_start
+#    user system
+#    group system
 
 # GPS
 service gpsd /system/bin/gpsd -c /system/etc/gps.xml
@@ -674,7 +684,7 @@ on property:ro.debug_level=0x4f4c
 
 # LPM
 on property:ro.bootmode=charger
-    mount ext4 /dev/block/platform/12200000.dwmmc0/by-name/SYSTEM /system wait ro
+    mount ext4 /dev/block/mmcblk0p18 /system wait ro
 
 on property:ro.bootmode=charger
     class_start sec-charger
@@ -701,12 +711,12 @@ service playlpm /system/bin/lpm
 #    group system
 #    disabled
 
-on property:ro.securestorage.support=true
-    mkdir /dev/.secure_storage
-    chmod 0711 /dev/.secure_storage
-    chown system system /dev/.secure_storage
-    restorecon -R /dev/.secure_storage
-    start secure_storage
+#on property:ro.securestorage.support=true
+#    mkdir /dev/.secure_storage
+#    chmod 0711 /dev/.secure_storage
+#    chown system system /dev/.secure_storage
+#    restorecon -R /dev/.secure_storage
+#    start secure_storage
 
 #on property:ro.securestorage.knox=true
 #    mkdir /dev/.secure_storage
@@ -727,5 +737,5 @@ service swapon /sbin/sswap -s
     oneshot
 
 # Reactivation lock
-	service reactived /system/bin/reactived
-	class late_start
+#	service reactived /system/bin/reactived
+#	class late_start
