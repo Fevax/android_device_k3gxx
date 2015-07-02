@@ -178,6 +178,10 @@ PRODUCT_PACKAGES += \
 
 LOCAL_SHARED_LIBRARIES += libbinder
 
+# Default.prop overrides to get adb working at boot   
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    ro.secure=0 \
+    ro.adb.secure=0 \
 
 # $(call inherit-product, build/target/product/full.mk)
 
