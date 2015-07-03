@@ -128,25 +128,25 @@ BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 TARGET_RECOVERY_FSTAB := device/samsung/k3gxx/rootdir/etc/recovery.fstab
 
 # SELinux
-BOARD_SEPOLICY_DIRS += \
-    device/samsung/k3gxx/sepolicy
+#BOARD_SEPOLICY_DIRS += \
+#    device/samsung/k3gxx/sepolicy
 
-BOARD_SEPOLICY_UNION += \
-    file_contexts \
-    service_contexts \
-    device.te \
-    domain.te \
-    drmserver.te \
-    file.te \
-    gpsd.te \
-    macloader.te \
-    mediaserver.te \
-    rild.te \
-    servicemanager.te \
-    system_app.te \
-    system_server.te \
-    vold.te \
-    wpa.te
+#BOARD_SEPOLICY_UNION += \
+#    file_contexts \
+#    service_contexts \
+#    device.te \
+#    domain.te \
+#    drmserver.te \
+#    file.te \
+#    gpsd.te \
+#    macloader.te \
+#    mediaserver.te \
+#    rild.te \
+#    servicemanager.te \
+#    system_app.te \
+#    system_server.te \
+#    vold.te \
+#    wpa.te
 
 # Graphics
 USE_OPENGL_RENDERER := true
