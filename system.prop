@@ -30,3 +30,4 @@ ro.adb.secure=0
 wifi.interface=wlan0
 wlan.wfd.hdcp=disable
 
+debug.db.uid=100000
