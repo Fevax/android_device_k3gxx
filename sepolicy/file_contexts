@@ -76,11 +76,11 @@
 /dev/mali[0-9]	u:object_r:gpu_device:s0
 /sys/class/rfkill/rfkill[0-9]*/state -- u:object_r:sysfs_bluetooth_writable:s0
 /sys/class/rfkill/rfkill[0-9]*/type -- u:object_r:sysfs_bluetooth_writable:s0
-/sys/class/sec(/.*)?                --               u:object_r:sysfs_sec:s0
+#/sys/class/sec(/.*)?                --               u:object_r:sysfs_sec:s0
 /system/bin/app_process	u:object_r:zygote_exec:s0
 /system/bin/mksh	u:object_r:shell_exec:s0
 /system/bin/wpa_supplicant_real u:object_r:wpa_exec:s0
-/system/bin/macloader	u:object_r:macloader_exec:s0
+#/system/bin/macloader	u:object_r:macloader_exec:s0
 /system/bin/gpsd        u:object_r:gpsd_exec:s0 
 /system/bin/secgpsd     u:object_r:gpsd_exec:s0
 /data/bcmnfc(/.*)?	u:object_r:nfc_data_file:s0
@@ -94,7 +94,7 @@
 /mnt/shell/emulated/([1-9])?[0-9](/.*)?  u:object_r:media_rw_data_file:s0
 /data/misc/gpsone_d(/.*)?	u:object_r:gps_data_file:s0
 /efs/bluetooth(/.*)?	u:object_r:bluetooth_efs_file:s0
-/efs/wifi(/.*)?	u:object_r:wifi_efs_file:s0
+#/efs/wifi(/.*)?	u:object_r:wifi_efs_file:s0
 /tombstone(/.*)?   u:object_r:tombstone_data_file:s0
 /tombstones(/.*)?   u:object_r:tombstone_data_file:s0
 /mnt/secure/asec(/.*)?	u:object_r:asec_apk_file:s0
@@ -102,15 +102,15 @@
 
 
 
-/sys/class/graphics/fb0	 						 		u:object_r:sysfs_display:s0
-/sys/devices/virtual/graphics/fb0/idle_time      		u:object_r:sysfs_display:s0
-/sys/class/graphics/fb0/mdp/caps                        u:object_r:sysfs_graphics:s0
-/sys/devices/virtual/graphics/fb1/vendor_name 	 		u:object_r:sysfs_display:s0
-/sys/devices/virtual/graphics/fb1/product_description   u:object_r:sysfs_display:s0
+#/sys/class/graphics/fb0	 						 		u:object_r:sysfs_display:s0
+#/sys/devices/virtual/graphics/fb0/idle_time      		u:object_r:sysfs_display:s0
+#/sys/class/graphics/fb0/mdp/caps                        u:object_r:sysfs_graphics:s0
+#/sys/devices/virtual/graphics/fb1/vendor_name 	 		u:object_r:sysfs_display:s0
+#/sys/devices/virtual/graphics/fb1/product_description   u:object_r:sysfs_display:s0
 /dev/block/mmcblk0p18   								u:object_r:block_device:s0
 /dev/block/mmcblk0p21		   							u:object_r:block_device:s0
-/dev/block/mmcblk0p3	   								u:object_r:efs_block_device:s0
-/dev/s5p-smem           								u:object_r:secmem_device:s0
+#/dev/block/mmcblk0p3	   								u:object_r:efs_block_device:s0
+#/dev/s5p-smem           								u:object_r:secmem_device:s0
 /dev/mobicore           								u:object_r:tee_device:s0
 /dev/mobicore-user      								u:object_r:tee_device:s0
 /dev/fimg2d(/.*)?     									u:object_r:video_device:s0
@@ -118,5 +118,5 @@
 /efs/FactoryApp(/.*)?   								u:object_r:efs_file:s0
 /efs/imei	            								u:object_r:efs_file:s0
 /system/bin/mcDriverDaemon  --  						u:object_r:tee_exec:s0
-/sys/class/lcd/panel/power_reduce    					u:object_r:sysfs_display:s0
+#/sys/class/lcd/panel/power_reduce    					u:object_r:sysfs_display:s0
 

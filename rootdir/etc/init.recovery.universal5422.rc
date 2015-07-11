@@ -1,8 +1,8 @@
 on init
     # Touchscreen
-    write /sys/devices/platform/s3c2440-i2c.0/i2c-0/0-0020/input/input1/enabled 0
-    write /sys/devices/platform/s3c2440-i2c.0/i2c-0/0-0020/input/input1/power/control on
-    write /sys/devices/platform/s3c2440-i2c.0/i2c-0/0-0020/input/input1/enabled 1
+    write /sys/devices/12c60000.i2c/i2c-8/8-0020/input/input2/enabled 0
+    write /sys/devices/12c60000.i2c/i2c-8/8-0020/input/input2/power/control on
+    write /sys/devices/12c60000.i2c/i2c-8/8-0020/input/input2/enabled 1
 
 on property:zygote.enable=1
     export PATH /sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin

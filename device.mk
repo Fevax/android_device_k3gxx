@@ -43,15 +43,16 @@ PRODUCT_COPY_FILES += \
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
 
-# AGREGADO MIO
-PRODUCT_PACKAGES += \
-	libion_exynos   \
-	libExynosHWCService
-
 # Camera
 PRODUCT_PACKAGES += \
     libhwjpeg \
+    libexynoscamera \
     camera.universal5422
+
+# AGREGADO MIO
+#PRODUCT_PACKAGES += \
+#	libion_exynos   \
+#	libExynosHWCService
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
@@ -59,44 +60,21 @@ PRODUCT_PACKAGES += \
     e2fsck \
     setup_fs
 
-# MobiCore
-PRODUCT_PACKAGES += \
-	mcDriverDaemon
-
-# Display
-PRODUCT_PACKAGES += \
-	hwcomposer.exynos5 \
-	libcec
-	
-# stagefright and device specific modules
-PRODUCT_PACKAGES += \
-	libstagefrighthw \
-	libExynosOMX_Core	
-
-# codecs
-PRODUCT_PACKAGES := \
-	libOMX.Exynos.MPEG4.Decoder \
-	libOMX.Exynos.AVC.Decoder \
-	libOMX.Exynos.VP8.Decoder \
-	libOMX.Exynos.VP8.Encoder \
-	libOMX.Exynos.MPEG4.Encoder \
-	libOMX.Exynos.AVC.Encoder
-
-# Keymaster
-ifeq ($(BOARD_USES_TRUST_KEYMASTER), true)
-PRODUCT_PACKAGES += \
-	keystore.exynos5
-endif
-
 # GPS
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps.cer:system/etc/gps.cer \
     $(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf \
     $(LOCAL_PATH)/configs/gps.xml:system/etc/gps.xml
 
-# Input device
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/idc/sec_e-pen.idc:system/usr/idc/sec_e-pen.idc
+# HW composer
+PRODUCT_PACKAGES += \
+	libion \
+	hwcomposer.exynos5 \
+	gralloc.exynos5
+
+# IR
+PRODUCT_PACKAGES += \
+    consumerir.universal5422
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
@@ -107,6 +85,22 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl \
     $(LOCAL_PATH)/keylayout/ue_rf4ce_remote.kl:system/usr/keylayout/ue_rf4ce_remote.kl
 
+# Keymaster
+ifeq ($(BOARD_USES_TRUST_KEYMASTER), true)
+PRODUCT_PACKAGES += \
+	keystore.exynos5
+endif
+
+# Lights
+PRODUCT_PACKAGES += \
+    lights.universal5422
+
+# NFCEE access control + configuration
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/nfc/nfcee_access.xml:system/etc/nfcee_access.xml \
+    $(LOCAL_PATH)/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
+#    $(LOCAL_PATH)/nfc/libnfc-brcm-20791b04.conf:system/etc/libnfc-brcm-20791b04.conf \
+#    $(LOCAL_PATH)/nfc/libnfc-brcm-20791b05.conf:system/etc/libnfc-brcm-20791b05.conf
 
 # Media profile
 PRODUCT_COPY_FILES += \
@@ -117,6 +111,28 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
+# Misc
+PRODUCT_PACKAGES += \
+    com.android.future.usb.accessory
+
+# MobiCore
+PRODUCT_PACKAGES += \
+#    libMcClient \
+#    libMcRegistry \
+#    libgdmcprov \
+    mcDriverDaemon
+
+# Network tools
+PRODUCT_PACKAGES += \
+    libpcap \
+    tcpdump
+
+# stagefright and device specific modules
+PRODUCT_PACKAGES += \
+    libcsc \
+    libExynosOMX_Core \
+    libOMX.Exynos.MP3.Decoder \
+    libstagefrighthw \	
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -147,22 +163,31 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml
 
+# CPU producer to CPU consumer not supported
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.bq.gpu_to_cpu_unsupported=1
+
+# Power
+#PRODUCT_PACKAGES += \
+#    power.universal5422
 
 # Ramdisk
 PRODUCT_PACKAGES += \
-	fstab.goldfish \
-	fstab.universal5422 \
-	init.container.rc \
-	init.goldfish.rc \
-	init.recovery.universal5422.rc \
-	init.trace.rc \
-	init.universal5422.rc \
-	init.universal5422.usb.rc \
-	init.usb.rc \
-	init.wifi.rc \
-	init.zygote32.rc \
-	recovery.fstab \
-	ueventd.universal5422.rc
+fstab.goldfish \
+fstab.universal5422 \
+init.recovery.universal5422.rc \
+init.samsung.rc \
+init.universal5422.rc \
+init.universal5422.usb.rc \
+init.universal5422.wifi.rc \
+lpm.rc \
+ueventd.universal5422.rc
+
+# Radio
+PRODUCT_PACKAGES += \
+    cbd \
+    libsecril-client \
+    libsecril-client-sap
 
 # Wifi
 PRODUCT_COPY_FILES += \
@@ -171,12 +196,20 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
 	$(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
+PRODUCT_PACKAGES += \
+    dhcpcd.conf \
+    hostapd \
+    hostapd_default.conf \
+    libwpa_client \
+    wpa_supplicant \
+    libnetcmdiface \
+    macloader
+
 # for off charging mode
 PRODUCT_PACKAGES += \
     charger_res_images
     
-
-LOCAL_SHARED_LIBRARIES += libbinder
+#LOCAL_SHARED_LIBRARIES += libbinder
 
 # Default.prop overrides to get adb working at boot   
 ADDITIONAL_DEFAULT_PROPERTIES += \
