@@ -205,3 +205,4 @@ bin/mcDriverDaemon
 #bin/installd
 bin/jackservice
 bin/lpm
+bin/gps.cer
