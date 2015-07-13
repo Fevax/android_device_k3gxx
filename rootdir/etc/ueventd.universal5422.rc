@@ -71,6 +71,7 @@
 
 /dev/video24              0660   media      graphics
 /dev/video27              0660   media      graphics
+/dev/v4l-subdev*		  0660   system     system
 
 # scalers
 /dev/video50              0660   media      graphics
@@ -119,6 +120,11 @@
 # sensor sysfs properties
 /sys/devices/virtual/input/input*	poll_delay	0660	system	radio
 /sys/devices/virtual/input/input*	enable		0660	system	radio
+
+# USB Accessories (printer and so on) - duki994
+/dev/ttyUSB*              0660   system     usb
+/dev/usb/lp*              0660   system     usb
+
 # Sensorhub IIO
 /dev/ssp_sensorhub        0660   system     system
 /dev/iio:device*          0660   system  system
