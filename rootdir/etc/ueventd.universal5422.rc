@@ -31,7 +31,7 @@
 
 # Various devices use the v4l-subdev interface
 # We declare all such nodes simultaneously here
-/dev/v4l-subdev*          0660   system     camera
+/dev/v4l-subdev*          0660   system     system
 
 # gscalers
 /dev/video23              0660   media      graphics
@@ -71,7 +71,6 @@
 
 /dev/video24              0660   media      graphics
 /dev/video27              0660   media      graphics
-/dev/v4l-subdev*		  0660   system     system
 
 # scalers
 /dev/video50              0660   media      graphics
