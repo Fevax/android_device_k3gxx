@@ -31,7 +31,7 @@
 
 # Various devices use the v4l-subdev interface
 # We declare all such nodes simultaneously here
-/dev/v4l-subdev*          0660   system     system
+/dev/v4l-subdev*          0660   system     camera
 
 # gscalers
 /dev/video23              0660   media      graphics
@@ -131,4 +131,3 @@
 /sys/devices/12d20000.spi/spi_master/spi0/spi0.0/iio:device*    buffer/length       0660    system    system
 /sys/bus/iio/devices/iio:device*    0664   system     radio
 
-/dev/block/mmcblk0p21      0775   system     system

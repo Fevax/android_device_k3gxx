@@ -31,6 +31,7 @@ TARGET_CPU_SMP := true
 TARGET_CPU_VARIANT := cortex-a15
 ARCH_ARM_HAVE_TLS_REGISTER := true
 WITH_DEXPREOPT := true
+TARGET_PROVIDES_INIT_RC := true
 
 # Bootloader
 TARGET_OTA_ASSERT_DEVICE := k3g,k3gxx
@@ -39,12 +40,9 @@ TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
 # Audio
-HAVE_HTC_AUDIO_DRIVER := true
-BOARD_USES_GENERIC_AUDIO := true
-#BOARD_USES_GENERIC_AUDIO := false
+#BOARD_USES_GENERIC_AUDIO := true
 #BOARD_USES_I2S_AUDIO := true
-#BOARD_USES_PCM_AUDIO := false
-#BOARD_USES_SPDIF_AUDIO := false
+BOARD_USES_LIBMEDIA_WITH_AUDIOPARAMETER := true
 
 # Bionic Tuning
 TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
@@ -113,7 +111,7 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 12442369024
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 # PowerHAL
-#TARGET_POWERHAL_VARIANT := k3gxx
+TARGET_POWERHAL_VARIANT := k3gxx
 
 # Radio
 BOARD_PROVIDES_LIBRIL := true
@@ -132,28 +130,28 @@ TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun/file
 #BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/k3gxx/recovery/recovery_keys.c
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
-TARGET_RECOVERY_FSTAB := device/samsung/k3gxx/rootdir/etc/fstab.universal5422
+TARGET_RECOVERY_FSTAB := device/samsung/k3gxx/rootdir/etc/recovery.fstab
 
 # SELinux
-BOARD_SEPOLICY_DIRS += \
-    device/samsung/k3gxx/sepolicy
+#BOARD_SEPOLICY_DIRS += \
+#    device/samsung/k3gxx/sepolicy
 
-BOARD_SEPOLICY_UNION += \
-    file_contexts \
-    service_contexts \
-    device.te \
-    domain.te \
-    drmserver.te \
-    file.te \
-    gpsd.te \
-    macloader.te \
-    mediaserver.te \
-    rild.te \
-    servicemanager.te \
-    system_app.te \
-    system_server.te \
-    vold.te \
-    wpa.te
+#BOARD_SEPOLICY_UNION += \
+#    file_contexts \
+#    service_contexts \
+#    device.te \
+#    domain.te \
+#    drmserver.te \
+#    file.te \
+#    gpsd.te \
+#    macloader.te \
+#    mediaserver.te \
+#    rild.te \
+#    servicemanager.te \
+#    system_app.te \
+#    system_server.te \
+#    vold.te \
+#    wpa.te
 
 # Graphics
 USE_OPENGL_RENDERER := true
@@ -162,7 +160,7 @@ BOARD_EGL_CFG := device/samsung/k3gxx/configs/egl.cfg
 #BOARD_EGL_WORKAROUND_BUG_10194508 := true
 #BOARD_USE_BGRA_8888 := true
 DEFAULT_FB_NUM := 0
-NUM_FRAMEBUFFER_SURFACE_BUFFERS := 5
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 ENABLE_WEBGL := true
 OVERRIDE_RS_DRIVER := libRSDriverArm.so
 
@@ -189,16 +187,17 @@ BOARD_USES_SCALER := true
 BOARD_USES_TRUST_KEYMASTER := false
 
 # SurfaceFlinger
-#BOARD_USES_SYNC_MODE_FOR_MEDIA := true
+BOARD_USES_SYNC_MODE_FOR_MEDIA := true
 
 # Samsung Gralloc agregado
 TARGET_SAMSUNG_GRALLOC_EXTERNAL_USECASES := true
 
 # WFD
-#BOARD_USES_WFD_SERVICE := true
-#BOARD_USES_WFD := true
+BOARD_USES_WFD_SERVICE := true
+BOARD_USES_WFD := true
 
 # Wifi
+BOARD_NO_WIFI_HAL := true
 BOARD_HAVE_SAMSUNG_WIFI          := true
 BOARD_WLAN_DEVICE                := bcmdhd
 WPA_SUPPLICANT_VERSION           := VER_0_8_X
@@ -206,12 +205,8 @@ BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
 BOARD_HOSTAPD_DRIVER             := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
-WIFI_BAND                        := 802_11_ABG
-
 WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/dhd/parameters/firmware_path"
 WIFI_DRIVER_FW_PATH_STA          := "/system/etc/wifi/bcmdhd_sta.bin"
-WIFI_DRIVER_FW_PATH_AP           := "/system/etc/wifi/bcmdhd_apsta.bin"
-WIFI_DRIVER_FW_PATH_P2P          := "/system/etc/wifi/bcmdhd_p2p.bin"
 
 # CMHW
 BOARD_HARDWARE_CLASS += hardware/samsung/cmhw
@@ -219,7 +214,6 @@ BOARD_HARDWARE_CLASS += hardware/samsung/cmhw
 # MIO
 BOARD_USES_VIRTUAL_DISPLAY := false
 TARGET_LINUX_KERNEL_VERSION := 3.10
-BOARD_USES_CEC := true
 BOARD_TV_PRIMARY := false
 
 # inherit from the proprietary version

@@ -29,6 +29,9 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # Audio
 PRODUCT_PACKAGES += \
+	audio.primary.universal5422 \
+	audio.primary.default\
+	audio_policy.default \
     audio.a2dp.default \
     audio.r_submix.default \
     audio.usb.default \
@@ -38,6 +41,25 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf \
     $(LOCAL_PATH)/configs/audio_effects.conf:system/vendor/etc/audio_effects.conf \
     $(LOCAL_PATH)/configs/mixer_paths.xml:system/etc/mixer_paths.xml \
+    $(LOCAL_PATH)/configs/firmware/florida-dsp1-edac.bin:system/etc/firmware/florida-dsp1-edac.bin \
+    $(LOCAL_PATH)/configs/firmware/florida-dsp1-edac.wmfw:system/etc/firmware/florida-dsp1-edac.wmfw \
+    $(LOCAL_PATH)/configs/firmware/florida-dsp2-tx-nb.wmfw:system/etc/firmware/florida-dsp2-tx-nb.wmfw \
+    $(LOCAL_PATH)/configs/firmware/florida-dsp2-tx-swb.wmfw:system/etc/firmware/florida-dsp2-tx-swb.wmfw \
+    $(LOCAL_PATH)/configs/firmware/florida-dsp2-tx-wb.wmfw:system/etc/firmware/florida-dsp2-tx-wb.wmfw \
+    $(LOCAL_PATH)/configs/firmware/florida-dsp3-ez2-control.wmfw:system/etc/firmware/florida-dsp3-ez2-control.wmfw \
+    $(LOCAL_PATH)/configs/firmware/florida-dsp3-lpsd-control.bin:system/etc/firmware/florida-dsp3-lpsd-control.bin \
+    $(LOCAL_PATH)/configs/firmware/florida-dsp3-tx-nb.bin:system/etc/firmware/florida-dsp3-tx-nb.bin \
+    $(LOCAL_PATH)/configs/firmware/florida-dsp3-tx-nb.wmfw:system/etc/firmware/florida-dsp3-tx-nb.wmfw \
+    $(LOCAL_PATH)/configs/firmware/florida-dsp3-tx-swb.wmfw:system/etc/firmware/florida-dsp3-tx-swb.wmfw \
+    $(LOCAL_PATH)/configs/firmware/florida-dsp3-tx-swb-conversation.bin:system/etc/firmware/florida-dsp3-tx-swb-conversation.bin \
+    $(LOCAL_PATH)/configs/firmware/florida-dsp3-tx-swb-interview.bin:system/etc/firmware/florida-dsp3-tx-swb-interview.bin \
+    $(LOCAL_PATH)/configs/firmware/florida-dsp3-tx-wb.bin:system/etc/firmware/florida-dsp3-tx-wb.bin \
+    $(LOCAL_PATH)/configs/firmware/florida-dsp3-tx-wb.wmfw:system/etc/firmware/florida-dsp3-tx-wb.wmfw \
+    $(LOCAL_PATH)/configs/firmware/florida-dsp4-rx-anc-nb.bin:system/etc/firmware/florida-dsp4-rx-anc-nb.bin \
+    $(LOCAL_PATH)/configs/firmware/florida-dsp4-rx-anc-nb.wmfw:system/etc/firmware/florida-dsp4-rx-anc-nb.wmfw \
+    $(LOCAL_PATH)/configs/firmware/florida-dsp4-rx-anc-wb.bin:system/etc/firmware/florida-dsp4-rx-anc-wb.bin \
+    $(LOCAL_PATH)/configs/firmware/florida-dsp4-rx-anc-wb.wmfw:system/etc/firmware/florida-dsp4-rx-anc-wb.wmfw \
+	
     
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1920
@@ -112,8 +134,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
 # Misc
-PRODUCT_PACKAGES += \
-    com.android.future.usb.accessory
+#PRODUCT_PACKAGES += \
+#    com.android.future.usb.accessory
 
 # MobiCore
 PRODUCT_PACKAGES += \
@@ -181,7 +203,10 @@ init.universal5422.rc \
 init.universal5422.usb.rc \
 init.universal5422.wifi.rc \
 lpm.rc \
-ueventd.universal5422.rc
+ueventd.universal5422.rc \
+init.rc \
+recovery.fstab \
+adb_keys
 
 # Radio
 PRODUCT_PACKAGES += \
@@ -195,6 +220,7 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
 	$(LOCAL_PATH)/configs/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
 	$(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
+
 
 PRODUCT_PACKAGES += \
     dhcpcd.conf \
@@ -215,6 +241,11 @@ PRODUCT_PACKAGES += \
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.secure=0 \
     ro.adb.secure=0 \
+	ro.hardware=universal5422 \
+	ro.zygote=zygote32 \
+    persist.service.adb.enable=1 \
+	persist.service.debuggable=1 \
+#	persist.sys.usb.config=mtp,adb \
 
 # $(call inherit-product, build/target/product/full.mk)
 
