@@ -29,7 +29,8 @@ vendor/firmware/bcm4350_V0301.0563_wisol.hcd
 lib/liboemcrypto.so
 
 # Camera
-lib/hw/camera.universal5422.so 
+lib/hw/camera.universal5422.so
+lib/hw/camera.vendor.universal5422.so
 lib/libexynoscamera.so
 lib/libvdis.so
 
@@ -221,6 +222,12 @@ lib/hw/camera.goldfish.so
 lib/libasound.so
 usr/idc/sec_touchscreen.idc
 bin/samsungpowersoundplay
+
+lib/libtinyalsa.so
+etc/tinyucm.conf
+bin/tinycap
+bin/tinymix
+bin/tinyplay
 
 lib/libbt-aptx-4.0.3.so
 lib/libbt-codec_aptx.so

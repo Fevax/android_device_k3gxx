@@ -13,6 +13,7 @@ ro.sf.lcd_density=480
 ro.opengles.version=196608
 media.enable-commonsource=true
 persist.hdmi.hdcp_enabled=1
+ro.securestorage.support=false
 
 # Radio
 rild.libargs=-d /dev/ttyS0
@@ -23,6 +24,8 @@ ro.telephony.ril_class=k3gxxRIL
 
 
 # Default USB mode
+persist.sys.isUsbOtgEnabled=true
+persist.sys.usb.config=mtp
 debug.db.uid=100000
 ro.adb.secure=0
 

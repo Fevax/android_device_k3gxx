@@ -237,6 +237,13 @@ PRODUCT_PACKAGES += \
     
 #LOCAL_SHARED_LIBRARIES += libbinder
 
+# Camera permissions
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/init.exynos.cam.sh:system/etc/init.exynos.cam.sh
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    camera2.portability.force_api=1
+
 # Default.prop overrides to get adb working at boot   
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.secure=0 \
@@ -245,7 +252,7 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 	ro.zygote=zygote32 \
     persist.service.adb.enable=1 \
 	persist.service.debuggable=1 \
-#	persist.sys.usb.config=mtp,adb \
+#	persist.sys.usb.config=mtp \
 
 # $(call inherit-product, build/target/product/full.mk)
 
