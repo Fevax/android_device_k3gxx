@@ -36,6 +36,8 @@ on post-fs-data
 
 on boot
 	setprop wifi.interface wlan0
+    setprop ro.radio.noril no
+    start ril-daemon
 
 service p2p_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
