@@ -42,7 +42,8 @@ import com.android.internal.telephony.cdma.CdmaSmsBroadcastConfigInfo;
 import java.util.ArrayList;
 
 public class ExynosXMM6360RIL extends RIL implements CommandsInterface {
-
+	//enable debug
+	static final boolean RILJ_LOGD = true;
     // Samsung RIL Requests
     static final int RIL_REQUEST_GET_CELL_BROADCAST_CONFIG = 10002;
 
