@@ -1,4 +1,0 @@
-allow init kernel:system syslog_read;
-allow init fuse:dir search;
-allow init self:capability sys_module;
-allow init fuse:dir mounton;

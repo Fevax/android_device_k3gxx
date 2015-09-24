@@ -1,6 +1,5 @@
 import init.universal5422.wifi.rc
 import init.universal5422.usb.rc
-import init.wifi.rc
 import init.samsung.rc
 
 on early-init
@@ -383,7 +382,7 @@ on fs
     mkdir /persdata/absolute 0750 system system 
       
     wait /dev/block/mmcblk0p16
-    check_fs /dev/block/mmcblk0p16 ext4 
+
     mount ext4 /dev/block/mmcblk0p16 /persdata/absolute nosuid nodev barrier=1 
      
     chown system system /persdata 
@@ -577,11 +576,6 @@ service privatemode /system/bin/sdcard -r /data/privatemode /mnt/shell/privatemo
     class late_start
     oneshot
 
-# MobiCore startup
-service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF000000000000000000000001.drbin -r /system/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin -r /system/app/mcRegistry/ffffffffd00000000000000000000016.tlbin
-    class core
-    user system
-    group system
 
 # virtual sdcard daemon running as media_rw (1023)
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
@@ -639,6 +633,18 @@ service cpboot-daemon /sbin/cbd -d -txmm626 -bh -mh -p 13
 on property:ro.debuggable=1
     write /sys/module/kgdboc/parameters/kgdboc ttyFIQ1
     write /sys/module/fiq_debugger/parameters/kgdb_enable 1
+    
+    
+# Create camera ID file for Exynos camera HAL
+service camera_id /system/bin/sh /system/etc/init.exynos.cam.sh
+    class main
+    user root
+    disabled
+    oneshot
+
+on property:init.svc.bootanim=stopped
+    start camera_id    
+    
 # SecEDS
 service TvoutService_C /system/bin/bintvoutservice
      class main
@@ -709,17 +715,6 @@ on property:ro.securestorage.support=true
     chown system system /dev/.secure_storage
     restorecon -R /dev/.secure_storage
     start secure_storage
-
-#on property:ro.securestorage.knox=true
-#    mkdir /dev/.secure_storage
-#    chmod 0711 /dev/.secure_storage
-#    chown system system /dev/.secure_storage
-#    restorecon -R /dev/.secure_storage
-#    start secure_storage
-
-service playlpm /system/bin/lpm
-    class sec-charger
-    critical
 
 # SSWAP
 service swapon /sbin/sswap -s

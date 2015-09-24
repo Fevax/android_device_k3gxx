@@ -9,7 +9,6 @@ import /init.usb.rc
 import /init.universal5422.rc
 import /init.${ro.zygote}.rc
 import /init.trace.rc
-import /init.container.rc
 # Include CM's extra init file
 import /init.cm.rc
 
@@ -37,7 +36,6 @@ on init
 
     loglevel 8
 
-    ffu
 
     # SEC_SELINUX
     # for audit message
@@ -81,7 +79,9 @@ on init
     mkdir /config 0500 root root
 
     # See storage config details at http://source.android.com/tech/storage/
-    mkdir /mnt/shell 0700 shell shell
+# [ S Professional Audio
+    mkdir /mnt/shell 0750 shell shell
+# ]
     mkdir /mnt/media_rw 0700 media_rw media_rw
     mkdir /storage 0751 root sdcard_r
 
@@ -291,14 +291,15 @@ on post-fs-data
     # create basic filesystem structure
     mkdir /data/misc 01771 system misc
     mkdir /data/misc/adb 02750 system shell
-    mkdir /data/misc/audit 02750 audit system
+    # SEC_SELINUX
+    mkdir /data/misc/audit 02775 audit system 
     mkdir /data/misc/bluedroid 0770 bluetooth net_bt_stack
     mkdir /data/misc/bluedroiddump 0770 system system
     mkdir /data/misc/bluetooth 0770 system system
     mkdir /data/misc/keystore 0700 keystore keystore
     mkdir /data/misc/keychain 0771 system system
     mkdir /data/misc/net 0750 root shell
-    mkdir /data/misc/radio 0770 system radio
+    mkdir /data/misc/radio 0771 system radio
     mkdir /data/misc/sms 0770 system radio
     mkdir /data/misc/zoneinfo 0775 system system
     mkdir /data/misc/vpn 0770 system vpn
@@ -318,7 +319,6 @@ on post-fs-data
     mkdir /data/misc/media 0700 media media
 
     # icd
-    check_icd
     chown system system /dev/icd
     chmod 0644 /dev/icd
     chown system system /dev/icdr
@@ -406,17 +406,10 @@ on post-fs-data
     # symlink to bugreport storage location
     symlink /data/data/com.android.shell/files/bugreports /data/bugreports
 
-    # Separate location for storing security policy files on data
-    mkdir /data/security 0711 system system
-
-    # Reload policy from /data/security if present.
-    setprop selinux.reload_policy 1
-
-    # Set SELinux security contexts on upgrade or policy update.
-    restorecon_recursive /data
-    restorecon /data/data
-    restorecon /data/user
-    restorecon /data/user/0
+# Separate location for storing security policy files on data    
+#start SEC_PRODUCT_FEATURE_COMMON_SUPPORT_SE_FOR_ANDROID 
+    mkdir /data/security 0700 system system
+#end SEC_PRODUCT_FEATURE_COMMON_SUPPORT_SE_FOR_ANDROID 
 
     # If there is no fs-post-data action in the init.<device>.rc file, you
     # must uncomment this line, otherwise encrypted filesystems
@@ -732,8 +725,8 @@ on property:sys.sysctl.tcp_def_init_rwnd=*
     write /proc/sys/net/ipv4/tcp_default_init_rwnd ${sys.sysctl.tcp_def_init_rwnd}
 
 
-#on property:init.svc.bootanim=stopped
-#    start auditd
+on property:init.svc.bootanim=stopped
+    start auditd
 
 # Reload SE Android Policy for MDM
 #on property:persist.security.mdm.policy=1
@@ -741,10 +734,10 @@ on property:sys.sysctl.tcp_def_init_rwnd=*
 
 ## Daemon processes to be run by init.
 ##
-#service sysmon /system/bin/sysmon
-#    class core
-#    user root
-#    oneshot
+service sysmon /system/bin/sysmon
+    class core
+    user root
+    oneshot
 
 service ueventd /sbin/ueventd
     class core
@@ -854,13 +847,6 @@ service debuggerd /system/bin/debuggerd
 service debuggerd64 /system/bin/debuggerd64
     class main
 
-# icd
-service icd /system/bin/icd
-    class main
-    user system
-    group system log
-    onrestart check_icd
-    oneshot
 
 # RIL
 service ril-daemon /system/bin/rild
@@ -1058,11 +1044,11 @@ service charon /system/bin/charon
     oneshot
 
 # SEC_SELINUX
-service auditd /system/bin/auditd -k
-    class main
-    seclabel u:r:auditd:s0
-    disabled
-    oneshot
+#service auditd /system/bin/auditd -k
+#    class main
+#    seclabel u:r:auditd:s0
+#    disabled
+#    oneshot
 
 # SAMSUNG DRS Service
 service drsd /system/bin/drsd
@@ -1071,11 +1057,6 @@ service drsd /system/bin/drsd
 
 on property:sys.boot_completed=1
     write /sys/block/mmcblk0/queue/scheduler cfq
-
-# icd
-on property:init.svc.media=restarting
-    check_icd
-    start icd
 
 # Sensorhub service
 service sensorhubservice /system/bin/sensorhubservice
