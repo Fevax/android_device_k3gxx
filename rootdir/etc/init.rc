@@ -84,6 +84,15 @@ on init
 # ]
     mkdir /mnt/media_rw 0700 media_rw media_rw
     mkdir /storage 0751 root sdcard_r
+    
+# 	workaround to resolve current permission issue
+    chmod 0666 /dev/binder
+    chmod 0666 /dev/ashmem
+#	following are new lines
+	chown root audio /dev/snd/controlC0
+    chown root audio /dev/snd/pcmC0D0c
+    chown root audio /dev/snd/pcmC0D0p
+    chown root audio /dev/snd/timer
 
     # Directory for putting things only root should see.
     mkdir /mnt/secure 0700 root root

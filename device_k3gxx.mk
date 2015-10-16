@@ -14,15 +14,23 @@ LOCAL_PATH := device/samsung/k3gxx
 ### AUDIO
 ###########################################################
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio/audio_policy.conf:system/etc/audio_policy.conf \
-    $(LOCAL_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml
+#PRODUCT_COPY_FILES += \
+#    $(LOCAL_PATH)/configs/audio/audio_policy.conf:system/etc/audio_policy.conf \
+#    $(LOCAL_PATH)/configs/audio/audio_effects.conf:system/etc/audio_effects.conf \
+#    $(LOCAL_PATH)/configs/audio/default_gain.conf:system/etc/default_gain.conf \
+#    $(LOCAL_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
+#    $(LOCAL_PATH)/configs/audio/tinyucm.conf:system/etc/tinyucm.conf
 
 PRODUCT_PACKAGES += \
-    audio.a2dp.default \
-    audio.usb.default \
+#	libdashplayer \
+#    audio.a2dp.default \
+#    audio.usb.default \
     audio.r_submix.default \
-    audio.primary.universal5422 \
+#    audio.primary.universal5422
+
+#PRODUCT_PROPERTY_OVERRIDES += \
+#    af.fast_track_multiplier=1 \
+#    audio_hal.force_wideband=true
 
   
 ###########################################################
@@ -30,12 +38,8 @@ PRODUCT_PACKAGES += \
 ###########################################################
 
 PRODUCT_PACKAGES += \
-    libhwjpeg \
-    libexynoscamera \
-    
-# Camera permissions
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/etc/init.exynos.cam.sh:system/etc/init.exynos.cam.sh
+	libhwjpeg \
+    camera.universal5422
 
 PRODUCT_PROPERTY_OVERRIDES += \
     camera2.portability.force_api=1
@@ -54,7 +58,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps/gps.conf:system/etc/gps.conf \
     $(LOCAL_PATH)/configs/gps/gps.xml:system/etc/gps.xml \
-    $(LOCAL_PATH)/configs/gps/apns-conf.xml:system/etc/apns-conf.xml
 
 ###########################################################
 ### GRAPHICS
@@ -86,6 +89,42 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml  \
     $(LOCAL_PATH)/configs/media/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/configs/media/media_profiles.xml:system/etc/media_profiles.xml
+    
+# Audio codecs
+PRODUCT_PACKAGES += \
+    libOMX.Exynos.AAC.Decoder \
+    libOMX.Exynos.FLAC.Decoder \
+    libOMX.Exynos.MP3.Decoder \
+    libOMX.Exynos.WMA.Encoder
+
+# Seiren hardware audio decoder
+#PRODUCT_PACKAGES += \
+#    libseirenhw
+
+# Stagefright and device specific modules
+PRODUCT_PACKAGES += \
+    libstagefrighthw \
+    libExynosOMX_Core
+
+# Video codecs
+PRODUCT_PACKAGES += \
+    libOMX.Exynos.AVC.Decoder \
+    libOMX.Exynos.HEVC.Decoder \
+    libOMX.Exynos.MPEG4.Decoder \
+    libOMX.Exynos.MPEG4.Encoder \
+    libOMX.Exynos.VP8.Decoder \
+    libOMX.Exynos.WMV.Decoder
+
+# H.264 encoder is broken
+#PRODUCT_PACKAGES += \
+#    libOMX.Exynos.AVC.Encoder
+
+
+# Some Exynos HW codecs require AwesomePlayer
+PRODUCT_PROPERTY_OVERRIDES += \
+	persist.sys.media.use-awesome=true    
+    
+###########################################################
 
 # IR
 PRODUCT_PACKAGES += \
@@ -189,7 +228,6 @@ PRODUCT_PACKAGES += \
 ### RAMDISK
 ###########################################################
 PRODUCT_PACKAGES += \
-fstab.goldfish \
 fstab.universal5422 \
 init.recovery.universal5422.rc \
 init.samsung.rc \
@@ -200,7 +238,9 @@ lpm.rc \
 ueventd.universal5422.rc \
 init.rc \
 recovery.fstab \
-adb_keys
+adb_keys \
+init.sec.boot.sh \
+init.exynos.cam.sh
 
 ###########################################################
 ### RADIO
@@ -219,18 +259,16 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/wifi/olsrd.conf:system/etc/wifi/olsrd.conf \
-    $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
+    $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+    $(LOCAL_PATH)/configs/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
 
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
 
 PRODUCT_PACKAGES += \
-#    libnetcmdiface \
+	libwifi-hal-bcm \
+    libnetcmdiface \
     macloader \
-#    hostapd \
-#    libwpa_client \
-#    wpa_supplicant
-PRODUCT_PACKAGES += \
     libwpa_client \
     lib_driver_cmd_bcmdhd \
     hostapd \

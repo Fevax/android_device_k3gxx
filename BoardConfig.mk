@@ -41,16 +41,22 @@ TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
 # Bionic Tuning
-ARCH_ARM_USE_MEMCPY_ALIGNMENT := true
-BOARD_MEMCPY_ALIGNMENT := 64
-BOARD_MEMCPY_ALIGN_BOUND := 32768
+#ARCH_ARM_USE_MEMCPY_ALIGNMENT := true
+#BOARD_MEMCPY_ALIGNMENT := 64
+#BOARD_MEMCPY_ALIGN_BOUND := 32768
 
 ### LIBC
 TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 
+# MP3/WMA support
+#BOARD_USE_ALP_AUDIO := true
+#BOARD_USE_SEIREN_AUDIO := true
+#BOARD_USE_WMA_CODEC := true
+
 # Camera
-USE_CAMERA_STUB := true
-BOARD_USE_SAMSUNG_CAMERAFORMAT_NV21 := true
+#USE_CAMERA_STUB := true
+#BOARD_USE_SAMSUNG_CAMERAFORMAT_NV21 := true
+ANDROID_INCLUDE_CAMERA3_H := true
 BOARD_NEEDS_MEMORYHEAPION := true
 COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
 COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
@@ -180,20 +186,23 @@ BOARD_USES_SCALER := true
 #TARGET_SAMSUNG_GRALLOC_EXTERNAL_USECASES := true
 
 # WFD
-BOARD_USES_WFD_SERVICE := false
-BOARD_USES_WFD := false
-
-# Wifi Macloader
-BOARD_HAVE_SAMSUNG_WIFI := true
+BOARD_USES_WFD_SERVICE := true
+BOARD_USES_WFD := true
 
 # WIFI
-#BOARD_NO_WIFI_HAL := true
-BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
+CUSTOM_SET_CPUCORE				 := true
+#CONFIG_DRIVER_WEXT				 := true
+CONFIG_DRIVER_NL80211			 := true
+CONFIG_ANDROID_LOG				 := true
+CONFIG_P2P						 := true
+BOARD_HAVE_SAMSUNG_WIFI          := true
+BOARD_WLAN_DEVICE                := bcmdhd
 WPA_SUPPLICANT_VERSION           := VER_0_8_X
+BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
 BOARD_HOSTAPD_DRIVER             := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
-BOARD_WLAN_DEVICE                := bcmdhd
+WIFI_BAND                        := 802_11_ABG
 WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/dhd/parameters/firmware_path"
 WIFI_DRIVER_NVRAM_PATH_PARAM     := "/sys/module/dhd/parameters/nvram_path"
 WIFI_DRIVER_NVRAM_PATH           := "/system/etc/wifi/nvram_net.txt"
@@ -204,6 +213,6 @@ WIFI_DRIVER_FW_PATH_AP           := "/system/etc/wifi/bcmdhd_apsta.bin"
 BOARD_HARDWARE_CLASS += hardware/samsung/cmhw
 
 #Trying to get work the WIFI
--include hardware/broadcom/wlan/bcmdhd/firmware/bcm4354/device-bcm.mk
+#-include hardware/broadcom/wlan/bcmdhd/firmware/bcm4354/device-bcm.mk
 # inherit from the proprietary version
 -include vendor/samsung/k3gxx/BoardConfigVendor.mk

@@ -163,19 +163,45 @@ vendor/lib/libRSDriverArm.so
 lib/libexynosv4l2.so
 lib/libhr.so
 bin/mcDriverDaemon
-bin/jackservice
+#bin/jackservice
 bin/lpm
 lib/hw/power.exynos5.so
 bin/olsrd
 
 bin/wlandutservice
 
+#prueba audio
 
+#lib/hw/audio.a2dp.default.so
+#lib/hw/audio.primary.default.so
+#lib/hw/audio.primary.goldfish.so
+#lib/hw/audio.primary.universal5422.so
+lib/hw/audio.r_submix.default.so
+#lib/hw/audio.tms.default.so
+#lib/hw/audio.usb.default.so
+#lib/hw/audio_policy.default.so
+#lib/lib_DNSe_EP_ver216b.so
+#lib/lib_DNSe_NRSS_ver226.so
+#lib/libsamsungRecord.so
+#lib/libsamsungRecord_ns.so
+#lib/libsamsungRecord_zoom.so
+#lib/lib_Samsung_AudioZoom_v102.so
+#lib/libtinyalsa.so
+#bin/tinycap
+#bin/tinymix
+#bin/tinyplay
+#lib/lib_Samsung_Resampler.so
+usr/share/alsa/alsa.conf
+bin/samsungpowersoundplay
 
-
-
-
-
+#WIFI?
+bin/mfgloader
+bin/connfwexe
+bin/smdexe
+bin/ss_conn_daemon
+bin/ss_kbservice_daemon
+bin/tlc_server
+lib/libAMSWiFiLibs-1.0.6.so
 
 
 
