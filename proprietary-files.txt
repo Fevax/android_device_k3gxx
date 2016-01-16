@@ -33,6 +33,57 @@ etc/firmware/florida-dsp4-rx-anc-nb.wmfw
 etc/firmware/florida-dsp4-rx-anc-wb.bin
 etc/firmware/florida-dsp4-rx-anc-wb.wmfw
 
+### BARGEIN
+/vendor/etc/nxp/BargeIn/Tx_ControlParams_WIDEBAND_ANALOG_DOCK.txt
+/vendor/etc/nxp/BargeIn/Tx_ControlParams_WIDEBAND_BLUETOOTH_SCO_HEADSET.txt
+/vendor/etc/nxp/BargeIn/Tx_ControlParams_WIDEBAND_EARPIECE.txt
+/vendor/etc/nxp/BargeIn/Tx_ControlParams_WIDEBAND_SPEAKER.txt
+/vendor/etc/nxp/BargeIn/Tx_ControlParams_WIDEBAND_WIRED_HEADPHONE.txt
+/vendor/etc/nxp/BargeIn/Tx_ControlParams_WIDEBAND_WIRED_HEADSET.txt
+/vendor/etc/nxp/BargeInDriving/Tx_ControlParams_WIDEBAND_ANALOG_DOCK.txt
+/vendor/etc/nxp/BargeInDriving/Tx_ControlParams_WIDEBAND_BLUETOOTH_SCO_HEADSET.txt
+/vendor/etc/nxp/BargeInDriving/Tx_ControlParams_WIDEBAND_EARPIECE.txt
+/vendor/etc/nxp/BargeInDriving/Tx_ControlParams_WIDEBAND_SPEAKER.txt
+/vendor/etc/nxp/BargeInDriving/Tx_ControlParams_WIDEBAND_WIRED_HEADPHONE.txt
+/vendor/etc/nxp/BargeInDriving/Tx_ControlParams_WIDEBAND_WIRED_HEADSET.txt
+/vendor/etc/nxp/LVVEFS_Rx_Configuration.txt
+/vendor/etc/nxp/LVVEFS_Tx_Configuration.txt
+/vendor/etc/nxp/mVoIP/Rx_ControlParams_WIDEBAND_BLUETOOTH_SCO_HEADSET.txt
+/vendor/etc/nxp/mVoIP/Rx_ControlParams_WIDEBAND_EARPIECE.txt
+/vendor/etc/nxp/mVoIP/Rx_ControlParams_WIDEBAND_SPEAKER.txt
+/vendor/etc/nxp/mVoIP/Rx_ControlParams_WIDEBAND_WIRED_HEADPHONE.txt
+/vendor/etc/nxp/mVoIP/Rx_ControlParams_WIDEBAND_WIRED_HEADSET.txt
+/vendor/etc/nxp/mVoIP/Tx_ControlParams_NARROWBAND_BLUETOOTH_SCO_HEADSET.txt
+/vendor/etc/nxp/mVoIP/Tx_ControlParams_NARROWBAND_EARPIECE.txt
+/vendor/etc/nxp/mVoIP/Tx_ControlParams_NARROWBAND_SPEAKER.txt
+/vendor/etc/nxp/mVoIP/Tx_ControlParams_NARROWBAND_WIRED_HEADPHONE.txt
+/vendor/etc/nxp/mVoIP/Tx_ControlParams_NARROWBAND_WIRED_HEADSET.txt
+/vendor/etc/nxp/mVoIP/Tx_ControlParams_WIDEBAND_BLUETOOTH_SCO_HEADSET.txt
+/vendor/etc/nxp/mVoIP/Tx_ControlParams_WIDEBAND_EARPIECE.txt
+/vendor/etc/nxp/mVoIP/Tx_ControlParams_WIDEBAND_SPEAKER.txt
+/vendor/etc/nxp/mVoIP/Tx_ControlParams_WIDEBAND_WIRED_HEADPHONE.txt
+/vendor/etc/nxp/mVoIP/Tx_ControlParams_WIDEBAND_WIRED_HEADSET.txt
+/vendor/etc/nxp/mVoIPFMC/Rx_ControlParams_WIDEBAND_BLUETOOTH_SCO_HEADSET.txt
+/vendor/etc/nxp/mVoIPFMC/Rx_ControlParams_WIDEBAND_EARPIECE.txt
+/vendor/etc/nxp/mVoIPFMC/Rx_ControlParams_WIDEBAND_SPEAKER.txt
+/vendor/etc/nxp/mVoIPFMC/Rx_ControlParams_WIDEBAND_WIRED_HEADPHONE.txt
+/vendor/etc/nxp/mVoIPFMC/Rx_ControlParams_WIDEBAND_WIRED_HEADSET.txt
+/vendor/etc/nxp/mVoIPFMC/Tx_ControlParams_WIDEBAND_BLUETOOTH_SCO_HEADSET.txt
+/vendor/etc/nxp/mVoIPFMC/Tx_ControlParams_WIDEBAND_EARPIECE.txt
+/vendor/etc/nxp/mVoIPFMC/Tx_ControlParams_WIDEBAND_SPEAKER.txt
+/vendor/etc/nxp/mVoIPFMC/Tx_ControlParams_WIDEBAND_WIRED_HEADPHONE.txt
+/vendor/etc/nxp/mVoIPFMC/Tx_ControlParams_WIDEBAND_WIRED_HEADSET.txt
+/vendor/etc/nxp/mVoIPSec/Rx_ControlParams_WIDEBAND_BLUETOOTH_SCO_HEADSET.txt
+/vendor/etc/nxp/mVoIPSec/Rx_ControlParams_WIDEBAND_EARPIECE.txt
+/vendor/etc/nxp/mVoIPSec/Rx_ControlParams_WIDEBAND_SPEAKER.txt
+/vendor/etc/nxp/mVoIPSec/Rx_ControlParams_WIDEBAND_WIRED_HEADPHONE.txt
+/vendor/etc/nxp/mVoIPSec/Rx_ControlParams_WIDEBAND_WIRED_HEADSET.txt
+/vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_BLUETOOTH_SCO_HEADSET.txt
+/vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_EARPIECE.txt
+/vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_SPEAKER.txt
+/vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_WIRED_HEADPHONE.txt
+/vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_WIRED_HEADSET.txt
+
 ### Wifi
 etc/wifi/bcmdhd_apsta.bin
 etc/wifi/bcmdhd_ibss.bin
@@ -54,13 +105,7 @@ lib/libbt-iopdb_mod.so
 lib/libbt-vendor.so
 
 ### Media (OMX)
-lib/omx/libOMX.Exynos.AVC.Decoder.so
 lib/omx/libOMX.Exynos.AVC.Encoder.so
-lib/omx/libOMX.Exynos.MPEG4.Decoder.so
-lib/omx/libOMX.Exynos.MPEG4.Encoder.so
-lib/omx/libOMX.Exynos.VP8.Decoder.so
-lib/omx/libOMX.Exynos.VP8.Encoder.so
-lib/omx/libOMX.Exynos.WMV.Decoder.so
 
 ### Audio
 lib/libmysound.so
@@ -71,23 +116,9 @@ vendor/lib/liblvvetx_3.21.13.so
 
 ### Camera
 lib/hw/camera.universal5422.so
-lib/libarccamera.so
-lib/libarcsoft_magicshot_bestface_T.so
-lib/libarcsoft_magicshot_bestphoto_T.so
-lib/libarcsoft_magicshot_common_T.so
-lib/libarcsoft_magicshot_drama_T.so
-lib/libarcsoft_magicshot_eraser_T.so
-lib/libarcsoft_magicshot_picmotion_T.so
-lib/libarcsoft_night_shot_ex.so
-lib/libarcsoft_panorama_burstcapture.so
-lib/libarcsoft_picaction.so
-lib/libarcsoft_picmotion_T.so
-lib/libarcsoft_preprocessor_T.so
-lib/libarcsoft_readengine_T.so
-lib/libarcsoft_selfie_camera_lite.so
-lib/libarcsoft_sensorndk.so
-lib/libarcsoft_vdoinvideo.so
+lib/libsecnativefeature.so
 lib/libexynoscamera.so
+lib/libhwjpeg.so
 lib/libvdis.so
 
 ### BIN
@@ -96,7 +127,7 @@ bin/exyrngd
 bin/gps.cer
 bin/gpsd
 bin/npsmobex
-bin/rild
+#bin/rild
 bin/sensorhubservice
 bin/vcsFPService
 #bin/clatd
@@ -106,10 +137,14 @@ bin/vcsFPService
 lib/hw/gps.universal5422.so
 
 ### HWC
+vendor/lib/libmalicore.bc
 vendor/lib/egl/libGLES_mali.so
+vendor/lib/libRSDriverArm.so
+
 
 ### Sensors
 lib/hw/sensors.universal5422.so
+lib/hw/sensorhubs.universal5422.so
 
 ### Widevine
 lib/drm/libdrmwvmplugin.so
@@ -120,10 +155,9 @@ vendor/lib/libWVStreamControlAPI_L1.so
 
 ### Android radio daemon
 lib/libaudio-ril.so
-lib/libreference-ril.so
-lib/libril.so
-lib/librilutils.so
-lib/libsecnativefeature.so
+#lib/libreference-ril.so
+#lib/libril.so
+#lib/librilutils.so
 lib/libsec-ril.so
 
 ### MobiCore
@@ -157,8 +191,7 @@ app/mcRegistry/ffffffffd00000000000000000000016.tlbin
 bin/scranton_RD
 
 # no arranca
-vendor/lib/libmalicore.bc
-vendor/lib/libRSDriverArm.so
+
 
 lib/libexynosv4l2.so
 lib/libhr.so
@@ -170,38 +203,41 @@ bin/olsrd
 
 bin/wlandutservice
 
-#prueba audio
+lib/libstlport.so
+lib/libstlport_shared.so
 
-#lib/hw/audio.a2dp.default.so
-#lib/hw/audio.primary.default.so
-#lib/hw/audio.primary.goldfish.so
-#lib/hw/audio.primary.universal5422.so
-lib/hw/audio.r_submix.default.so
-#lib/hw/audio.tms.default.so
-#lib/hw/audio.usb.default.so
-#lib/hw/audio_policy.default.so
-#lib/lib_DNSe_EP_ver216b.so
+# AUDIO TEST 2
+
 #lib/lib_DNSe_NRSS_ver226.so
+#lib/lib_Samsung_AudioZoom_v102.so
 #lib/libsamsungRecord.so
 #lib/libsamsungRecord_ns.so
 #lib/libsamsungRecord_zoom.so
-#lib/lib_Samsung_AudioZoom_v102.so
-#lib/libtinyalsa.so
-#bin/tinycap
-#bin/tinymix
-#bin/tinyplay
+#lib/lib_SamsungRec_V04004.so
 #lib/lib_Samsung_Resampler.so
+#lib/libsamsungSoundbooster_ext.so
+#lib/lib_soundaliveresampler.so
+#lib/lib_SoundAlive_SRC192_ver205.so
+#lib/lib_SoundBooster_ver504.so
+#lib/libtinyalsa.so
 usr/share/alsa/alsa.conf
-bin/samsungpowersoundplay
+#bin/samsungpowersoundplay
 
 #WIFI?
-bin/mfgloader
-bin/connfwexe
-bin/smdexe
-bin/ss_conn_daemon
-bin/ss_kbservice_daemon
-bin/tlc_server
-lib/libAMSWiFiLibs-1.0.6.so
+#bin/mfgloader
+#bin/connfwexe
+#bin/smdexe
+#bin/ss_conn_daemon
+#bin/ss_kbservice_daemon
+#bin/tlc_server
+#lib/libAMSWiFiLibs-1.0.6.so
+
+lib/libsensorhub.so
+lib/libsensorhubservice.so
+lib/libgnustl_shared.so
+
+#IR
+lib/hw/consumerir.default.so
 
 
 

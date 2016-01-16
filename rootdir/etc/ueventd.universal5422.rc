@@ -123,6 +123,10 @@
 # USB Accessories (printer and so on) - duki994
 /dev/ttyUSB*              0660   system     usb
 /dev/usb/lp*              0660   system     usb
+/dev/mobicore             0700   system     system
+/dev/mobicore-user        0666   radio     system
+/dev/s5p-smem             0660   system     system
+/dev/ssp_sensorhub        0660   system     system
 
 # Sensorhub IIO
 /dev/ssp_sensorhub        0660   system     system

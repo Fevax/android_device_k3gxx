@@ -157,7 +157,7 @@ int ril_set_call_audio_path(struct ril_handle *ril, enum _AudioPath path)
         return 0;
     }
 
-//    rc = SetCallAudioPath(ril->client, path);
+    rc = SetCallAudioPath(ril->client, path);
 
     return rc;
 }

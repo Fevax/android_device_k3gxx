@@ -14,32 +14,25 @@ LOCAL_PATH := device/samsung/k3gxx
 ### AUDIO
 ###########################################################
 
-#PRODUCT_COPY_FILES += \
-#    $(LOCAL_PATH)/configs/audio/audio_policy.conf:system/etc/audio_policy.conf \
-#    $(LOCAL_PATH)/configs/audio/audio_effects.conf:system/etc/audio_effects.conf \
-#    $(LOCAL_PATH)/configs/audio/default_gain.conf:system/etc/default_gain.conf \
-#    $(LOCAL_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
-#    $(LOCAL_PATH)/configs/audio/tinyucm.conf:system/etc/tinyucm.conf
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/audio/audio_effects.conf:system/etc/audio_effects.conf \
+	$(LOCAL_PATH)/configs/audio/audio_policy.conf:system/etc/audio_policy.conf \
+	$(LOCAL_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml
 
 PRODUCT_PACKAGES += \
-#	libdashplayer \
-#    audio.a2dp.default \
-#    audio.usb.default \
-    audio.r_submix.default \
-#    audio.primary.universal5422
+	audio.a2dp.default \
+	audio.usb.default \
+	audio.r_submix.default \
+	audio.primary.universal5422
 
-#PRODUCT_PROPERTY_OVERRIDES += \
-#    af.fast_track_multiplier=1 \
-#    audio_hal.force_wideband=true
-
-  
 ###########################################################
 ### CAMERA
 ###########################################################
 
 PRODUCT_PACKAGES += \
 	libhwjpeg \
-    camera.universal5422
+    camera.universal5422 \
+#    camera.exynos5
 
 PRODUCT_PROPERTY_OVERRIDES += \
     camera2.portability.force_api=1
@@ -74,32 +67,29 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=196608
 
 PRODUCT_PACKAGES += \
-    libion_exynos \
+    gralloc.exynos5 \
     hwcomposer.exynos5 \
-    gralloc.exynos5
+    memtrack.exynos5
+
+PRODUCT_PACKAGES += \
+    libion_exynos \
+    libion
+
+PRODUCT_PACKAGES += \
+    libstlport \
+    libstlport_shared
 
 ###########################################################
 ### OMX/MEDIA
 ###########################################################
 
 PRODUCT_COPY_FILES += \
-    frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
+#    frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml  \
     $(LOCAL_PATH)/configs/media/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/configs/media/media_profiles.xml:system/etc/media_profiles.xml
-    
-# Audio codecs
-PRODUCT_PACKAGES += \
-    libOMX.Exynos.AAC.Decoder \
-    libOMX.Exynos.FLAC.Decoder \
-    libOMX.Exynos.MP3.Decoder \
-    libOMX.Exynos.WMA.Encoder
-
-# Seiren hardware audio decoder
-#PRODUCT_PACKAGES += \
-#    libseirenhw
 
 # Stagefright and device specific modules
 PRODUCT_PACKAGES += \
@@ -119,11 +109,6 @@ PRODUCT_PACKAGES += \
 #PRODUCT_PACKAGES += \
 #    libOMX.Exynos.AVC.Encoder
 
-
-# Some Exynos HW codecs require AwesomePlayer
-PRODUCT_PROPERTY_OVERRIDES += \
-	persist.sys.media.use-awesome=true    
-    
 ###########################################################
 
 # IR
@@ -195,6 +180,10 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
+    frameworks/native/data/etc/android.hardware.consumerir.xml:system/etc/permissions/android.hardware.consumerir.xml \
+    frameworks/native/data/etc/android.hardware.fingerprint.xml:system/etc/permissions/android.hardware.fingerprint.xml \
+    frameworks/native/data/etc/android.hardware.sensor.heartrate.ecg.xml:system/etc/permissions/android.hardware.sensor.heartrate.ecg.xml \
+    frameworks/native/data/etc/android.hardware.sensor.heartrate.xml:system/etc/permissions/android.hardware.sensor.heartrate.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
     frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
@@ -216,6 +205,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml \
     frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
+    frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
 ###########################################################
@@ -240,7 +230,7 @@ init.rc \
 recovery.fstab \
 adb_keys \
 init.sec.boot.sh \
-init.exynos.cam.sh
+init.goldfish.sh
 
 ###########################################################
 ### RADIO
@@ -251,33 +241,50 @@ init.exynos.cam.sh
 #   $(LOCAL_PATH)/ril/sbin/cbd:root/sbin/cbd
 PRODUCT_PACKAGES += \
     cbd \
+    radio.primary
 
 ###########################################################
 ### WIFI
 ###########################################################
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
-    $(LOCAL_PATH)/configs/wifi/olsrd.conf:system/etc/wifi/olsrd.conf \
-    $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-    $(LOCAL_PATH)/configs/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    wifi.interface=wlan0
+PRODUCT_PACKAGES += \
+    init.sec.boot.sh
 
 PRODUCT_PACKAGES += \
-	libwifi-hal-bcm \
+    dhcpcd.conf \
+    hostapd \
     libnetcmdiface \
     macloader \
-    libwpa_client \
-    lib_driver_cmd_bcmdhd \
-    hostapd \
-    dhcpcd.conf \
     wpa_supplicant \
-    bcmdhd.cal \
-    bcmdhd_sr2.cal
+    wpa_supplicant.conf
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+    $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
 
+#PRODUCT_COPY_FILES += \
+#    $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
+#    $(LOCAL_PATH)/configs/wifi/olsrd.conf:system/etc/wifi/olsrd.conf \
+#    $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+#    $(LOCAL_PATH)/configs/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
+#
+#PRODUCT_PROPERTY_OVERRIDES += \
+#    wifi.interface=wlan0
+#
+#PRODUCT_PACKAGES += \
+#    macloader \
+#    wifiloader \
+#    hostapd \
+#    libwpa_client \
+#    wpa_supplicant \
+#    libwifi-hal-bcm \
+
+# hardware/broadcom/wlan/bcmdhd/config/Android.mk
+#PRODUCT_PACKAGES += \
+#    dhcpcd.conf
+
+# external/wpa_supplicant_8/wpa_supplicant/wpa_supplicant_conf.mk
+#PRODUCT_PACKAGES += \
+#    wpa_supplicant.conf
 ###########################################################
 ### CHARGER
 ###########################################################
@@ -287,6 +294,13 @@ PRODUCT_PACKAGES += \
     charger
     
 
+###########################################################
+### SYMBOLS FOR BLOBS
+###########################################################
+
+PRODUCT_PACKAGES += \
+    libsamsung_symbols
+
 # Default.prop overrides to get adb working at boot   
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.secure=0 \
@@ -295,9 +309,9 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 	ro.zygote=zygote32 \
     persist.service.adb.enable=1 \
 	persist.service.debuggable=1 \
-#	persist.sys.usb.config=mtp \
+	persist.sys.usb.config=mtp,adb \
 
-$(call inherit-product-if-exists, hardware/samsung_slsi/exynos5-insignal/exynos5.mk)
+#$(call inherit-product-if-exists, hardware/samsung_slsi/exynos5-insignal/exynos5.mk)
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 $(call inherit-product-if-exists, build/target/product/full.mk)

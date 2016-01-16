@@ -9,7 +9,7 @@
 /dev/block/mmcblk0p21    /data               ext4      noatime,nosuid,nodev,discard,noauto_da_alloc,journal_async_commit,errors=panic    wait,check,encryptable=footer
 
 # VOLD
-/devices/platform/dw_mmc.2/mmc_host/mmc2*,/devices/12220000.dwmmc2/mmc_host/mmc2*				auto 					vfat	default		voldmanaged=extSdCard:auto,noemulatedsd
+/devices/platform/dw_mmc.2/mmc_host/mmc2*,/devices/12220000.dwmmc2/mmc_host/mmc2*				auto 					vfat	default		voldmanaged=sdcard1:auto,noemulatedsd
 /devices/platform/exynos-dwc3.0/exynos-xhci*sda,/devices/usb.1/12000000.dwc3/xhci-hcd.4.auto/usb*sda            auto                    vfat    default     voldmanaged=UsbDriveA:auto
 /devices/platform/exynos-dwc3.0/exynos-xhci*sdb,/devices/usb.1/12000000.dwc3/xhci-hcd.4.auto/usb*sdb            auto                    vfat    default     voldmanaged=UsbDriveB:auto
 /devices/platform/exynos-dwc3.0/exynos-xhci*sdc,/devices/usb.1/12000000.dwc3/xhci-hcd.4.auto/usb*sdc            auto                    vfat    default     voldmanaged=UsbDriveC:auto

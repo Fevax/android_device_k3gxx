@@ -18,23 +18,27 @@
     <ctl name="Noise Gate Threshold Volume"  value="3" />
 
     <!-- RCV(Mono) -->
+    <!-- need to change scenario to DSP -->
     <ctl name="HPOUT3L Input 1" value="AIF1RX1" />
     <ctl name="HPOUT3R Input 1" value="AIF1RX2" />
     <ctl name="HPOUT3 Digital Switch" value="1" />
 
-    <!-- SPK(Mono) -->
+<!--	//SPK(Mono)
+#need to change scenario to DSP  -->
     <ctl name="SPKOUTL Input 1" value="AIF1RX1" />
     <ctl name="SPKOUTL Input 2" value="AIF1RX2" />
     <ctl name="Speaker Digital Switch" value="1" />
 
     <!-- HP(stereo) -->
+    <!-- need to change scenario to DSP -->
     <ctl name="HPOUT1L Input 1" value="AIF1RX1" />
     <ctl name="HPOUT1R Input 1" value="AIF1RX2" />
     <ctl name="HPOUT1 Digital Switch" value="1" />
 
     <!-- VPS(stereo) -->
-    <ctl name="SPKOUTL Input 1" value="AIF1RX1" />
-    <ctl name="SPKOUTR Input 1" value="AIF1RX2" />
+    <!-- need to change scenario to DSP -->
+    <ctl name="HPOUT2L Input 1" value="AIF1RX1" />
+    <ctl name="HPOUT2R Input 1" value="AIF1RX2" />
     <ctl name="HPOUT2 Digital Switch" value="1" />
 
     <!-- BT<-AP(use input 1) -->
@@ -86,7 +90,7 @@
     <!-- LHPF1 & 2 filter -->
     <ctl name="LHPF1 Coefficients" value="240 58" />
     <ctl name="LHPF2 Coefficients" value="240 58" />
-    <ctl name="LHPF3 Coefficients" value="240 58" />
+    <ctl name="LHPF3 Coefficients" value="240 1" />
     <ctl name="LHPF4 Coefficients" value="240 58" />
 
     <ctl name="IN4L HPF Switch" value="1" />
@@ -143,9 +147,6 @@
     <ctl name="AIF3TX2 Input 4 Volume" value="32" />
     <ctl name="DSP4L Input 1 Volume" value="26" />
     <ctl name="DSP4L Input 2 Volume" value="26" />
-    <ctl name="HPOUT3L Input 2 Volume" value="0" />
-    <ctl name="HPOUT1L Impedance Volume" value="60" />
-    <ctl name="HPOUT1R Impedance Volume" value="60" />
 
     <ctl name="Input Ramp Up" value="8ms/6dB" />
 
@@ -162,46 +163,28 @@
     <ctl name="DSP1 Rate" value="SYNCCLK rate 1" />
     <ctl name="DSP2 Rate" value="SYNCCLK rate 2" />
     <ctl name="DSP3 Rate" value="SYNCCLK rate 2" />
-    <ctl name="DSP4 Rate" value="SYNCCLK rate 3" />
+    <ctl name="DSP4 Rate" value="SYNCCLK rate 1" />
 
     <ctl name="IN1 OSR" value="0" />
     <ctl name="IN2 OSR" value="0" />
     <ctl name="IN3 OSR" value="0" />
-    <ctl name="IN4 OSR" value="0" />
+    <ctl name="IN4 OSR" value="1" />
+    <ctl name="IN4L Digital Volume" value="138" />
+    <ctl name="IN4R Digital Volume" value="138" />
 
     <!-- HW DRE default Off -->
     <ctl name="HPOUT1 DRE Switch" value="0" />
     <ctl name="HPOUT2 DRE Switch" value="0" />
     <ctl name="HPOUT3 DRE Switch" value="0" />
 
-    <!-- EQ1 & EQ3 filter 
-    <ctl name="EQ1 B1 Volume" value="12" />
-    <ctl name="EQ1 B2 Volume" value="12" />
-    <ctl name="EQ1 B3 Volume" value="12" />
-    <ctl name="EQ1 B4 Volume" value="12" />
-    <ctl name="EQ1 B5 Volume" value="12" />
-    <ctl name="EQ1 Coefficients" value="0 1 16 0 0 0 0 204 32 0 240 0 0 0 21 38 32 0 240 0 0 0 9 60 32 0 240 0 0 0 17 84 16 0 8 0 64 0 0 0" />
-
-    <ctl name="EQ3 B1 Volume" value="12" />
-    <ctl name="EQ3 B2 Volume" value="12" />
-    <ctl name="EQ3 B3 Volume" value="12" />
-    <ctl name="EQ3 B4 Volume" value="12" />
-    <ctl name="EQ3 B5 Volume" value="12" />
-    <ctl name="EQ3 Coefficients" value="0 1 16 0 0 0 0 204 32 0 240 0 0 0 21 38 32 0 240 0 0 0 9 60 32 0 240 0 0 0 17 84 16 0 8 0 64 0 0 0" />
-    -->
     <!-- Disable Earpiece -->
     <ctl name="RCV Switch" value="0" />
 
     <!-- Disable Speaker -->
     <ctl name="SPK Switch" value="0" />
-    <ctl name="DSP1L Input 1" value="None" />
-    <ctl name="DSP1L Input 2" value="None" />
 
     <!-- Disable Headphones -->
     <ctl name="HP Switch" value="0" />
-    <ctl name="DSP1 Aux 1" value="None" />
-    <ctl name="DSP1 Aux 2" value="None" />
-    <ctl name="HPOUT1 DRE Switch" value="0" />
 
     <!-- Disable Analogue Dock Out -->
     <ctl name="VPS Switch" value="0" />
@@ -211,7 +194,6 @@
 
     <!-- Disable Builtin Mic -->
     <ctl name="Main Mic Switch" value="0" />
-    <ctl name="DSP Virtual Output Mux" value="None" />
 
     <!-- Disable Back Mic -->
     <ctl name="Sub Mic Switch" value="0" />
@@ -236,12 +218,12 @@
 
     <!-- ### Device ### -->
 
-    <path name="device-earpiece">
+    <path name="device-earpiece-enable">
         <ctl name="RCV Switch" value="1" />
-	<ctl name="DSP1L Input 1" value="None" />
-	<ctl name="DSP1L Input 2" value="None" />
-	<ctl name="DSP1 Aux 1" value="None" />
-	<ctl name="DSP1 Aux 2" value="None" />
+    </path>
+
+    <path name="device-earpiece-disable">
+        <ctl name="RCV Switch" value="0" />
     </path>
 
     <!-- ### Scenario ### -->
@@ -249,6 +231,8 @@
     <path name="scenario-earpiece-default">
         <ctl name="ASRC RATE 1" value="SYNCCLK rate 3" />
         <ctl name="ISRC2INT1 Input" value="ASRC2L" />
+        <ctl name="LHPF3 Input 1" value="None" />
+        <ctl name="LHPF3 Input 2" value="None" />
         <ctl name="HPOUT3L Input 3" value="ISRC2INT1" />
         <ctl name="HPOUT3R Input 3" value="ISRC2INT1" />
         <ctl name="HPOUT3L Input 1" value="AIF1RX1" />
@@ -256,14 +240,18 @@
     </path>
 
     <path name="scenario-earpiece-incall-nb">
-        <ctl name="ASRC RATE 1" value="SYNCCLK rate 3" />
         <ctl name="DSP4 Rate" value="SYNCCLK rate 3" />
         <ctl name="DSP4 Aux 2" value="None" />
+        <ctl name="DSP4 Aux 3" value="None" />
+        <ctl name="DSP4L Input 1" value="None" />
+        <ctl name="DSP4L Input 2" value="None" />
         <ctl name="DSP4 Firmware" value="RX_NB" />
         <ctl name="ASRC2L Input" value="AIF2RX1" />
         <ctl name="DSP4 Aux 1" value="ASRC2L" />
         <ctl name="DSP4 Aux 2" value="ISRC2DEC1" />
         <ctl name="ISRC2INT1 Input" value="DSP4.3" />
+        <ctl name="LHPF3 Input 1" value="ISRC2INT1" />
+        <ctl name="LHPF3 Input 2" value="AIF1RX1" />
         <ctl name="AIF1TX1 Input 2" value="ISRC2INT1" />
         <ctl name="AIF1TX2 Input 2" value="ISRC2INT1" />
         <ctl name="HPOUT3L Input 3" value="ISRC2INT1" />
@@ -271,18 +259,32 @@
     </path>
 
     <path name="scenario-earpiece-incall-wb">
-        <ctl name="ASRC RATE 1" value="SYNCCLK rate 3" />
         <ctl name="DSP4 Rate" value="SYNCCLK rate 3" />
         <ctl name="DSP4 Aux 2" value="None" />
+        <ctl name="DSP4 Aux 3" value="None" />
+        <ctl name="DSP4L Input 1" value="None" />
+        <ctl name="DSP4L Input 2" value="None" />
         <ctl name="DSP4 Firmware" value="RX_WB" />
         <ctl name="ASRC2L Input" value="AIF2RX1" />
         <ctl name="DSP4 Aux 1" value="ASRC2L" />
         <ctl name="DSP4 Aux 2" value="ISRC2DEC1" />
         <ctl name="ISRC2INT1 Input" value="DSP4.3" />
+        <ctl name="LHPF3 Input 1" value="ISRC2INT1" />
+        <ctl name="LHPF3 Input 2" value="AIF1RX1" />
         <ctl name="AIF1TX1 Input 2" value="ISRC2INT1" />
         <ctl name="AIF1TX2 Input 2" value="ISRC2INT1" />
         <ctl name="HPOUT3L Input 3" value="ISRC2INT1" />
         <ctl name="HPOUT3R Input 3" value="ISRC2INT1" />
+    </path>
+
+    <path name="scenario-earpiece-loopback">
+        <ctl name="ISRC2INT1 Input" value="ASRC2L" />
+        <ctl name="LHPF3 Input 1" value="None" />
+        <ctl name="LHPF3 Input 2" value="None" />
+        <ctl name="HPOUT3L Input 3" value="ISRC2INT1" />
+        <ctl name="HPOUT3R Input 3" value="ISRC2INT1" />
+        <ctl name="HPOUT3L Input 1" value="AIF1RX1" />
+        <ctl name="HPOUT3R Input 1" value="AIF1RX2" />
     </path>
 
     <!-- ### Volume ### -->
@@ -311,29 +313,83 @@
 
     <!-- ### Device ### -->
 
-    <path name="device-speaker">
+    <path name="device-speaker-enable">
         <ctl name="SPK Switch" value="1" />
+    </path>
+
+    <path name="device-speaker-disable">
+        <ctl name="SPK Switch" value="0" />
+        <ctl name="VI SENSING Switch" value="0" />
+        <ctl name="DSP1L Input 1" value="None" />
+        <ctl name="DSP1L Input 2" value="None" />
     </path>
 
     <!-- ### Scenario ### -->
 
     <path name="scenario-speaker-default">
-        <ctl name="ASRC RATE 1" value="SYNCCLK rate 3" />
+        <ctl name="ASRC RATE 1" value="SYNCCLK rate 1" />
+        <ctl name="DSP4 Rate" value="SYNCCLK rate 1" />
+        <ctl name="DSP4 Firmware" value="DSM" />
+        <ctl name="DSP4L Input 1" value="AIF1RX1" />
+        <ctl name="DSP4L Input 2" value="AIF1RX2" />
+        <ctl name="DSP4 Aux 2" value="IN4L" />
+        <ctl name="DSP4 Aux 3" value="IN4R" />
         <ctl name="ISRC2INT1 Input" value="ASRC2L" />
+        <ctl name="LHPF3 Input 1" value="None" />
+        <ctl name="LHPF3 Input 2" value="None" />
         <ctl name="SPKOUTL Input 1" value="AIF1RX1" />
         <ctl name="SPKOUTL Input 2" value="AIF1RX2" />
         <ctl name="SPKOUTL Input 3" value="ISRC2INT1" />
     </path>
 
+<!--
+    <path name="scenario-speaker-normal">
+        <ctl name="ASRC RATE 1" value="SYNCCLK rate 1" />
+        <ctl name="DSP1 Rate" value="SYNCCLK rate 1" />
+        <ctl name="DSP1 Firmware" value="EDAC" />
+        <ctl name="DSP1L Input 1" value="AIF1RX1" />
+        <ctl name="DSP1L Input 2" value="AIF1RX2" />
+        <ctl name="SPKOUTL Input 1" value="DSP1.1" />
+        <ctl name="SPKOUTL Input 2" value="none" />
+        <ctl name="SPKOUTL Input 3" value="none" />
+    </path>
+-->
+    <path name="scenario-speaker-and-headphones">
+        <ctl name="ASRC RATE 1" value="SYNCCLK rate 1" />
+        <ctl name="DSP4 Rate" value="SYNCCLK rate 1" />
+        <ctl name="DSP4 Firmware" value="DSM" />
+        <ctl name="DSP4L Input 1" value="AIF1RX1" />
+        <ctl name="DSP4L Input 2" value="AIF1RX2" />
+        <ctl name="DSP4 Aux 2" value="IN4L" />
+        <ctl name="DSP4 Aux 3" value="IN4R" />
+        <ctl name="SPKOUTL Input 1" value="DSP1.1" />
+        <ctl name="SPKOUTL Input 2" value="none" />
+        <ctl name="SPKOUTL Input 3" value="none" />
+        <ctl name="DSP1 Firmware" value="EDAC" />
+        <ctl name="DSP1 Rate" value="SYNCCLK rate 1" />
+        <ctl name="DSP1 Aux 1" value="AIF1RX1" />
+        <ctl name="DSP1 Aux 2" value="AIF1RX2" />
+        <ctl name="LHPF3 Input 1" value="None" />
+        <ctl name="LHPF3 Input 2" value="None" />
+        <ctl name="HPOUT1L Input 1" value="DSP1.3" />
+        <ctl name="HPOUT1R Input 1" value="DSP1.4" />
+        <ctl name="HPOUT1L Input 2" value="ASRC2L" />
+        <ctl name="HPOUT1R Input 2" value="ASRC2R" />
+    </path>
+
     <path name="scenario-speaker-incall-nb">
-        <ctl name="ASRC RATE 1" value="SYNCCLK rate 3" />
         <ctl name="DSP4 Rate" value="SYNCCLK rate 3" />
         <ctl name="DSP4 Aux 2" value="None" />
+        <ctl name="DSP4 Aux 3" value="None" />
+        <ctl name="DSP4L Input 1" value="None" />
+        <ctl name="DSP4L Input 2" value="None" />
         <ctl name="DSP4 Firmware" value="RX_NB" />
         <ctl name="ASRC2L Input" value="AIF2RX1" />
         <ctl name="DSP4 Aux 1" value="ASRC2L" />
         <ctl name="DSP4 Aux 2" value="ISRC2DEC2" />
         <ctl name="ISRC2INT1 Input" value="DSP4.3" />
+        <ctl name="LHPF3 Input 1" value="ISRC2INT1" />
+        <ctl name="LHPF3 Input 2" value="AIF1RX1" />
         <ctl name="AIF1TX1 Input 2" value="ISRC2INT1" />
         <ctl name="AIF1TX2 Input 2" value="ISRC2INT1" />
         <ctl name="SPKOUTL Input 3" value="ISRC2INT1" />
@@ -342,14 +398,18 @@
     </path>
 
     <path name="scenario-speaker-incall-wb">
-        <ctl name="ASRC RATE 1" value="SYNCCLK rate 3" />
         <ctl name="DSP4 Rate" value="SYNCCLK rate 3" />
         <ctl name="DSP4 Aux 2" value="None" />
+        <ctl name="DSP4 Aux 3" value="None" />
+        <ctl name="DSP4L Input 1" value="None" />
+        <ctl name="DSP4L Input 2" value="None" />
         <ctl name="DSP4 Firmware" value="RX_WB" />
         <ctl name="ASRC2L Input" value="AIF2RX1" />
         <ctl name="DSP4 Aux 1" value="ASRC2L" />
         <ctl name="DSP4 Aux 2" value="ISRC2DEC2" />
         <ctl name="ISRC2INT1 Input" value="DSP4.3" />
+        <ctl name="LHPF3 Input 1" value="ISRC2INT1" />
+        <ctl name="LHPF3 Input 2" value="AIF1RX1" />
         <ctl name="AIF1TX1 Input 2" value="ISRC2INT1" />
         <ctl name="AIF1TX2 Input 2" value="ISRC2INT1" />
         <ctl name="SPKOUTL Input 3" value="ISRC2INT1" />
@@ -357,11 +417,27 @@
         <ctl name="SPKOUTL Input 2" value="AIF1RX2" />
     </path>
 
+    <path name="scenario-speaker-record">
+        <ctl name="DSP4L Input 1" value="None" />
+        <ctl name="DSP4L Input 2" value="None" />
+        <ctl name="DSP4 Aux 1" value="None" />
+        <ctl name="DSP4 Aux 2" value="None" />
+        <ctl name="DSP4 Aux 3" value="None" />
+        <ctl name="ISRC2INT1 Input" value="ASRC2L" />
+        <ctl name="LHPF3 Input 1" value="None" />
+        <ctl name="LHPF3 Input 2" value="None" />
+        <ctl name="HPOUT2L Input 1" value="AIF1RX1" />
+        <ctl name="HPOUT2R Input 1" value="AIF1RX2" />
+        <ctl name="HPOUT2L Input 3" value="ISRC2INT1" />
+        <ctl name="HPOUT2R Input 3" value="ISRC2INT1" />
+    </path>
+
     <!-- ### Volume ### -->
 
     <path name="volume-speaker-default">
-        <ctl name="SPKOUTL Input 1 Volume" value="26" />
-        <ctl name="SPKOUTR Input 1 Volume" value="26" />
+        <ctl name="HPOUT2 Digital Volume" value="128" />
+        <ctl name="HPOUT2L Input 1 Volume" value="26" />
+        <ctl name="HPOUT2R Input 1 Volume" value="26" />
         <ctl name="DSP4L Input 1 Volume" value="26" />
         <ctl name="DSP4L Input 2 Volume" value="26" />
         <ctl name="IN4L Digital Volume" value="128" />
@@ -369,11 +445,12 @@
     </path>
 
     <path name="volume-speaker-incall">
-        <ctl name="SPKOUTL Input 1 Volume" value="26" />
-        <ctl name="SPKOUTL Input 2 Volume" value="26" />
+        <ctl name="HPOUT2 Digital Volume" value="128" />
+        <ctl name="HPOUT2L Input 1 Volume" value="26" />
+        <ctl name="HPOUT2R Input 1 Volume" value="26" />
 
-        <ctl name="SPKOUTL Input 3 Volume" value="32" />
-        <ctl name="SPKOUTL Input 4 Volume" value="32" />
+        <ctl name="HPOUT2L Input 3 Volume" value="32" />
+        <ctl name="HPOUT2R Input 3 Volume" value="32" />
     </path>
 
     <!--
@@ -384,27 +461,41 @@
 
     <!-- ### Device ### -->
 
-    <path name="device-headphones">
+    <path name="device-headphones-enable">
         <ctl name="HP Switch" value="1" />
+        <ctl name="VI SENSING Switch" value="0" />
+    </path>
+
+    <path name="device-headphones-disable">
+        <ctl name="HP Switch" value="0" />
+        <ctl name="DSP1 Aux 1" value="None" />
+        <ctl name="DSP1 Aux 2" value="None" />
+        <ctl name="HPOUT1 DRE Switch" value="0" />
     </path>
 
     <!-- ### Scenario ### -->
 
     <path name="scenario-headphones-default">
-        <ctl name="ASRC RATE 1" value="SYNCCLK rate 3" />
-        <ctl name="ISRC2INT1 Input" value="ASRC2L" />
-        <ctl name="HPOUT1 DRE Switch" value="0" />
-        <ctl name="HPOUT1L Input 1" value="AIF1RX1" />
-        <ctl name="HPOUT1R Input 1" value="AIF1RX2" />
-        <ctl name="HPOUT1L Input 2" value="ISRC2INT1" />
-        <ctl name="HPOUT1R Input 2" value="ISRC2INT1" />
+        <ctl name="ASRC RATE 1" value="SYNCCLK rate 1" />
+        <ctl name="HPOUT1 DRE Switch" value="1" />
+        <ctl name="DSP1 Firmware" value="EDAC" />
+        <ctl name="DSP1 Rate" value="SYNCCLK rate 1" />
+        <ctl name="DSP1 Aux 1" value="AIF1RX1" />
+        <ctl name="DSP1 Aux 2" value="AIF1RX2" />
+        <ctl name="LHPF3 Input 1" value="None" />
+        <ctl name="LHPF3 Input 2" value="None" />
+        <ctl name="HPOUT1L Input 1" value="DSP1.3" />
+        <ctl name="HPOUT1R Input 1" value="DSP1.4" />
+        <ctl name="HPOUT1L Input 2" value="ASRC2L" />
+        <ctl name="HPOUT1R Input 2" value="ASRC2R" />
     </path>
 
     <path name="scenario-headphones-incall-nb">
-	<ctl name="ASRC RATE 1" value="SYNCCLK rate 3" />
         <ctl name="HPOUT1 DRE Switch" value="0" />
         <ctl name="ASRC2L Input" value="AIF2RX1" />
         <ctl name="ISRC2INT1 Input" value="ASRC2L" />
+        <ctl name="LHPF3 Input 1" value="None" />
+        <ctl name="LHPF3 Input 2" value="None" />
         <ctl name="AIF1TX1 Input 2" value="ISRC2INT1" />
         <ctl name="AIF1TX2 Input 2" value="ISRC2INT1" />
         <ctl name="HPOUT1L Input 1" value="AIF1RX1" />
@@ -414,10 +505,11 @@
     </path>
 
     <path name="scenario-headphones-incall-wb">
-	<ctl name="ASRC RATE 1" value="SYNCCLK rate 3" />
         <ctl name="HPOUT1 DRE Switch" value="0" />
         <ctl name="ASRC2L Input" value="AIF2RX1" />
         <ctl name="ISRC2INT1 Input" value="ASRC2L" />
+        <ctl name="LHPF3 Input 1" value="None" />
+        <ctl name="LHPF3 Input 2" value="None" />
         <ctl name="AIF1TX1 Input 2" value="ISRC2INT1" />
         <ctl name="AIF1TX2 Input 2" value="ISRC2INT1" />
         <ctl name="HPOUT1L Input 1" value="AIF1RX1" />
@@ -455,28 +547,35 @@
     -->
 
     <!-- ### Device ### -->
-    <path name="device-sco">
+    <path name="device-sco-enable">
         <ctl name="ASRC RATE 1" value="SYNCCLK rate 2" />
-        <ctl name="ISRC2INT1 Input" value="None" />
+        <ctl name="VI SENSING Switch" value="0" />
+    </path>
+
+    <path name="device-sco-disable">
+        <ctl name="ASRC1L Input" value="None" />
+        <ctl name="ASRC1R Input" value="None" />
+        <ctl name="AIF3TX1 Input 1" value="None" />
+        <ctl name="AIF3TX2 Input 1" value="None" />
+        <ctl name="AIF3TX1 Input 2" value="None" />
+        <ctl name="AIF3TX2 Input 2" value="None" />
     </path>
 
     <!-- ### Scenario ### -->
 
     <path name="scenario-sco-default">
-	<ctl name="ASRC RATE 1" value="SYNCCLK rate 2" />
         <ctl name="Sample Rate 3" value="16kHz" />
         <ctl name="ISRC1DEC1 Input" value="AIF1RX1" />
         <ctl name="ISRC1DEC2 Input" value="AIF1RX2" />
-        <ctl name="ASRC2L Input" value="AIF2RX1" />
-        <ctl name="ASRC2R Input" value="AIF2RX2" />
+        <ctl name="ASRC2L Input" value="None" />
+        <ctl name="ASRC2R Input" value="None" />
         <ctl name="AIF3TX1 Input 1" value="ISRC1DEC1" />
         <ctl name="AIF3TX2 Input 1" value="ISRC1DEC2" />
-        <ctl name="AIF3TX1 Input 2" value="ASRC2L" />
-        <ctl name="AIF3TX2 Input 2" value="ASRC2R" />
+        <ctl name="AIF3TX1 Input 2" value="None" />
+        <ctl name="AIF3TX2 Input 2" value="None" />
     </path>
 
     <path name="scenario-sco-incall-nb">
-	<ctl name="ASRC RATE 1" value="SYNCCLK rate 2" />
         <ctl name="Sample Rate 3" value="16kHz" />
         <ctl name="ISRC1DEC1 Input" value="AIF1RX1" />
         <ctl name="ISRC1DEC2 Input" value="AIF1RX2" />
@@ -489,7 +588,6 @@
     </path>
 
     <path name="scenario-sco-incall-wb">
-	<ctl name="ASRC RATE 1" value="SYNCCLK rate 2" />
         <ctl name="Sample Rate 3" value="16kHz" />
         <ctl name="ISRC1DEC1 Input" value="AIF1RX1" />
         <ctl name="ISRC1DEC2 Input" value="AIF1RX2" />
@@ -525,27 +623,34 @@
 
     <!-- ### Device ### -->
 
-    <path name="device-sco-headset-out">
+    <path name="device-sco-headset-out-enable">
         <ctl name="ASRC RATE 1" value="SYNCCLK rate 2" />
-        <ctl name="ISRC2INT1 Input" value="None" />
+        <ctl name="VI SENSING Switch" value="0" />
+    </path>
+
+    <path name="device-sco-headset-out-disable">
+        <ctl name="ASRC1L Input" value="None" />
+        <ctl name="ASRC1R Input" value="None" />
+        <ctl name="AIF3TX1 Input 1" value="None" />
+        <ctl name="AIF3TX2 Input 1" value="None" />
+        <ctl name="AIF3TX1 Input 2" value="None" />
+        <ctl name="AIF3TX2 Input 2" value="None" />
     </path>
 
     <!-- ### Scenario ### -->
     <path name="scenario-sco-headset-out-default">
-	<ctl name="ASRC RATE 1" value="SYNCCLK rate 2" />
         <ctl name="Sample Rate 3" value="16kHz" />
         <ctl name="ISRC1DEC1 Input" value="AIF1RX1" />
         <ctl name="ISRC1DEC2 Input" value="AIF1RX2" />
-        <ctl name="ASRC2L Input" value="AIF2RX1" />
-        <ctl name="ASRC2R Input" value="AIF2RX2" />
+        <ctl name="ASRC2L Input" value="None" />
+        <ctl name="ASRC2R Input" value="None" />
         <ctl name="AIF3TX1 Input 1" value="ISRC1DEC1" />
         <ctl name="AIF3TX2 Input 1" value="ISRC1DEC2" />
-        <ctl name="AIF3TX1 Input 2" value="ASRC2L" />
-        <ctl name="AIF3TX2 Input 2" value="ASRC2R" />
+        <ctl name="AIF3TX1 Input 2" value="None" />
+        <ctl name="AIF3TX2 Input 2" value="None" />
     </path>
 
     <path name="scenario-sco-headset-out-incall-nb">
-	<ctl name="ASRC RATE 1" value="SYNCCLK rate 2" />
         <ctl name="Sample Rate 3" value="16kHz" />
         <ctl name="ISRC1DEC1 Input" value="AIF1RX1" />
         <ctl name="ISRC1DEC2 Input" value="AIF1RX2" />
@@ -558,7 +663,6 @@
     </path>
 
     <path name="scenario-sco-headset-out-incall-wb">
-	<ctl name="ASRC RATE 1" value="SYNCCLK rate 2" />
         <ctl name="Sample Rate 3" value="16kHz" />
         <ctl name="ISRC1DEC1 Input" value="AIF1RX1" />
         <ctl name="ISRC1DEC2 Input" value="AIF1RX2" />
@@ -587,15 +691,23 @@
 
     <!-- ### Device ### -->
 
-    <path name="device-sco-carkit">
+    <path name="device-sco-carkit-enable">
         <ctl name="ASRC RATE 1" value="SYNCCLK rate 2" />
-        <ctl name="ISRC2INT1 Input" value="None" />
+        <ctl name="VI SENSING Switch" value="0" />
+    </path>
+
+    <path name="device-sco-carkit-disable">
+        <ctl name="ASRC1L Input" value="None" />
+        <ctl name="ASRC1R Input" value="None" />
+        <ctl name="AIF3TX1 Input 1" value="None" />
+        <ctl name="AIF3TX2 Input 1" value="None" />
+        <ctl name="AIF3TX1 Input 2" value="None" />
+        <ctl name="AIF3TX2 Input 2" value="None" />
     </path>
 
     <!-- ### Scenario ### -->
 
     <path name="scenario-sco-carkit-default">
-        <ctl name="ASRC RATE 1" value="SYNCCLK rate 2" />
         <ctl name="Sample Rate 3" value="16kHz" />
         <ctl name="ISRC1DEC1 Input" value="AIF1RX1" />
         <ctl name="ISRC1DEC2 Input" value="AIF1RX2" />
@@ -623,9 +735,13 @@
     -->
 
     <!-- ### Device ### -->
-    <path name="device-aux-digital">
+    <path name="device-aux-digital-enable">
         <ctl name="ASRC RATE 1" value="SYNCCLK rate 1" />
         <ctl name="HDMI Switch" value="1" />
+    </path>
+
+    <path name="device-aux-digital-disable">
+        <ctl name="HDMI Switch" value="0" />
     </path>
 
     <!-- ### Scenario ### -->
@@ -642,9 +758,13 @@
 
     <!-- ### Device ### -->
 
-    <path name="device-analogue-dock">
+    <path name="device-analogue-dock-enable">
         <ctl name="ASRC RATE 1" value="SYNCCLK rate 1" />
         <ctl name="VPS Switch" value="1" />
+    </path>
+
+    <path name="device-analogue-dock-disable">
+        <ctl name="VPS Switch" value="0" />
     </path>
 
     <!-- ### Scenario ### -->
@@ -654,8 +774,8 @@
 
     <path name="volume-analogue-dock-out-default">
         <ctl name="HPOUT2 Digital Volume" value="124" />
-        <ctl name="SPKOUTL Input 1 Volume" value="32" />
-        <ctl name="SPKOUTR Input 1 Volume" value="32" />
+        <ctl name="HPOUT2L Input 1 Volume" value="32" />
+        <ctl name="HPOUT2R Input 1 Volume" value="32" />
     </path>
 
     <!--
@@ -666,8 +786,12 @@
 
     <!-- ### Device ### -->
 
-    <path name="device-builtin-mic">
+    <path name="device-builtin-mic-enable">
         <ctl name="Main Mic Switch" value="1" />
+    </path>
+
+    <path name="device-builtin-mic-disable">
+        <ctl name="Main Mic Switch" value="0" />
     </path>
 
     <!-- ### Scenario ### -->
@@ -684,6 +808,28 @@
         <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
     </path>
 
+    <path name="scenario-builtin-mic-earpiece-communication">
+        <ctl name="ASRC RATE 1" value="SYNCCLK rate 1" />
+        <ctl name="AIF1TX1 Input 3" value="None" />
+        <ctl name="AIF1TX2 Input 3" value="None" />
+        <ctl name="LHPF1 Input 1" value="IN1R" />
+        <ctl name="ASRC1L Input" value="LHPF1" />
+        <ctl name="ASRC1R Input" value="LHPF1" />
+        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
+        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
+    </path>
+
+    <path name="scenario-builtin-mic-speaker-communication">
+        <ctl name="ASRC RATE 1" value="SYNCCLK rate 1" />
+        <ctl name="AIF1TX1 Input 3" value="None" />
+        <ctl name="AIF1TX2 Input 3" value="None" />
+        <ctl name="LHPF1 Input 1" value="IN1R" />
+        <ctl name="ASRC1L Input" value="LHPF2" />
+        <ctl name="ASRC1R Input" value="LHPF2" />
+        <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
+        <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
+    </path>
+
     <path name="scenario-builtin-mic-earpiece-incall-nb">
         <ctl name="Sample Rate 2" value="8kHz" />
         <ctl name="ASRC RATE 1" value="SYNCCLK rate 3" />
@@ -691,6 +837,10 @@
         <ctl name="DSP3 Rate" value="SYNCCLK rate 2" />
         <ctl name="AIF1TX1 Input 3" value="None" />
         <ctl name="AIF1TX2 Input 3" value="None" />
+        <ctl name="DSP2L Input 1" value="None" />
+        <ctl name="DSP2L Input 2" value="None" />
+        <ctl name="DSP2 Aux 2" value="None" />
+        <ctl name="DSP2 Aux 3" value="None" />
         <ctl name="DSP2 Firmware" value="TX_NB" />
         <ctl name="DSP3 Firmware" value="TX_NB" />
         <ctl name="DSP3 Virtual Input" value="Shared Memory" />
@@ -698,7 +848,7 @@
         <ctl name="ISRC1DEC1 Input" value="IN1R" />
         <ctl name="ISRC2DEC1 Input" value="IN1R" />
         <ctl name="DSP3L Input 1" value="ISRC1DEC1" />
-        <ctl name="ISRC1DEC4 Input" value="ISRC2INT1" />
+        <ctl name="ISRC1DEC4 Input" value="LHPF3" />
         <ctl name="DSP3 Aux 1" value="ISRC1DEC4" />
         <ctl name="ISRC3INT1 Input" value="DSP3.1" />
         <ctl name="ASRC1L Input" value="ISRC3INT1" />
@@ -717,13 +867,20 @@
         <ctl name="DSP3 Rate" value="SYNCCLK rate 3" />
         <ctl name="AIF1TX1 Input 3" value="None" />
         <ctl name="AIF1TX2 Input 3" value="None" />
+        <ctl name="LHPF1 Input 1" value="None" />
+        <ctl name="LHPF2 Input 1" value="None" />
+        <ctl name="DSP2L Input 1" value="None" />
+        <ctl name="DSP2L Input 2" value="None" />
+        <ctl name="DSP2 Aux 2" value="None" />
+        <ctl name="DSP2 Aux 3" value="None" />
         <ctl name="DSP2 Firmware" value="TX_WB" />
         <ctl name="DSP3 Firmware" value="TX_WB" />
         <ctl name="DSP3 Virtual Input" value="Shared Memory" />
         <ctl name="DSP2 Aux 6" value="IN1R" />
         <ctl name="ISRC2DEC1 Input" value="IN1R" />
         <ctl name="DSP3L Input 1" value="ISRC2DEC1" />
-        <ctl name="DSP3 Aux 1" value="DSP4.3" />
+        <ctl name="ISRC2DEC4 Input" value="LHPF3" />
+        <ctl name="DSP3 Aux 1" value="ISRC2DEC4" />
         <ctl name="ASRC1L Input" value="DSP3.1" />
         <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
         <ctl name="ASRC1R Input" value="DSP3.1" />
@@ -740,13 +897,19 @@
         <ctl name="DSP3 Rate" value="SYNCCLK rate 2" />
         <ctl name="AIF1TX1 Input 3" value="None" />
         <ctl name="AIF1TX2 Input 3" value="None" />
+        <ctl name="LHPF1 Input 1" value="None" />
+        <ctl name="LHPF2 Input 1" value="None" />
+        <ctl name="DSP2L Input 1" value="None" />
+        <ctl name="DSP2L Input 2" value="None" />
+        <ctl name="DSP2 Aux 2" value="None" />
+        <ctl name="DSP2 Aux 3" value="None" />
         <ctl name="DSP2 Firmware" value="TX_NB" />
         <ctl name="DSP3 Firmware" value="TX_NB" />
         <ctl name="DSP3 Virtual Input" value="Shared Memory" />
         <ctl name="DSP2 Aux 6" value="IN1R" />
         <ctl name="ISRC1DEC1 Input" value="IN1R" />
         <ctl name="DSP3R Input 1" value="ISRC1DEC1" />
-        <ctl name="ISRC1DEC4 Input" value="ISRC2INT1" />
+        <ctl name="ISRC1DEC4 Input" value="LHPF3" />
         <ctl name="DSP3 Aux 1" value="ISRC1DEC4" />
         <ctl name="ISRC3INT1 Input" value="DSP3.1" />
         <ctl name="ASRC1L Input" value="ISRC3INT1" />
@@ -765,6 +928,12 @@
         <ctl name="DSP3 Rate" value="SYNCCLK rate 3" />
         <ctl name="AIF1TX1 Input 3" value="None" />
         <ctl name="AIF1TX2 Input 3" value="None" />
+        <ctl name="LHPF1 Input 1" value="None" />
+        <ctl name="LHPF2 Input 1" value="None" />
+        <ctl name="DSP2L Input 1" value="None" />
+        <ctl name="DSP2L Input 2" value="None" />
+        <ctl name="DSP2 Aux 2" value="None" />
+        <ctl name="DSP2 Aux 3" value="None" />
         <ctl name="DSP2 Firmware" value="TX_WB" />
         <ctl name="DSP3 Firmware" value="TX_WB" />
         <ctl name="DSP3 Virtual Input" value="Shared Memory" />
@@ -772,7 +941,7 @@
         <ctl name="ISRC2DEC1 Input" value="IN1R" />
         <ctl name="DSP3R Input 1" value="ISRC2DEC1" />
         <ctl name="ISRC2DEC4 Input" value="LHPF3" />
-        <ctl name="DSP3 Aux 1" value="DSP4.3" />
+        <ctl name="DSP3 Aux 1" value="ISRC2DEC4" />
         <ctl name="ASRC1L Input" value="DSP3.1" />
         <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
         <ctl name="ASRC1R Input" value="DSP3.1" />
@@ -803,8 +972,12 @@
 
     <!-- ### Device ### -->
 
-    <path name="device-back-mic">
+    <path name="device-back-mic-enable">
         <ctl name="Sub Mic Switch" value="1" />
+    </path>
+
+    <path name="device-back-mic-disable">
+        <ctl name="Sub Mic Switch" value="0" />
     </path>
 
     <!-- ### Scenario ### -->
@@ -862,12 +1035,31 @@
 
     <!-- ### Device ### -->
 
-    <path name="device-two-mic">
-        <path name="device-builtin-mic" />
-        <path name="device-back-mic" />
+    <path name="device-two-mic-enable">
+        <path name="device-builtin-mic-enable" />
+        <path name="device-back-mic-enable" />
+    </path>
+
+    <path name="device-two-mic-disable">
+        <path name="device-builtin-mic-disable" />
+        <path name="device-back-mic-disable" />
     </path>
 
     <!-- ### Scenario ### -->
+
+    <path name="scenario-two-mic-earpiece-default">
+        <path name="scenario-builtin-mic-default" />
+
+        <!-- back mic -->
+        <ctl name="LHPF2 Input 1" value="IN3R" />
+    </path>
+
+    <path name="scenario-two-mic-speaker-default">
+        <path name="scenario-builtin-mic-default" />
+
+        <!-- back mic -->
+        <ctl name="LHPF2 Input 1" value="IN3R" />
+    </path>
 
     <path name="scenario-two-mic-earpiece-incall-nb">
         <path name="scenario-builtin-mic-earpiece-incall-nb" />
@@ -889,7 +1081,22 @@
         <path name="scenario-back-mic-speaker-incall-wb" />
     </path>
 
+    <path name="scenario-two-mic-headphones-incall-nb">
+        <path name="scenario-builtin-mic-earpiece-incall-nb" />
+        <path name="scenario-back-mic-earpiece-incall-nb" />
+    </path>
+
+    <path name="scenario-two-mic-headphones-incall-wb">
+        <path name="scenario-builtin-mic-earpiece-incall-wb" />
+        <path name="scenario-back-mic-earpiece-incall-wb" />
+    </path>
+
     <!-- ### Volume ### -->
+
+    <path name="volume-two-mic-default">
+        <path name="volume-builtin-mic-default" />
+        <path name="volume-back-mic-default" />
+    </path>
 
     <path name="volume-two-mic-incall">
         <path name="volume-builtin-mic-incall" />
@@ -903,8 +1110,12 @@
     -->
 
     <!-- ### Device ### -->
-    <path name="device-third-mic">
+    <path name="device-third-mic-enable">
         <ctl name="Third Mic Switch" value="1" />
+    </path>
+
+    <path name="device-third-mic-disable">
+        <ctl name="Third Mic Switch" value="0" />
     </path>
 
     <!-- ### Scenario ### -->
@@ -913,6 +1124,7 @@
         <ctl name="AIF1TX1 Input 3" value="None" />
         <ctl name="AIF1TX2 Input 3" value="None" />
         <ctl name="LHPF2 Input 1" value="IN4L" />
+        <ctl name="ASRC1L Input" value="LHPF2" />
         <ctl name="ASRC1R Input" value="LHPF2" />
         <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
     </path>
@@ -931,13 +1143,17 @@
     -->
 
     <!-- ### Device ### -->
-    <path name="device-headset-in">
+    <path name="device-headset-mic-enable">
         <ctl name="Headset Mic Switch" value="1" />
+    </path>
+
+    <path name="device-headset-mic-disable">
+        <ctl name="Headset Mic Switch" value="0" />
     </path>
 
     <!-- ### Scenario ### -->
 
-    <path name="scenario-headset-in-default">
+    <path name="scenario-headset-mic-default">
         <ctl name="ASRC RATE 1" value="SYNCCLK rate 1" />
         <ctl name="HPOUT1L Input 3" value="None" />
         <ctl name="HPOUT1R Input 3" value="None" />
@@ -948,7 +1164,7 @@
         <ctl name="AIF2TX2 Input 1" value="ASRC1R" />
     </path>
 
-    <path name="scenario-headset-in-incall-nb">
+    <path name="scenario-headset-mic-incall-nb">
         <ctl name="DSP3 Aux 1" value="None" />
         <ctl name="Sample Rate 2" value="8kHz" />
         <ctl name="ASRC RATE 1" value="SYNCCLK rate 3" />
@@ -963,7 +1179,7 @@
         <ctl name="DSP3 Virtual Input" value="None" />
     </path>
 
-    <path name="scenario-headset-in-incall-wb">
+    <path name="scenario-headset-mic-incall-wb">
         <ctl name="DSP3 Aux 1" value="None" />
         <ctl name="Sample Rate 2" value="8kHz" />
         <ctl name="ASRC RATE 1" value="SYNCCLK rate 3" />
@@ -980,13 +1196,13 @@
 
     <!-- ### Volume ### -->
 
-    <path name="volume-headset-in-default">
+    <path name="volume-headset-mic-default">
         <ctl name="IN2R Volume" value="16" />
         <ctl name="IN2R Digital Volume" value="128" />
         <ctl name="LHPF2 Input 1 Volume" value="32" />
     </path>
 
-    <path name="volume-headset-in-incall">
+    <path name="volume-headset-mic-incall">
         <ctl name="IN2R Volume" value="18" />
         <ctl name="IN2R Digital Volume" value="128" />
         <ctl name="HPOUT1L Input 3 Volume" value="9" />
@@ -1001,17 +1217,21 @@
     -->
 
     <!-- ### Device ### -->
-    <path name="device-sco-headset-in">
+    <path name="device-sco-headset-mic-enable">
         <ctl name="ASRC RATE 1" value="SYNCCLK rate 2" />
-        <ctl name="AIF2TX1 Input 1" value="None" />
-        <ctl name="AIF2TX2 Input 1" value="None" />
+        <ctl name="AIF2TX1 Input 1" value="none" />
+        <ctl name="AIF2TX2 Input 1" value="none" />
         <ctl name="DSP3 Virtual Input" value="None" />
+    </path>
+
+    <path name="device-sco-headset-mic-disable">
+        <ctl name="ASRC2L Input" value="AIF2RX1" />
+        <ctl name="ASRC2R Input" value="AIF2RX2" />
     </path>
 
     <!-- ### Scenario ### -->
 
-    <path name="scenario-sco-headset-in-default">
-        <ctl name="ASRC RATE 1" value="SYNCCLK rate 2" />
+    <path name="scenario-sco-headset-mic-default">
         <ctl name="ASRC1L Input" value="AIF3RX1" />
         <ctl name="ASRC1R Input" value="AIF3RX2" />
         <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
@@ -1020,11 +1240,9 @@
         <ctl name="ISRC1INT2 Input" value="AIF3RX2" />
         <ctl name="AIF1TX1 Input 2" value="ISRC1INT1" />
         <ctl name="AIF1TX2 Input 2" value="ISRC1INT2" />
-        <ctl name="DSP3 Virtual Input" value="None" />
     </path>
 
-    <path name="scenario-sco-headset-in-incall-nb">
-        <ctl name="ASRC RATE 1" value="SYNCCLK rate 2" />
+    <path name="scenario-sco-headset-mic-incall-nb">
         <ctl name="ASRC1L Input" value="AIF3RX1" />
         <ctl name="ASRC1R Input" value="AIF3RX2" />
         <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
@@ -1033,11 +1251,9 @@
         <ctl name="ISRC1INT2 Input" value="AIF3RX2" />
         <ctl name="AIF1TX1 Input 2" value="ISRC1INT1" />
         <ctl name="AIF1TX2 Input 2" value="ISRC1INT2" />
-        <ctl name="DSP3 Virtual Input" value="None" />
     </path>
 
-    <path name="scenario-sco-headset-in-incall-wb">
-        <ctl name="ASRC RATE 1" value="SYNCCLK rate 2" />
+    <path name="scenario-sco-headset-mic-incall-wb">
         <ctl name="ASRC1L Input" value="AIF3RX1" />
         <ctl name="ASRC1R Input" value="AIF3RX2" />
         <ctl name="AIF2TX1 Input 1" value="ASRC1L" />
@@ -1046,7 +1262,6 @@
         <ctl name="ISRC1INT2 Input" value="AIF3RX2" />
         <ctl name="AIF1TX1 Input 2" value="ISRC1INT1" />
         <ctl name="AIF1TX2 Input 2" value="ISRC1INT2" />
-        <ctl name="DSP3 Virtual Input" value="None" />
     </path>
 
     <!-- ### Volume ### -->
@@ -1079,16 +1294,25 @@
         <ctl name="HPOUT3R Input 1" value="AIF1RX2" />
 
         <!-- AP->SPK -->
-        <ctl name="SPKOUTL Input 1" value="AIF1RX1" />
-        <ctl name="SPKOUTL Input 2" value="AIF1RX2" />
+        <!--
+             Duplicate definition with scenario-speaker-incall
+        <ctl name="HPOUT2L Input 1" value="AIF1RX1" />
+        <ctl name="HPOUT2R Input 1" value="AIF1RX2" />
+        -->
 
         <!-- AP->HP -->
+        <!--
+             Duplicate definition with scenario-headphones-incall
         <ctl name="HPOUT1L Input 1" value="AIF1RX1" />
         <ctl name="HPOUT1R Input 1" value="AIF1RX2" />
+        -->
 
         <!-- CP->HP -->
+        <!--
+             Duplicate definition with scenario-headphones-incall
         <ctl name="HPOUT1L Input 2" value="ASRC2L" />
         <ctl name="HPOUT1R Input 2" value="ASRC2R" />
+        -->
     </path>
 
     <!--
@@ -1121,26 +1345,29 @@
         <!-- Empty path -->
     </path>
 
+
+
+
+
     <!--
     #######################################################
     ### AUDIO HAL ROUTING
     #######################################################
     -->
 
-    <!-- ### Playback ### -->
-
     <!--
     # A scenario often changes the firmware. The DSPs need to be inactive for
-    # loading a different firmware. The firmware will not be loaded immediately
+    # loading a different firmware. The firmware will not be loaded immediatly
     # but as soon as the DSP is turned on.
     -->
+
+    <!-- ### Playback ### -->
 
     <path name="voice-earpiece">
         <path name="verb-incall" />
 
         <path name="scenario-earpiece-incall-nb" />
         <path name="volume-earpiece-incall" />
-        <path name="device-earpiece" />
     </path>
 
     <path name="voice-earpiece-wb">
@@ -1148,7 +1375,6 @@
 
         <path name="scenario-earpiece-incall-wb" />
         <path name="volume-earpiece-incall" />
-        <path name="device-earpiece" />
     </path>
 
     <path name="voice-speaker">
@@ -1156,7 +1382,6 @@
 
         <path name="scenario-speaker-incall-nb" />
         <path name="volume-speaker-incall" />
-        <path name="device-speaker" />
     </path>
 
     <path name="voice-speaker-wb">
@@ -1164,7 +1389,6 @@
 
         <path name="scenario-speaker-incall-wb" />
         <path name="volume-speaker-incall" />
-        <path name="device-speaker" />
     </path>
 
     <path name="voice-headphones">
@@ -1172,7 +1396,6 @@
 
         <path name="scenario-headphones-incall-nb" />
         <path name="volume-headphones-incall" />
-        <path name="device-headphones" />
     </path>
 
     <path name="voice-headphones-wb">
@@ -1180,7 +1403,6 @@
 
         <path name="scenario-headphones-incall-wb" />
         <path name="volume-headphones-incall" />
-        <path name="device-headphones" />
     </path>
 
     <path name="voice-bt-sco">
@@ -1188,7 +1410,6 @@
 
         <path name="scenario-sco-incall-nb" />
         <path name="volume-sco-incall" />
-        <path name="device-sco" />
     </path>
 
     <path name="voice-bt-sco-wb">
@@ -1196,7 +1417,6 @@
 
         <path name="scenario-sco-incall-wb" />
         <path name="volume-sco-incall" />
-        <path name="device-sco" />
     </path>
 
     <path name="voice-bt-sco-headset-out">
@@ -1204,7 +1424,6 @@
 
         <path name="scenario-sco-headset-out-incall-nb" />
         <path name="volume-sco-headset-out-default" />
-        <path name="device-sco-headset-out" />
     </path>
 
     <path name="voice-bt-sco-headset-out-wb">
@@ -1212,7 +1431,6 @@
 
         <path name="scenario-sco-headset-out-incall-wb" />
         <path name="volume-sco-headset-out-default" />
-        <path name="device-sco-headset-out" />
     </path>
 
     <path name="media-earpiece">
@@ -1220,7 +1438,6 @@
 
         <path name="scenario-earpiece-default" />
         <path name="volume-earpiece-default" />
-        <path name="device-earpiece" />
     </path>
 
     <path name="media-speaker">
@@ -1228,15 +1445,15 @@
 
         <path name="scenario-speaker-default" />
         <path name="volume-speaker-default" />
-        <path name="device-speaker" />
     </path>
 
     <path name="media-headphones">
+        <!--
         <path name="verb-default" />
+        -->
 
         <path name="scenario-headphones-default" />
         <path name="volume-headphones-default" />
-        <path name="device-headphones" />
     </path>
 
     <path name="media-bt-sco">
@@ -1244,7 +1461,6 @@
 
         <path name="scenario-sco-default" />
         <path name="volume-sco-default" />
-        <path name="device-sco" />
     </path>
 
     <path name="media-bt-sco-headset-out">
@@ -1252,23 +1468,22 @@
 
         <path name="scenario-sco-headset-out-default" />
         <path name="volume-sco-headset-out-default" />
-        <path name="device-sco-headset-out" />
     </path>
 
     <path name="voice-rec-speaker">
         <path name="verb-default" />
 
-        <path name="scenario-speaker-default" />
+        <path name="scenario-speaker-record" />
         <path name="volume-speaker-default" />
-        <path name="device-speaker" />
     </path>
 
     <path name="voice-rec-headphones">
+        <!--
         <path name="verb-default" />
+        -->
 
         <path name="scenario-headphones-default" />
         <path name="volume-headphones-default" />
-        <path name="device-headphones" />
     </path>
 
     <path name="communication-speaker">
@@ -1276,130 +1491,156 @@
 
         <path name="scenario-speaker-default" />
         <path name="volume-speaker-default" />
-        <path name="device-speaker" />
     </path>
 
     <path name="communication-earpiece">
         <path name="verb-default" />
 
-        <path name="scenario-earpiece-default" />
+        <path name="scenario-earpiece-loopback" />
         <path name="volume-earpiece-default" />
-        <path name="device-earpiece" />
     </path>
 
     <path name="communication-headphones">
+        <!--
         <path name="verb-default" />
+        -->
 
         <path name="scenario-headphones-default" />
         <path name="volume-headphones-default" />
-        <path name="device-headphones" />
     </path>
 
     <path name="speaker-and-headphones">
+        <!--
         <path name="verb-default" />
+        -->
 
-        <path name="scenario-speaker-default" />
-        <path name="scenario-headphones-default" />
+        <path name="scenario-speaker-and-headphones" />
         <path name="volume-speaker-default" />
         <path name="volume-headphones-default" />
-        <path name="device-speaker" />
-        <path name="device-headphones" />
     </path>
 
     <path name="bt-sco-carkit">
-        <path name="verb-default" />
-
         <path name="scenario-sco-carkit-default" />
         <path name="volume-sco-carkit-default" />
-        <path name="device-sco-carkit" />
     </path>
 
     <!-- ### Capture ### -->
 
-    <path name="voice-earpiece-main-mic">
+    <path name="voice-earpiece-two-mic">
         <path name="channel-stereo" />
 
         <path name="scenario-two-mic-earpiece-incall-nb" />
         <path name="volume-two-mic-incall" />
-        <path name="device-two-mic" />
+        <!-- TODO -->
+        <!--
+        <path name="param-builtin-mic-earpiece-incall-nb" />
+        -->
     </path>
 
-    <path name="voice-earpiece-main-mic-wb">
+    <path name="voice-earpiece-two-mic-wb">
         <path name="channel-stereo" />
 
         <path name="scenario-two-mic-earpiece-incall-wb" />
         <path name="volume-two-mic-incall" />
-        <path name="device-two-mic" />
+        <!-- TODO -->
+        <!--
+        <path name="param-builtin-mic-earpiece-incall-wb" />
+        -->
     </path>
 
-    <path name="voice-speaker-main-mic">
+    <path name="voice-speaker-two-mic">
         <path name="channel-stereo" />
 
         <path name="scenario-two-mic-speaker-incall-nb" />
         <path name="volume-two-mic-incall" />
-        <path name="device-two-mic" />
+        <!-- TODO -->
+        <!--
+        <path name="param-builtin-mic-speaker-incall-nb" />
+        -->
     </path>
 
-    <path name="voice-speaker-main-mic-wb">
+    <path name="voice-speaker-two-mic-wb">
         <path name="channel-stereo" />
 
         <path name="scenario-two-mic-speaker-incall-wb" />
         <path name="volume-two-mic-incall" />
-        <path name="device-two-mic" />
+        <!-- TODO -->
+        <!--
+        <path name="param-builtin-mic-speaker-incall-wb" />
+        -->
     </path>
 
-    <path name="voice-rec-main-mic">
+    <path name="voice-headphones-two-mic">
+        <path name="channel-stereo" />
+
+        <path name="scenario-two-mic-headphones-incall-nb" />
+        <path name="volume-two-mic-incall" />
+        <!-- TODO -->
+        <!--
+        <path name="param-builtin-mic-earpiece-incall-nb" />
+        -->
+    </path>
+
+    <path name="voice-headphones-two-mic-wb">
+        <path name="channel-stereo" />
+
+        <path name="scenario-two-mic-headphones-incall-wb" />
+        <path name="volume-two-mic-incall" />
+        <!-- TODO -->
+        <!--
+        <path name="param-builtin-mic-earpiece-incall-wb" />
+        -->
+    </path>
+
+    <path name="voice-rec-two-mic">
         <path name="channel-left" />
 
         <path name="scenario-builtin-mic-default" />
-        <path name="volume-builtin-mic-default" />
-        <path name="device-builtin-mic" />
+
+        <!-- back mic -->
+        <ctl name="LHPF2 Input 1" value="IN3R" />
+
+        <path name="volume-two-mic-default" />
     </path>
 
     <path name="voice-headset-mic">
-        <path name="channel-right" />
+        <path name="channel-left" />
 
-        <path name="scenario-headset-in-incall-nb" />
-        <path name="volume-headset-in-incall" />
-        <path name="device-headset-in" />
+        <path name="scenario-headset-mic-incall-nb" />
+        <path name="volume-headset-mic-incall" />
     </path>
 
     <path name="voice-headset-mic-wb">
-        <path name="channel-right" />
+        <path name="channel-left" />
 
-        <path name="scenario-headset-in-incall-wb" />
-        <path name="volume-headset-in-incall" />
-        <path name="device-headset-in" />
+        <path name="scenario-headset-mic-incall-wb" />
+        <path name="volume-headset-mic-incall" />
     </path>
 
     <path name="voice-rec-headset-mic">
-        <path name="channel-right" />
+        <path name="channel-left" />
 
-        <path name="scenario-headset-in-default" />
-        <path name="volume-headset-in-default" />
-        <path name="device-headset-in" />
+        <path name="scenario-headset-mic-default" />
+        <path name="volume-headset-mic-default" />
     </path>
 
     <path name="voice-bt-sco-headset-mic">
         <path name="channel-none" />
 
-        <path name="scenario-sco-headset-in-incall-nb" />
-        <path name="device-sco-headset-in" />
+        <path name="scenario-sco-headset-mic-incall-nb" />
     </path>
 
     <path name="voice-bt-sco-headset-mic-wb">
         <path name="channel-none" />
 
-        <path name="scenario-sco-headset-in-incall-wb" />
-        <path name="device-sco-headset-in" />
+        <path name="scenario-sco-headset-mic-incall-wb" />
     </path>
 
-    <path name="media-main-mic">
+    <path name="media-builtin-mic">
         <path name="channel-left" />
 
         <path name="scenario-builtin-mic-default" />
         <path name="volume-builtin-mic-default" />
-        <path name="device-builtin-mic" />
     </path>
 
     <path name="media-second-mic">
@@ -1407,38 +1648,40 @@
 
         <path name="scenario-back-mic-default" />
         <path name="volume-back-mic-default" />
-        <path name="device-back-mic" />
     </path>
 
     <path name="media-headset-mic">
-        <path name="channel-right" />
+        <path name="channel-left" />
 
-        <path name="scenario-headset-in-default" />
-        <path name="volume-headset-in-default" />
-        <path name="device-headset-in" />
+        <path name="scenario-headset-mic-default" />
+        <path name="volume-headset-mic-default" />
     </path>
 
     <path name="media-bt-sco-headset-mic">
         <path name="channel-none" />
 
-        <path name="scenario-sco-headset-in-default" />
-        <path name="device-sco-headset-in" />
+        <path name="scenario-sco-headset-mic-default" />
     </path>
 
-    <path name="communication-main-mic">
+    <path name="communication-earpiece-two-mic">
         <path name="channel-left" />
 
-        <path name="scenario-builtin-mic-default" />
+        <path name="scenario-builtin-mic-earpiece-communication" />
         <path name="volume-builtin-mic-default" />
-        <path name="device-builtin-mic" />
+    </path>
+
+    <path name="communication-speaker-two-mic">
+        <path name="channel-left" />
+
+        <path name="scenario-builtin-mic-speaker-communication" />
+        <path name="volume-builtin-mic-default" />
     </path>
 
     <path name="communication-headset-mic">
-        <path name="channel-right" />
+        <path name="channel-left" />
 
-        <path name="scenario-headset-in-default" />
-        <path name="volume-headset-in-default" />
-        <path name="device-headset-in" />
+        <path name="scenario-headset-mic-default" />
+        <path name="volume-headset-mic-default" />
     </path>
 
     <path name="none">

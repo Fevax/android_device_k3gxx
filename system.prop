@@ -25,7 +25,7 @@ ro.telephony.ril_class=k3gxxRIL
 
 # Default USB mode
 persist.sys.isUsbOtgEnabled=true
-persist.sys.usb.config=mtp
+persist.sys.usb.config=mtp,adb
 debug.db.uid=100000
 ro.adb.secure=0
 
