@@ -19,15 +19,8 @@
 /dev/i2c-2                0660   system     system
 /dev/CEC                  0660   system     system
 /dev/HPD                  0660   system     system
-
-# ULP Audio
-/dev/srp                  0660   system     audio
-/dev/srp_ctrl             0660   system     audio
-
 # media0 is used for GSC, DECON, etc
 /dev/media0               0660   system     camera
-/dev/media1               0660   system     camera
-/dev/media2               0660   media      media
 
 # Various devices use the v4l-subdev interface
 # We declare all such nodes simultaneously here
@@ -43,6 +36,7 @@
 /dev/video50              0660   media      graphics
 /dev/video51              0660   media      graphics
 /dev/video52              0660   media      graphics
+/dev/m2m1shot_scaler*     0660   media      graphics
 
 # mfc
 /dev/video6               0660   media      media
@@ -106,32 +100,42 @@
 /dev/umts*                0660   system     radio
 
 # MobiCore
-/dev/mobicore             0700   system     system
-/dev/mobicore-user        0666   radio     system
+/dev/mobicore             0600   drmrpc     drmrpc
+/dev/mobicore-user        0660   drm        drmrpc
+
+# rfkill
+/dev/rfkill               0660   root       wifi
 
 # Secure MEM driver
-/dev/s5p-smem             0660   system     system
+/dev/s5p-smem             0660   drm        drmrpc
 
 # vfs
-/dev/vfsspi        0660   system     system
+/dev/vfsspi               0660   system     system
+
+# NFC
+/dev/pn547                0660   nfc        nfc
+/dev/sec-nfc              0660   nfc        nfc
 
 /dev/block/mmcblk0p8      0660   system     system
 # sensor sysfs properties
 /sys/devices/virtual/input/input*	poll_delay	0660	system	radio
 /sys/devices/virtual/input/input*	enable		0660	system	radio
 
+# fingerprint sensor
+/dev/vfsspi        0660   system     system
+
 # USB Accessories (printer and so on) - duki994
 /dev/ttyUSB*              0660   system     usb
 /dev/usb/lp*              0660   system     usb
 /dev/mobicore             0700   system     system
-/dev/mobicore-user        0666   radio     system
+/dev/mobicore-user        0666   radio      system
 /dev/s5p-smem             0660   system     system
 /dev/ssp_sensorhub        0660   system     system
 
 # Sensorhub IIO
 /dev/ssp_sensorhub        0660   system     system
-/dev/iio:device*          0660   system  system
+/dev/iio:device*          0660   system     system
 /sys/devices/12d20000.spi/spi_master/spi0/spi0.0/iio:device*    buffer/enable       0660    system    system
 /sys/devices/12d20000.spi/spi_master/spi0/spi0.0/iio:device*    buffer/length       0660    system    system
-/sys/bus/iio/devices/iio:device*    0664   system     radio
+/sys/bus/iio/devices/iio:device*    0664    system     radio
 

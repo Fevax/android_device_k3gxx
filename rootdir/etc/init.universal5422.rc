@@ -6,11 +6,17 @@ on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
 on init
+    #export LD_PRELOAD "/system/lib/libsamsung_symbols.so"
+    #export LD_SHIM_LIBS "/system/lib/libexynoscamera.so|libsamsung_symbols.so:/system/vendor/lib/libRSDriverArm.so|libsamsung_symbols.so"
     mkdir /preload 0771 system system
 
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
+    symlink /sdcard1 /storage/sdcard1
+    symlink /sdcard1 /mnt/extSdCard
+    symlink /sdcard1 /external_sd
+    symlink /storage/usbdisk /mnt/usbdisk
 
     symlink /data/app /factory
 
@@ -100,6 +106,8 @@ on boot
 	#write /proc/sys/vm/min_free_kbytes 32768
 	#write /proc/sys/vm/min_free_order_shift 1
 
+    # Allow to access debugfs for system:system
+    chown system system /sys/kernel/debug
 
     # Set up kernel tracing, but disable it by default
     chmod 0222 /sys/kernel/debug/tracing/trace_marker
@@ -533,6 +541,12 @@ service exyrngd /system/bin/exyrngd -b
     class main
     oneshot
 
+# MobiCore startup
+service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF000000000000000000000001.drbin -r /system/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin -r /system/app/mcRegistry/ffffffffd00000000000000000000016.tlbin
+    class core
+    user system
+    group system
+
 # Set watchdog timer to 30 seconds and pet it every 10 seconds to get a 20 second margin
 service watchdogd /sbin/watchdogd 10 20
     class core
@@ -636,6 +650,10 @@ on property:ro.securestorage.support=true
     chown system system /dev/.secure_storage
     restorecon -R /dev/.secure_storage
     start secure_storage
+
+service playlpm /system/bin/lpm
+    class sec-charger
+    critical
 
 # SSWAP
 service swapon /sbin/sswap -s

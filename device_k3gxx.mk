@@ -60,8 +60,8 @@ PRODUCT_COPY_FILES += \
 # currently contain all of the bitmaps at xhdpi density so
 # we do this little trick to fall back to the hdpi version
 # if the xhdpi doesn't exist.
-PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
-PRODUCT_AAPT_PREF_CONFIG := xhdpi
+PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi
+PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=196608
@@ -83,33 +83,28 @@ PRODUCT_PACKAGES += \
 ### OMX/MEDIA
 ###########################################################
 
+PRODUCT_PACKAGES += \
+	libstagefrighthw \
+	libExynosOMX_Core
+
+PRODUCT_PACKAGES += \
+	libOMX.Exynos.AVC.Decoder \
+	libOMX.Exynos.HEVC.Decoder \
+	libOMX.Exynos.MPEG4.Decoder \
+	libOMX.Exynos.VP8.Decoder \
+	libOMX.Exynos.WMV.Decoder
+
+PRODUCT_PACKAGES += \
+	libOMX.Exynos.AVC.Encoder \
+	libOMX.Exynos.MPEG4.Encoder \
+	libOMX.Exynos.VP8.Encoder
+
 PRODUCT_COPY_FILES += \
-#    frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml  \
-    $(LOCAL_PATH)/configs/media/media_codecs.xml:system/etc/media_codecs.xml \
-    $(LOCAL_PATH)/configs/media/media_profiles.xml:system/etc/media_profiles.xml
-
-# Stagefright and device specific modules
-PRODUCT_PACKAGES += \
-    libstagefrighthw \
-    libExynosOMX_Core
-
-# Video codecs
-PRODUCT_PACKAGES += \
-    libOMX.Exynos.AVC.Decoder \
-    libOMX.Exynos.HEVC.Decoder \
-    libOMX.Exynos.MPEG4.Decoder \
-    libOMX.Exynos.MPEG4.Encoder \
-    libOMX.Exynos.VP8.Decoder \
-    libOMX.Exynos.WMV.Decoder
-
-# H.264 encoder is broken
-#PRODUCT_PACKAGES += \
-#    libOMX.Exynos.AVC.Encoder
-
-###########################################################
+	frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
+	frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
+	frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
+	$(LOCAL_PATH)/configs/media/media_codecs.xml:system/etc/media_codecs.xml \
+	$(LOCAL_PATH)/configs/media/media_profiles.xml:system/etc/media_profiles.xml
 
 # IR
 PRODUCT_PACKAGES += \
@@ -177,13 +172,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
-    frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
+    frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml \
     frameworks/native/data/etc/android.hardware.consumerir.xml:system/etc/permissions/android.hardware.consumerir.xml \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:system/etc/permissions/android.hardware.fingerprint.xml \
-    frameworks/native/data/etc/android.hardware.sensor.heartrate.ecg.xml:system/etc/permissions/android.hardware.sensor.heartrate.ecg.xml \
-    frameworks/native/data/etc/android.hardware.sensor.heartrate.xml:system/etc/permissions/android.hardware.sensor.heartrate.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
     frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
@@ -191,6 +184,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.barometer.xml:system/etc/permissions/android.hardware.sensor.barometer.xml \
     frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
+    frameworks/native/data/etc/android.hardware.sensor.heartrate.xml:system/etc/permissions/android.hardware.sensor.heartrate.xml \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
     frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:system/etc/permissions/android.hardware.sensor.stepcounter.xml \
@@ -201,7 +195,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-    frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml \
     frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
@@ -241,50 +234,64 @@ init.goldfish.sh
 #   $(LOCAL_PATH)/ril/sbin/cbd:root/sbin/cbd
 PRODUCT_PACKAGES += \
     cbd \
-    radio.primary
 
 ###########################################################
 ### WIFI
 ###########################################################
-PRODUCT_PACKAGES += \
-    init.sec.boot.sh
-
-PRODUCT_PACKAGES += \
-    dhcpcd.conf \
-    hostapd \
-    libnetcmdiface \
-    macloader \
-    wpa_supplicant \
-    wpa_supplicant.conf
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-    $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
+	$(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
+	$(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
-#PRODUCT_COPY_FILES += \
-#    $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
-#    $(LOCAL_PATH)/configs/wifi/olsrd.conf:system/etc/wifi/olsrd.conf \
-#    $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-#    $(LOCAL_PATH)/configs/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
-#
-#PRODUCT_PROPERTY_OVERRIDES += \
-#    wifi.interface=wlan0
-#
-#PRODUCT_PACKAGES += \
-#    macloader \
-#    wifiloader \
-#    hostapd \
-#    libwpa_client \
-#    wpa_supplicant \
-#    libwifi-hal-bcm \
+PRODUCT_PROPERTY_OVERRIDES += \
+	wifi.interface=wlan0
+
+PRODUCT_PACKAGES += \
+        init.sec.boot.sh \
+	libnetcmdiface \
+	macloader \
+	hostapd \
+	libwpa_client \
+	wpa_supplicant
 
 # hardware/broadcom/wlan/bcmdhd/config/Android.mk
-#PRODUCT_PACKAGES += \
-#    dhcpcd.conf
+PRODUCT_PACKAGES += \
+	dhcpcd.conf
 
 # external/wpa_supplicant_8/wpa_supplicant/wpa_supplicant_conf.mk
-#PRODUCT_PACKAGES += \
-#    wpa_supplicant.conf
+PRODUCT_PACKAGES += \
+	wpa_supplicant.conf
+
+
+###########################################################
+### BLUETOOTH
+###########################################################
+
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/bluetooth/bt_did.conf:system/etc/bluetooth/bt_did.conf \
+	$(LOCAL_PATH)/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
+
+###########################################################
+### NFC
+###########################################################
+
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/nfc/libnfc-nxp.conf:system/etc/libnfc-nxp.conf \
+	$(LOCAL_PATH)/configs/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
+	$(LOCAL_PATH)/configs/nfc/nfcee_access.xml:system/etc/nfcee_access.xml
+
+
+PRODUCT_PACKAGES += \
+	com.android.nfc_extras \
+	libnfc_nci_jni \
+	libnfc-nci \
+	NfcNci \
+	Tag
+
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.nfc.sec_hal=true
+
+
 ###########################################################
 ### CHARGER
 ###########################################################
@@ -301,6 +308,34 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libsamsung_symbols
 
+###########################################################
+### DALVIK/ART
+###########################################################
+#
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.heapstartsize=8m \
+    dalvik.vm.heapgrowthlimit=256m \
+    dalvik.vm.heapsize=512m \
+    dalvik.vm.heaptargetutilization=0.75 \
+    dalvik.vm.heapminfree=2m \
+    dalvik.vm.heapmaxfree=8m
+
+###########################################################
+### HWUI
+###########################################################
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.hwui.texture_cache_size=50 \
+	ro.hwui.layer_cache_size=34 \
+	ro.hwui.path_cache_size=10 \
+	ro.hwui.shape_cache_size=4 \
+	ro.hwui.gradient_cache_size=2 \
+	ro.hwui.drop_shadow_cache_size=6 \
+	ro.hwui.text_small_cache_width=2048 \
+	ro.hwui.text_small_cache_height=2048 \
+	ro.hwui.text_large_cache_width=4096 \
+	ro.hwui.text_large_cache_height=4096
+
 # Default.prop overrides to get adb working at boot   
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.secure=0 \
@@ -311,12 +346,9 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 	persist.service.debuggable=1 \
 	persist.sys.usb.config=mtp,adb \
 
-#$(call inherit-product-if-exists, hardware/samsung_slsi/exynos5-insignal/exynos5.mk)
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 $(call inherit-product-if-exists, build/target/product/full.mk)
 
 
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
+
 PRODUCT_NAME := full_k3gxx
 PRODUCT_DEVICE := k3gxx

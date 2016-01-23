@@ -1,0 +1,18 @@
+
+#============= init ==============
+#allow init device:fifo_file create;
+#allow init input_device:chr_file ioctl;
+#allow init servicemanager:binder call;
+#allow init shell_exec:file execute_no_trans;
+#allow init system_file:file execute_no_trans;
+
+#============= macloader ==============
+#allow macloader system_data_file:file { write create open setattr };
+
+#============= tee ==============
+allow tee init:unix_stream_socket connectto;
+allow tee property_socket:sock_file write;
+allow tee system_prop:property_service set;
+
+#============= zygote ==============
+allow zygote self:capability sys_nice;

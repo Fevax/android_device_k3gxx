@@ -36,6 +36,7 @@ ARCH_ARM_HAVE_TLS_REGISTER := true
 WITH_DEXPREOPT := true
 TARGET_PROVIDES_INIT_RC := true
 COMMON_GLOBAL_CFLAGS += -DSOC_EXYNOS5430
+COMMON_GLOBAL_CFLAGS += -DEXYNOS5_ENHANCEMENTS
 
 # Bootloader
 TARGET_OTA_ASSERT_DEVICE := k3g,k3gxx
@@ -43,25 +44,24 @@ TARGET_BOOTLOADER_BOARD_NAME := universal5422
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
-# Bionic Tuning
-#ARCH_ARM_USE_MEMCPY_ALIGNMENT := true
-#BOARD_MEMCPY_ALIGNMENT := 64
-#BOARD_MEMCPY_ALIGN_BOUND := 32768
-
 ### LIBC
 TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 
-# MP3/WMA support
-#BOARD_USE_ALP_AUDIO := true
-#BOARD_USE_SEIREN_AUDIO := true
-#BOARD_USE_WMA_CODEC := true
-
-
-# Camera
-USE_CAMERA_STUB := true
-COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
+### CAMERA
+# frameworks/av/services/camera/libcameraservice
 BOARD_NEEDS_MEMORYHEAPION := true
+# hardware/samsung_slsi-cm/exynos5/libgscaler
+BOARD_USES_DT := true
+BOARD_USES_DT_SHORTNAME := true
+# frameworks/av/camera, camera blob support
+COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
+# frameworks/av/media/libstagefright, for libwvm.so
+COMMON_GLOBAL_CFLAGS += -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL
+# device specific gralloc header
+COMMON_GLOBAL_CFLAGS += -DEXYNOS5_ENHANCEMENTS
+# frameworks/av/media/libstagefright
 BOARD_USE_SAMSUNG_CAMERAFORMAT_NV21 := true
+USE_CAMERA_STUB := true
 
 
 # HEALTH DAEMON (CHARGER) DEFINES
@@ -134,8 +134,8 @@ BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 TARGET_RECOVERY_FSTAB := device/samsung/k3gxx/rootdir/etc/recovery.fstab
 
 # SELinux
-#BOARD_SEPOLICY_DIRS += \
-#    device/samsung/k3gxx/sepolicy
+BOARD_SEPOLICY_DIRS += \
+    device/samsung/k3gxx/sepolicy
 
 #BOARD_SEPOLICY_UNION += \
 #    file_contexts \
@@ -172,6 +172,9 @@ BOARD_HDMI_INCAPABLE := true
 #HeartRate
 TARGET_NO_SENSOR_PERMISSION_CHECK := true
 
+### FONTS
+EXTENDED_FONT_FOOTPRINT := true
+
 # OpenMAX Video
 BOARD_USE_STOREMETADATA := true
 BOARD_USE_METADATABUFFERTYPE := true
@@ -197,31 +200,32 @@ BOARD_USES_SCALER := true
 #BOARD_USES_WFD_SERVICE := true
 BOARD_USES_WFD := true
 
-### WIFI
-# Chip: bcm4354
-BOARD_HAVE_SAMSUNG_WIFI          := true
-BOARD_WLAN_DEVICE                := bcmdhd
-WPA_SUPPLICANT_VERSION           := VER_0_8_X
+# WIFI
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
+WPA_SUPPLICANT_VERSION           := VER_0_8_X
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
 BOARD_HOSTAPD_DRIVER             := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
-WIFI_BAND                        := 802_11_ABG
+BOARD_WLAN_DEVICE                := bcmdhd
 WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/dhd/parameters/firmware_path"
 WIFI_DRIVER_NVRAM_PATH_PARAM     := "/sys/module/dhd/parameters/nvram_path"
 WIFI_DRIVER_NVRAM_PATH           := "/etc/wifi/nvram_net.txt"
 WIFI_DRIVER_FW_PATH_STA          := "/etc/wifi/bcmdhd_sta.bin"
 WIFI_DRIVER_FW_PATH_AP           := "/etc/wifi/bcmdhd_apsta.bin"
-# CHIPSET CONFIGURATION
-#BOARD_WLAN_DEVICE_DISABLE_P2P_STATION_MODE := true
+# MACLOADER
+BOARD_HAVE_SAMSUNG_WIFI := true
 
-
-### BLUETOOTH
+# BLUETOOTH
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
-#BOARD_BLUEDROID_VENDOR_CONF := $(LOCAL_PATH)/bluetooth/libbt_vndcfg.txt
-#BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
+BOARD_HAVE_SAMSUNG_BLUETOOTH := true
+BOARD_BLUEDROID_VENDOR_CONF := $(LOCAL_PATH)/bluetooth/libbt_vndcfg.txt
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 
+### NFC
+BOARD_NFC_CHIPSET := pn547
+BOARD_NFC_HAL_SUFFIX := $(TARGET_BOOTLOADER_BOARD_NAME)
+BOARD_NFC_LPM_LOSES_CONFIG := true
 
 # CMHW
 BOARD_HARDWARE_CLASS += hardware/samsung/cmhw

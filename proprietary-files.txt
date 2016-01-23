@@ -9,7 +9,6 @@ vendor/firmware/companion_fw_2p2_evt1.bin
 vendor/firmware/companion_fw_evt0.bin
 vendor/firmware/fimc_is_fw2.bin
 vendor/firmware/fimc_is_fw2_2p2.bin
-vendor/firmware/libpn547_fw.so
 vendor/firmware/mfc_fw.bin
 vendor/firmware/setfile_2p2.bin
 vendor/firmware/setfile_6b2.bin
@@ -98,14 +97,14 @@ etc/wifi/nvram_net.txt_semco3rd
 etc/wifi/nvram_net.txt_wisol
 
 #Bluetooth
-lib/libbt-aptx-4.0.3.so
-lib/libbt-codec_aptx.so
-lib/libbt-iopdb.so
-lib/libbt-iopdb_mod.so
-lib/libbt-vendor.so
+#lib/libbt-aptx-4.0.3.so
+#lib/libbt-codec_aptx.so
+#lib/libbt-iopdb.so
+#lib/libbt-iopdb_mod.so
+#lib/libbt-vendor.so
 
 ### Media (OMX)
-lib/omx/libOMX.Exynos.AVC.Encoder.so
+#lib/omx/libOMX.Exynos.AVC.Encoder.so
 
 ### Audio
 lib/libmysound.so
@@ -115,7 +114,7 @@ vendor/lib/liblvverx_3.21.13.so
 vendor/lib/liblvvetx_3.21.13.so
 
 ### Camera
-lib/hw/camera.universal5422.so
+#lib/hw/camera.universal5422.so
 lib/libsecnativefeature.so
 lib/libexynoscamera.so
 lib/libhwjpeg.so
@@ -127,13 +126,13 @@ bin/exyrngd
 bin/gps.cer
 bin/gpsd
 bin/npsmobex
-#bin/rild
 bin/sensorhubservice
 bin/vcsFPService
-#bin/clatd
-#etc/clatd.conf
 
 ### GPS
+bin/gpsd
+bin/gps.cer
+#lib/libwrappergps.so
 lib/hw/gps.universal5422.so
 
 ### HWC
@@ -151,13 +150,10 @@ lib/drm/libdrmwvmplugin.so
 vendor/lib/mediadrm/libwvdrmengine.so
 vendor/lib/libwvdrm_L1.so
 vendor/lib/libwvm.so
-vendor/lib/libWVStreamControlAPI_L1.so
+#vendor/lib/libWVStreamControlAPI_L1.so
 
 ### Android radio daemon
 lib/libaudio-ril.so
-#lib/libreference-ril.so
-#lib/libril.so
-#lib/librilutils.so
 lib/libsec-ril.so
 
 ### MobiCore
@@ -206,22 +202,9 @@ bin/wlandutservice
 lib/libstlport.so
 lib/libstlport_shared.so
 
-# AUDIO TEST 2
 
-#lib/lib_DNSe_NRSS_ver226.so
-#lib/lib_Samsung_AudioZoom_v102.so
-#lib/libsamsungRecord.so
-#lib/libsamsungRecord_ns.so
-#lib/libsamsungRecord_zoom.so
-#lib/lib_SamsungRec_V04004.so
-#lib/lib_Samsung_Resampler.so
-#lib/libsamsungSoundbooster_ext.so
-#lib/lib_soundaliveresampler.so
-#lib/lib_SoundAlive_SRC192_ver205.so
-#lib/lib_SoundBooster_ver504.so
-#lib/libtinyalsa.so
 usr/share/alsa/alsa.conf
-#bin/samsungpowersoundplay
+
 
 #WIFI?
 #bin/mfgloader
@@ -239,8 +222,10 @@ lib/libgnustl_shared.so
 #IR
 lib/hw/consumerir.default.so
 
-
-
+# NFC
+vendor/firmware/libpn547_fw.so
+#lib/hw/nfc_nci.universal5422.so
+etc/plmn_se13.bin
 
 
 

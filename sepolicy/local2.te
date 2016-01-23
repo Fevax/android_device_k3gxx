@@ -1,0 +1,12 @@
+
+#============= init ==============
+allow init device:fifo_file { read open };
+
+#============= kernel ==============
+allow kernel self:capability chown;
+allow kernel sysfs:file setattr;
+
+#============= servicemanager ==============
+allow servicemanager init:dir search;
+allow servicemanager init:file { read open };
+allow servicemanager init:process getattr;
