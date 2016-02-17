@@ -15,6 +15,7 @@ on init
     symlink /sdcard /storage/sdcard0
     symlink /sdcard1 /storage/sdcard1
     symlink /sdcard1 /mnt/extSdCard
+    symlink /sdcard1 /mnt/sdcard1
     symlink /sdcard1 /external_sd
     symlink /storage/usbdisk /mnt/usbdisk
 
@@ -337,7 +338,7 @@ on boot
 on fs
     mount_all /fstab.universal5422
     setprop ro.crypto.fuse_sdcard true
-	
+
     chown radio radio /sys/devices/virtual/misc/multipdp/waketime
     chmod 0660 /sys/devices/virtual/misc/umts_dm0/dm_state
     chown radio system /sys/devices/virtual/misc/umts_dm0/dm_state
@@ -510,6 +511,11 @@ on fs
 # Permissions for gpio_keys
     chown radio system /sys/class/sec/sec_key/wakeup_keys
     write /sys/class/sec/sec_key/wakeup_keys 116,172
+    chown system system /sys/devices/gpio_keys.9/input/input7/enabled
+    chown system system /sys/devices/gpio_keys.10/input/input8/enabled
+    chown system system /sys/devices/gpio_keys.11/input/input9/enabled
+#true one
+    chown system system /sys/devices/gpio_keys.16/input/input14/enabled
 
 # terminal mode
 	chmod 0660 /sys/class/android_usb/android0/terminal_version

@@ -23,7 +23,7 @@ TARGET_SLSI_VARIANT := cm
 TARGET_SOC := exynos5422
 
 # Architecture
-TARGET_BUILD_VARIANT := eng
+TARGET_BUILD_VARIANT := userdebug
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_ABI := armeabi-v7a
@@ -34,9 +34,10 @@ TARGET_CPU_VARIANT := cortex-a7
 ENABLE_CPUSETS := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 WITH_DEXPREOPT := true
-TARGET_PROVIDES_INIT_RC := true
+#TARGET_PROVIDES_INIT_RC := true
+
+# LibVideoCodec
 COMMON_GLOBAL_CFLAGS += -DSOC_EXYNOS5430
-COMMON_GLOBAL_CFLAGS += -DEXYNOS5_ENHANCEMENTS
 
 # Bootloader
 TARGET_OTA_ASSERT_DEVICE := k3g,k3gxx
@@ -44,24 +45,21 @@ TARGET_BOOTLOADER_BOARD_NAME := universal5422
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
-### LIBC
-TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
-
 ### CAMERA
 # frameworks/av/services/camera/libcameraservice
 BOARD_NEEDS_MEMORYHEAPION := true
 # hardware/samsung_slsi-cm/exynos5/libgscaler
-BOARD_USES_DT := true
-BOARD_USES_DT_SHORTNAME := true
+#BOARD_USES_DT := true
+#BOARD_USES_DT_SHORTNAME := true
 # frameworks/av/camera, camera blob support
-COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
+#COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
 # frameworks/av/media/libstagefright, for libwvm.so
-COMMON_GLOBAL_CFLAGS += -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL
+#COMMON_GLOBAL_CFLAGS += -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL
 # device specific gralloc header
 COMMON_GLOBAL_CFLAGS += -DEXYNOS5_ENHANCEMENTS
 # frameworks/av/media/libstagefright
-BOARD_USE_SAMSUNG_CAMERAFORMAT_NV21 := true
-USE_CAMERA_STUB := true
+#BOARD_USE_SAMSUNG_CAMERAFORMAT_NV21 := true
+#USE_CAMERA_STUB := true
 
 
 # HEALTH DAEMON (CHARGER) DEFINES
@@ -137,28 +135,12 @@ TARGET_RECOVERY_FSTAB := device/samsung/k3gxx/rootdir/etc/recovery.fstab
 BOARD_SEPOLICY_DIRS += \
     device/samsung/k3gxx/sepolicy
 
-#BOARD_SEPOLICY_UNION += \
-#    file_contexts \
-#    service_contexts \
-#    device.te \
-#    domain.te \
-#    drmserver.te \
-#    file.te \
-#    gpsd.te \
-#    macloader.te \
-#    mediaserver.te \
-#    rild.te \
-#    servicemanager.te \
-#    system_app.te \
-#    system_server.te \
-#    vold.te \
-#    wpa.te
-
 # Graphics
 USE_OPENGL_RENDERER := true
 BOARD_EGL_CFG := device/samsung/k3gxx/configs/egl/egl.cfg
 DEFAULT_FB_NUM := 0
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 5
+#BOARD_EGL_NEEDS_HANDLE_VALUE := true
 ENABLE_WEBGL := true
 # Samsung LSI OpenMAX
 COMMON_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED
@@ -175,20 +157,18 @@ TARGET_NO_SENSOR_PERMISSION_CHECK := true
 ### FONTS
 EXTENDED_FONT_FOOTPRINT := true
 
-# OpenMAX Video
+# Samsung OpenMAX Video
 BOARD_USE_STOREMETADATA := true
 BOARD_USE_METADATABUFFERTYPE := true
-BOARD_USE_S3D_SUPPORT := true
 BOARD_USE_DMA_BUF := true
 BOARD_USE_ANB_OUTBUF_SHARE := true
-BOARD_USE_GSC_RGB_ENCODER := true
 BOARD_USE_IMPROVED_BUFFER := true
-BOARD_USE_CSC_HW := false
-BOARD_USE_H264_PREPEND_SPS_PPS := false
+BOARD_USE_NON_CACHED_GRAPHICBUFFER := true
+BOARD_USE_GSC_RGB_ENCODER := true
+BOARD_USE_CSC_HW := true
 BOARD_USE_QOS_CTRL := false
+BOARD_USE_S3D_SUPPORT := true
 BOARD_USE_VP8ENC_SUPPORT := true
-BOARD_USE_ENCODER_RGBINPUT_SUPPORT := true
-BOARD_USE_DUALDPB_MODE := true
 
 # Scaler
 BOARD_USES_SCALER := true
@@ -223,9 +203,8 @@ BOARD_BLUEDROID_VENDOR_CONF := $(LOCAL_PATH)/bluetooth/libbt_vndcfg.txt
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 
 ### NFC
-BOARD_NFC_CHIPSET := pn547
-BOARD_NFC_HAL_SUFFIX := $(TARGET_BOOTLOADER_BOARD_NAME)
-BOARD_NFC_LPM_LOSES_CONFIG := true
+#BOARD_NFC_CHIPSET := pn547
+#BOARD_NFC_HAL_SUFFIX := $(TARGET_BOOTLOADER_BOARD_NAME)
 
 # CMHW
 BOARD_HARDWARE_CLASS += hardware/samsung/cmhw

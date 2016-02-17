@@ -104,7 +104,7 @@ etc/wifi/nvram_net.txt_wisol
 #lib/libbt-vendor.so
 
 ### Media (OMX)
-#lib/omx/libOMX.Exynos.AVC.Encoder.so
+lib/omx/libOMX.Exynos.AVC.Encoder.so
 
 ### Audio
 lib/libmysound.so
@@ -114,7 +114,7 @@ vendor/lib/liblvverx_3.21.13.so
 vendor/lib/liblvvetx_3.21.13.so
 
 ### Camera
-#lib/hw/camera.universal5422.so
+lib/hw/camera.universal5422.so
 lib/libsecnativefeature.so
 lib/libexynoscamera.so
 lib/libhwjpeg.so
@@ -123,17 +123,17 @@ lib/libvdis.so
 ### BIN
 bin/drsd
 bin/exyrngd
-bin/gps.cer
-bin/gpsd
+#bin/gps.cer
+#bin/gpsd
 bin/npsmobex
 bin/sensorhubservice
 bin/vcsFPService
 
 ### GPS
-bin/gpsd
-bin/gps.cer
+#bin/gpsd
+#bin/gps.cer
 #lib/libwrappergps.so
-lib/hw/gps.universal5422.so
+#lib/hw/gps.universal5422.so
 
 ### HWC
 vendor/lib/libmalicore.bc
@@ -146,18 +146,23 @@ lib/hw/sensors.universal5422.so
 lib/hw/sensorhubs.universal5422.so
 
 ### Widevine
-lib/drm/libdrmwvmplugin.so
+lib/liboemcrypto.so
+#lib/drm/libdrmwvmplugin.so
+#lib/drm/libfwdlockengine.so
+#lib/drm/libomaplugin.so
+#lib/drm/libplayreadyplugin.so
+#lib/drm/libprgenericplugin.so
+vendor/lib/mediadrm/libdrmclearkeyplugin.so
 vendor/lib/mediadrm/libwvdrmengine.so
 vendor/lib/libwvdrm_L1.so
 vendor/lib/libwvm.so
-#vendor/lib/libWVStreamControlAPI_L1.so
+vendor/lib/libWVStreamControlAPI_L1.so
 
 ### Android radio daemon
 lib/libaudio-ril.so
 lib/libsec-ril.so
 
 ### MobiCore
-
 app/FFFFFFFF000000000000000000000001.drbin
 app/mcRegistry/00060308060501020000000000000000.tlbin
 app/mcRegistry/02010000080300030000000000000000.tlbin
@@ -194,13 +199,13 @@ lib/libhr.so
 bin/mcDriverDaemon
 #bin/jackservice
 bin/lpm
-lib/hw/power.exynos5.so
+#lib/hw/power.exynos5.so
 bin/olsrd
 
 bin/wlandutservice
 
-lib/libstlport.so
-lib/libstlport_shared.so
+#lib/libstlport.so
+#lib/libstlport_shared.so
 
 
 usr/share/alsa/alsa.conf

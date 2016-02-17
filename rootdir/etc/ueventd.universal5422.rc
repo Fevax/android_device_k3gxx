@@ -19,8 +19,15 @@
 /dev/i2c-2                0660   system     system
 /dev/CEC                  0660   system     system
 /dev/HPD                  0660   system     system
+
+# ULP Audio
+/dev/srp                  0660   system     audio
+/dev/srp_ctrl             0660   system     audio
+
 # media0 is used for GSC, DECON, etc
 /dev/media0               0660   system     camera
+/dev/media1               0660   system     camera
+/dev/media2               0660   media      media
 
 # Various devices use the v4l-subdev interface
 # We declare all such nodes simultaneously here
@@ -100,17 +107,20 @@
 /dev/umts*                0660   system     radio
 
 # MobiCore
-/dev/mobicore             0600   drmrpc     drmrpc
-/dev/mobicore-user        0660   drm        drmrpc
+/dev/mobicore             0700   system     system
+/dev/mobicore-user        0666   radio     system
 
 # rfkill
 /dev/rfkill               0660   root       wifi
 
 # Secure MEM driver
-/dev/s5p-smem             0660   drm        drmrpc
+/dev/s5p-smem             0660   system     system
 
-# vfs
-/dev/vfsspi               0660   system     system
+# for PL2303 driver
+/dev/ttyUSB*              0660   system     usb
+
+# Reactivation Lock
+/dev/block/mmcblk0rpmb	0660	system	system
 
 # NFC
 /dev/pn547                0660   nfc        nfc
@@ -125,12 +135,7 @@
 /dev/vfsspi        0660   system     system
 
 # USB Accessories (printer and so on) - duki994
-/dev/ttyUSB*              0660   system     usb
 /dev/usb/lp*              0660   system     usb
-/dev/mobicore             0700   system     system
-/dev/mobicore-user        0666   radio      system
-/dev/s5p-smem             0660   system     system
-/dev/ssp_sensorhub        0660   system     system
 
 # Sensorhub IIO
 /dev/ssp_sensorhub        0660   system     system
