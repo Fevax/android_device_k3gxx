@@ -19,3 +19,7 @@ allow system_server wifi_efs_file:dir r_dir_perms;
 allow system_server wifi_efs_file:file r_file_perms;
 
 allow system_server zygote:process setsched;
+
+allow system_server sysfs_writable:dir search;
+allow system_server sysfs_writable:lnk_file read;
+

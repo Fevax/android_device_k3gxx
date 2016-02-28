@@ -96,12 +96,6 @@ etc/wifi/nvram_net.txt
 etc/wifi/nvram_net.txt_semco3rd
 etc/wifi/nvram_net.txt_wisol
 
-#Bluetooth
-#lib/libbt-aptx-4.0.3.so
-#lib/libbt-codec_aptx.so
-#lib/libbt-iopdb.so
-#lib/libbt-iopdb_mod.so
-#lib/libbt-vendor.so
 
 ### Media (OMX)
 lib/omx/libOMX.Exynos.AVC.Encoder.so
@@ -116,24 +110,19 @@ vendor/lib/liblvvetx_3.21.13.so
 ### Camera
 lib/hw/camera.universal5422.so
 lib/libsecnativefeature.so
-lib/libexynoscamera.so
+#lib/libexynoscamera.so
 lib/libhwjpeg.so
 lib/libvdis.so
 
 ### BIN
-bin/drsd
-bin/exyrngd
-#bin/gps.cer
-#bin/gpsd
-bin/npsmobex
 bin/sensorhubservice
 bin/vcsFPService
 
 ### GPS
-#bin/gpsd
-#bin/gps.cer
-#lib/libwrappergps.so
-#lib/hw/gps.universal5422.so
+bin/gpsd
+bin/gps.cer
+lib/hw/gps.default.so:lib/hw/gps.universal5422.so
+lib/libwrappergps.so
 
 ### HWC
 vendor/lib/libmalicore.bc
@@ -147,11 +136,6 @@ lib/hw/sensorhubs.universal5422.so
 
 ### Widevine
 lib/liboemcrypto.so
-#lib/drm/libdrmwvmplugin.so
-#lib/drm/libfwdlockengine.so
-#lib/drm/libomaplugin.so
-#lib/drm/libplayreadyplugin.so
-#lib/drm/libprgenericplugin.so
 vendor/lib/mediadrm/libdrmclearkeyplugin.so
 vendor/lib/mediadrm/libwvdrmengine.so
 vendor/lib/libwvdrm_L1.so
@@ -191,52 +175,44 @@ app/mcRegistry/ffffffffd00000000000000000000004.tlbin
 app/mcRegistry/ffffffffd00000000000000000000016.tlbin
 bin/scranton_RD
 
-# no arranca
-
-
-lib/libexynosv4l2.so
-lib/libhr.so
-bin/mcDriverDaemon
-#bin/jackservice
-bin/lpm
-#lib/hw/power.exynos5.so
-bin/olsrd
-
-bin/wlandutservice
-
-#lib/libstlport.so
-#lib/libstlport_shared.so
-
-
-usr/share/alsa/alsa.conf
-
-
-#WIFI?
-#bin/mfgloader
-#bin/connfwexe
-#bin/smdexe
-#bin/ss_conn_daemon
-#bin/ss_kbservice_daemon
-#bin/tlc_server
-#lib/libAMSWiFiLibs-1.0.6.so
-
-lib/libsensorhub.so
-lib/libsensorhubservice.so
-lib/libgnustl_shared.so
-
 #IR
 lib/hw/consumerir.default.so
 
 # NFC
 vendor/firmware/libpn547_fw.so
-#lib/hw/nfc_nci.universal5422.so
+lib/hw/nfc_nci.universal5422.so
 etc/plmn_se13.bin
 
 
+# no arranca
 
+lib/libexynosv4l2.so
+lib/libhr.so
+lib/libsensorhub.so
+lib/libsensorhubservice.so
+bin/cs
+bin/mcDriverDaemon
+lib/libgnustl_shared.so
 
+###no
+#lib/libstlport.so
+#lib/libstlport_shared.so
+#bin/jackservice
+#·bin/lpm
+#lib/hw/power.exynos5.so
+#·bin/drsd
+#·bin/exyrngd
+#bin/gps.cer
+#bin/gpsd
+#·bin/npsmobex
+#lib/libbt-aptx-4.0.3.so
+#lib/libbt-codec_aptx.so
+#lib/libbt-iopdb.so
+#lib/libbt-iopdb_mod.so
+#lib/libbt-vendor.so
+#·usr/share/alsa/alsa.conf
 
-
-
-
-
+#TEST
+bin/mfgloader
+bin/olsrd
+bin/wlandutservice

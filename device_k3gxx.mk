@@ -29,13 +29,16 @@ PRODUCT_PACKAGES += \
 ### CAMERA
 ###########################################################
 
-#PRODUCT_PACKAGES += \
-#	libhwjpeg \
-#    camera.universal5422 \
-#    camera.exynos5
+PRODUCT_PACKAGES += \
+	libhwjpeg \
+    camera.universal5422 \
+    camera.exynos5
 
-#PRODUCT_PROPERTY_OVERRIDES += \
-#    camera2.portability.force_api=1
+PRODUCT_PACKAGES += \
+    Snap
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    camera2.portability.force_api=1
 
 
 ###########################################################
@@ -60,11 +63,13 @@ PRODUCT_COPY_FILES += \
 # currently contain all of the bitmaps at xhdpi density so
 # we do this little trick to fall back to the hdpi version
 # if the xhdpi doesn't exist.
-PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi
+PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
+PRODUCT_AAPT_PREBUILT_DPI := xxxhdpi xxhdpi xhdpi hdpi
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.opengles.version=196608
+    ro.opengles.version=196608 \
+    ro.bq.gpu_to_cpu_unsupported=1
 
 PRODUCT_PACKAGES += \
     gralloc.exynos5 \
@@ -73,7 +78,8 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     libion_exynos \
-    libion
+    libion \
+    libfimg
 
 PRODUCT_PACKAGES += \
     libstlport \
@@ -182,8 +188,8 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.consumerir.xml:system/etc/permissions/android.hardware.consumerir.xml \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:system/etc/permissions/android.hardware.fingerprint.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
-#    frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
-#    frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
+    frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
+    frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
     frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
     frameworks/native/data/etc/android.hardware.sensor.barometer.xml:system/etc/permissions/android.hardware.sensor.barometer.xml \
     frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
@@ -201,7 +207,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml \
-#    frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
+    frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
     frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
@@ -251,9 +257,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	wifi.interface=wlan0
 
 PRODUCT_PACKAGES += \
-        init.sec.boot.sh \
 	libnetcmdiface \
 	macloader \
+	wifiloader \
 	hostapd \
 	libwpa_client \
 	wpa_supplicant
@@ -279,21 +285,21 @@ PRODUCT_COPY_FILES += \
 ### NFC
 ###########################################################
 
-#PRODUCT_COPY_FILES += \
-#	$(LOCAL_PATH)/configs/nfc/libnfc-nxp.conf:system/etc/libnfc-nxp.conf \
-#	$(LOCAL_PATH)/configs/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
-#	$(LOCAL_PATH)/configs/nfc/nfcee_access.xml:system/etc/nfcee_access.xml
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/nfc/libnfc-nxp.conf:system/etc/libnfc-nxp.conf \
+	$(LOCAL_PATH)/configs/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
+	$(LOCAL_PATH)/configs/nfc/nfcee_access.xml:system/etc/nfcee_access.xml
 
 
-#PRODUCT_PACKAGES += \
-#	com.android.nfc_extras \
-#	libnfc_nci_jni \
-#	libnfc-nci \
-#	NfcNci \
-#	Tag
+PRODUCT_PACKAGES += \
+	com.android.nfc_extras \
+	libnfc_nci_jni \
+	libnfc-nci \
+	NfcNci \
+	Tag
 
-#PRODUCT_PROPERTY_OVERRIDES += \
-#	ro.nfc.sec_hal=true
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.nfc.sec_hal=true
 
 
 ###########################################################
@@ -351,8 +357,9 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 	persist.sys.usb.config=mtp,adb \
 
 $(call inherit-product-if-exists, build/target/product/full.mk)
-
-
+# call Samsung LSI board support package
+$(call inherit-product, hardware/samsung_slsi-cm/exynos5/exynos5.mk)
+$(call inherit-product, hardware/samsung_slsi-cm/exynos5422/exynos5422.mk)
 
 PRODUCT_NAME := full_k3gxx
 PRODUCT_DEVICE := k3gxx
