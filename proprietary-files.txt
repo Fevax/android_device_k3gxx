@@ -110,7 +110,7 @@ vendor/lib/liblvvetx_3.21.13.so
 ### Camera
 lib/hw/camera.universal5422.so
 lib/libsecnativefeature.so
-#lib/libexynoscamera.so
+lib/libexynoscamera.so
 lib/libhwjpeg.so
 lib/libvdis.so
 

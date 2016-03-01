@@ -1,8 +1,8 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # The gps config appropriate for this device
-#$(call inherit-product, device/common/gps/gps_us_supl.mk)
- 
+$(call inherit-product, device/common/gps/gps_eu_supl.mk)
+
 $(call inherit-product-if-exists, vendor/samsung/k3gxx/k3gxx-vendor.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/samsung/k3gxx/overlay
@@ -50,10 +50,17 @@ PRODUCT_PACKAGES += \
     e2fsck \
     setup_fs
 
-# GPS
+###########################################################
+### GPS
+###########################################################
+
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/gps/gps.conf:system/etc/gps.conf \
-    $(LOCAL_PATH)/configs/gps/gps.xml:system/etc/gps.xml \
+	$(LOCAL_PATH)/configs/gps/gps.conf:system/etc/gps.conf \
+	$(LOCAL_PATH)/configs/gps/SuplRootCert:system/etc/SuplRootCert \
+	$(LOCAL_PATH)/configs/gps/gps.xml:system/etc/gps.xml
+
+PRODUCT_PACKAGES += \
+    libdmitry
 
 ###########################################################
 ### GRAPHICS
@@ -272,7 +279,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	wpa_supplicant.conf
 
-
 ###########################################################
 ### BLUETOOTH
 ###########################################################
@@ -286,10 +292,9 @@ PRODUCT_COPY_FILES += \
 ###########################################################
 
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/configs/nfc/libnfc-nxp.conf:system/etc/libnfc-nxp.conf \
-	$(LOCAL_PATH)/configs/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
+	$(LOCAL_PATH)/configs/nfc/libnfc-sec-hal.conf:system/etc/libnfc-sec-hal.conf \
+	$(LOCAL_PATH)/configs/nfc/libnfc-sec.conf:system/etc/libnfc-brcm.conf \
 	$(LOCAL_PATH)/configs/nfc/nfcee_access.xml:system/etc/nfcee_access.xml
-
 
 PRODUCT_PACKAGES += \
 	com.android.nfc_extras \

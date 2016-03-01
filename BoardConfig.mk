@@ -36,6 +36,9 @@ ARCH_ARM_HAVE_TLS_REGISTER := true
 #WITH_DEXPREOPT := true
 #TARGET_PROVIDES_INIT_RC := true
 
+# RENDERSCRIPT
+BOARD_OVERRIDE_RS_CPU_VARIANT_32 := cortex-a15
+
 # LibVideoCodec
 COMMON_GLOBAL_CFLAGS += -DSOC_EXYNOS5422
 
@@ -59,7 +62,12 @@ COMMON_GLOBAL_CFLAGS += -DEXYNOS5_ENHANCEMENTS
 # frameworks/av/media/libstagefright
 BOARD_USE_SAMSUNG_CAMERAFORMAT_NV21 := true
 USE_CAMERA_STUB := true
+#libcamera
+COMMON_GLOBAL_CFLAGS += -DSENSOR_NAME_GET_FROM_FILE
+#CAMERA_BUILD_ON := true
 
+#Enable ValidityService for fingerprint
+#BOARD_USES_VALIDITY := true
 
 # HEALTH DAEMON (CHARGER) DEFINES
 RED_LED_PATH := "/sys/devices/virtual/sec/led/led_r"

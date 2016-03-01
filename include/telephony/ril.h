@@ -113,9 +113,7 @@ typedef enum {
     RIL_E_SS_MODIFIED_TO_USSD = 25,             /* SS request modified to USSD */
     RIL_E_SUBSCRIPTION_NOT_SUPPORTED = 26,      /* Subscription not supported by RIL */
     RIL_E_SS_MODIFIED_TO_SS = 27,               /* SS request modified to different SS request */
-    RIL_E_LCE_NOT_SUPPORTED = 28                /* LCE service not supported(36 in RILConstants.java) */
-
-
+    RIL_E_LCE_NOT_SUPPORTED = 36                /* LCE service not supported(36 in RILConstants.java) */
 } RIL_Errno;
 
 typedef enum {
@@ -162,7 +160,8 @@ typedef enum {
     RADIO_TECH_LTE = 14,
     RADIO_TECH_HSPAP = 15, // HSPA+
     RADIO_TECH_GSM = 16, // Only supports voice
-    RADIO_TECH_TD_SCDMA = 17
+    RADIO_TECH_TD_SCDMA = 17,
+    RADIO_TECH_IWLAN = 18
 } RIL_RadioTechnology;
 
 typedef enum {

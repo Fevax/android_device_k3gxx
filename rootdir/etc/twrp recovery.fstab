@@ -8,6 +8,3 @@
 /modem			emmc	/dev/block/mmcblk0p13
 /external_sd    vfat    /dev/block/mmcblk1p1    /dev/block/mmcblk1   flags=display="Micro SDcard";storage;wipeingui;removable
 /usb-otg    	vfat    /dev/block/sda1         /dev/block/sda       flags=display="USB-OTG";storage;wipeingui;removable
-
-# VOLD
-/devices/platform/dw_mmc.2/mmc_host/mmc2*,/devices/12220000.dwmmc2/mmc_host/mmc2*				auto 					vfat	default		voldmanaged=sdcard1:auto,noemulatedsd

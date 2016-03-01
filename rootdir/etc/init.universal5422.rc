@@ -6,11 +6,9 @@ on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
 on init
-    #export LD_PRELOAD "/system/lib/libsamsung_symbols.so"
-    #export LD_SHIM_LIBS "/system/lib/libexynoscamera.so|libsamsung_symbols.so:/system/vendor/lib/libRSDriverArm.so|libsamsung_symbols.so"
+    export LD_SHIM_LIBS "/system/lib/libexynoscamera.so|libsamsung_symbols.so:/system/bin/gpsd|libdmitry.so"
     mkdir /preload 0771 system system
 
-    # Support legacy paths
     symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
     symlink /sdcard1 /storage/sdcard1
@@ -25,6 +23,9 @@ on init
     symlink /dev/block/mmcblk0p13 /dev/mbin0
     restorecon /dev/mbin0
     symlink  /sys/devices/12110000.usb/ehci_power /dev/ehci_power
+
+# Support Preload install apks
+    mkdir /preload 0771 system system
 
 # Make param link
     symlink /dev/block/mmcblk0p8 /dev/block/param
@@ -70,7 +71,10 @@ on boot
     chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/state
     chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/type
 
-    # SSWAP
+# MSP FactoryApp
+    mkdir /efs/FactoryApp 0775 system system
+
+# SSWAP
     write /proc/sys/vm/swappiness 130
 
     # Reduce reserved lowmem from ~48MB to ~12MB
@@ -114,6 +118,24 @@ on boot
     chmod 0222 /sys/kernel/debug/tracing/trace_marker
     write /sys/kernel/debug/tracing/tracing_on 0
 
+###############################################################################
+# System LSI
+# Comment : add permission to device driver
+
+# NFC : Permissions for NFC
+    chmod 0660 /dev/sec-nfc
+# NFC : change owner
+    chown nfc nfc /dev/sec-nfc
+# NFC : create data/nfc for nv storage
+    mkdir /data/nfc 0700 nfc nfc
+    mkdir /data/nfc/param 0700 nfc nfc
+
+# Set up nfc test option
+    setprop snfc.test.fwdownload 2
+    setprop snfc.test.power      sec
+    setprop snfc.test.tag        sec
+###############################################################################
+
     # PMS DVFS
     chown radio system /sys/power/cpufreq_table
     chown radio system /sys/power/cpufreq_max_limit
@@ -125,8 +147,8 @@ on boot
     chmod 0664 /sys/power/cpufreq_max_limit
     chmod 0664 /sys/power/cpufreq_min_limit
     chmod 0664 /sys/power/enable_dm_hotplug
-    chmod 664 /sys/power/ipa/control_temp
-    chmod 664 /sys/power/ipa/hotplug_out_threshold
+    chmod 0664 /sys/power/ipa/control_temp
+    chmod 0664 /sys/power/ipa/hotplug_out_threshold
     chown radio system /sys/devices/platform/exynos5-devfreq-mif/devfreq/exynos5-devfreq-mif/available_frequencies
     chown radio system /sys/devices/platform/exynos5-devfreq-int/devfreq/exynos5-devfreq-int/available_frequencies
     chown radio system /sys/devices/platform/exynos5-devfreq-isp/devfreq/exynos5-devfreq-isp/available_frequencies
@@ -321,8 +343,8 @@ on boot
     chmod 0770 /efs/prov_data
     chown radio system /efs/prov_data/dev_root
     chmod 0770 /efs/prov_data/dev_root
-#chown radio system /efs/prov_data/knox
-#chmod 0770 /efs/prov_data/knox
+    chown radio system /efs/prov_data/knox
+    chmod 0770 /efs/prov_data/knox
     chown radio system /efs/prov_data/dev_root/dev_root.dat
     chmod 0640 /efs/prov_data/dev_root/dev_root.dat
     chown radio system /efs/prov/libdevkm.lock
@@ -337,7 +359,7 @@ on boot
 
 on fs
     mount_all /fstab.universal5422
-    setprop ro.crypto.fuse_sdcard true
+#    setprop ro.crypto.fuse_sdcard true
 
     chown radio radio /sys/devices/virtual/misc/multipdp/waketime
     chmod 0660 /sys/devices/virtual/misc/umts_dm0/dm_state
