@@ -28,7 +28,7 @@
         "target_path": "hardware/samsung_slsi-cm/openmax"
     },
     {
-        "repository": "android_kernel_samsung_trelte",
-        "target_path": "kernel/samsung/trelte"
+        "repository": "android_kernel_samsung_exynos5422",
+        "target_path": "kernel/samsung/exynos5422"
     }
 ]
