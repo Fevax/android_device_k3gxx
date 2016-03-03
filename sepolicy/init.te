@@ -16,10 +16,10 @@ allow init device:fifo_file create;
 allow init input_device:chr_file ioctl;
 allow init servicemanager:binder call;
 allow init servicemanager:binder transfer;
-allow init shell_exec:file execute_no_trans;
-allow init system_file:file execute_no_trans;
+#allow init shell_exec:file execute_no_trans;
+#allow init system_file:file execute_no_trans;
 allow init tee_device:file { read getattr open execute execute_no_trans };
-allow init default_android_service:service_manager add;
+#allow init default_android_service:service_manager add;
 # LD_SHIM_LIBS
 allow init gpsd:process { noatsecure };
 allow init mediaserver:process { noatsecure };
