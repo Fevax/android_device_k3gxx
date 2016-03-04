@@ -456,7 +456,7 @@
 
     <!-- ### Device ### -->
     <path name="device-sco">
-        <ctl name="ASRC RATE 1" value="SYNCCLK rate 2" />
+        <!--<ctl name="ASRC RATE 1" value="SYNCCLK rate 2" />-->
         <ctl name="ISRC2INT1 Input" value="None" />
     </path>
 
