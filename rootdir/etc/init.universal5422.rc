@@ -385,10 +385,12 @@ on fs
 
 # Fingerprint
     mkdir /dev/validity 0770 system system
+    mkdir /data/validity 0770 system system
+
+    # Fingerprint_sensor
+    chown system radio /sys/class/fingerprint/fingerprint/type_check
 
 # SENSORS
-# Fingerprint_sensor
-    chown system radio /sys/class/fingerprint/fingerprint/type_check
 # Accelerometer_sensor
     chown system radio /sys/class/sensors/accelerometer_sensor/raw_data
     chown system radio /sys/class/sensors/accelerometer_sensor/calibration
@@ -622,6 +624,12 @@ service vcsFPService /system/bin/vcsFPService
     user system
     group system
 
+
+service fingerprintd /system/bin/fingerprintd
+    class late_start
+    user system
+    group input
+	
 # GPS
 service gpsd /system/bin/gpsd -c /system/etc/gps.xml
     class main

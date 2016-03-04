@@ -67,7 +67,7 @@ COMMON_GLOBAL_CFLAGS += -DSENSOR_NAME_GET_FROM_FILE
 #CAMERA_BUILD_ON := true
 
 #Enable ValidityService for fingerprint
-#BOARD_USES_VALIDITY := true
+BOARD_USES_VALIDITY := true
 
 # HEALTH DAEMON (CHARGER) DEFINES
 RED_LED_PATH := "/sys/devices/virtual/sec/led/led_r"

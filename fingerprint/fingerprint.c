@@ -30,7 +30,7 @@
 #include <hardware/fingerprint.h>
 #include <unistd.h>
 
-#include "fp_klte.h"
+#include "fp_k3gxx.h"
 
 #define MAX_COMM_CHARS 128
 #define MAX_NUM_FINGERS 5
