@@ -24,4 +24,7 @@ ALL_PREBUILT += $(INSTALLED_KERNEL_TARGET)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
+#$(shell mkdir -p $(OUT_DIR_COMMON_BASE)/cm13/target/product/$(TARGET_DEVICE)/obj/KERNEL_OBJ)
+#$(shell cp -p $(TOP)/kernel/samsung/exynos5422/arch/arm/configs/clean $(OUT_DIR_COMMON_BASE)/cm13/target/product/$(TARGET_DEVICE)/obj/KERNEL_OBJ/.config)
+
 endif

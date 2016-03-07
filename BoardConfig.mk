@@ -70,6 +70,7 @@ COMMON_GLOBAL_CFLAGS += -DSENSOR_NAME_GET_FROM_FILE
 BOARD_USES_VALIDITY := true
 
 # HEALTH DAEMON (CHARGER) DEFINES
+TARGET_PROVIDES_LIBLIGHT := true
 RED_LED_PATH := "/sys/devices/virtual/sec/led/led_r"
 GREEN_LED_PATH := "/sys/devices/virtual/sec/led/led_g"
 BLUE_LED_PATH := "/sys/devices/virtual/sec/led/led_b"
@@ -127,6 +128,14 @@ BOARD_MODEM_TYPE := xmm6360
 COMMON_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
 BOARD_RIL_CLASS := ../../../device/samsung/k3gxx/ril
 
+##TWRP
+#RECOVERY_VARIANT := twrp
+TW_NO_REBOOT_BOOTLOADER := true
+TW_HAS_DOWNLOAD_MODE := true
+TW_THEME := portrait_hdpi
+TW_BRIGHTNESS_PATH := /sys/devices/14400000.fimd_fb/backlight/panel/brightness
+TW_MAX_BRIGHTNESS := 255
+
 # Recovery
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_RECOVERY_SWIPE := true
@@ -136,7 +145,12 @@ TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun/file
 #BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/k3gxx/recovery/recovery_keys.c
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
+
+ifeq ($(RECOVERY_VARIANT),twrp)
 TARGET_RECOVERY_FSTAB := device/samsung/k3gxx/rootdir/etc/recovery.fstab
+else
+TARGET_RECOVERY_FSTAB := device/samsung/k3gxx/rootdir/etc/fstab.universal5422
+endif
 
 # SELinux
 BOARD_SEPOLICY_DIRS += \
