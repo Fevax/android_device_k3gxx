@@ -288,6 +288,16 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
 
 ###########################################################
+### FingerPrint
+###########################################################
+
+# Fingerprint
+PRODUCT_PACKAGES += \
+    fingerprintd \
+    fingerprint.universal5422 \
+    ValidityService
+
+###########################################################
 ### NFC
 ###########################################################
 
