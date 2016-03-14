@@ -1,19 +1,3 @@
-#
-# Copyright (C) 2013 The CyanogenMod Project
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
-
 LOCAL_PATH := device/samsung/k3gxx
 
 # Platform
@@ -52,7 +36,9 @@ TARGET_NO_RADIOIMAGE := true
 # frameworks/av/services/camera/libcameraservice
 BOARD_NEEDS_MEMORYHEAPION := true
 # hardware/samsung_slsi-cm/exynos5/libgscaler
+BOARD_USES_SCALER := true
 BOARD_USES_DT := true
+BOARD_USES_DT_SHORTNAME := true
 # frameworks/av/camera, camera blob support
 COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
 # frameworks/av/media/libstagefright, for libwvm.so
@@ -60,17 +46,25 @@ COMMON_GLOBAL_CFLAGS += -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL
 # device specific gralloc header
 COMMON_GLOBAL_CFLAGS += -DEXYNOS5_ENHANCEMENTS
 # frameworks/av/media/libstagefright
+COMMON_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED
 BOARD_USE_SAMSUNG_CAMERAFORMAT_NV21 := true
 USE_CAMERA_STUB := true
+
+COMMON_GLOBAL_CFLAGS += -DUSE_ANB_REF
+COMMON_GLOBAL_CFLAGS += -DUSE_ANB
 #libcamera
 COMMON_GLOBAL_CFLAGS += -DSENSOR_NAME_GET_FROM_FILE
+
 #CAMERA_BUILD_ON := true
+#BOARD_USES_CAMERAWRAPPER := true
+
+##################################################
 
 #Enable ValidityService for fingerprint
 BOARD_USES_VALIDITY := true
 
 # HEALTH DAEMON (CHARGER) DEFINES
-TARGET_PROVIDES_LIBLIGHT := true
+TARGET_PROVIDES_LIBLIGHT := false
 RED_LED_PATH := "/sys/devices/virtual/sec/led/led_r"
 GREEN_LED_PATH := "/sys/devices/virtual/sec/led/led_g"
 BLUE_LED_PATH := "/sys/devices/virtual/sec/led/led_b"
@@ -104,7 +98,7 @@ BOARD_USES_SKIA_FIMGAPI := true
 BOARD_USES_NEON_BLITANTIH := true
 
 # GSC
-BOARD_USES_ONLY_GSC0_GSC1 := true
+#BOARD_USES_ONLY_GSC0_GSC1 := true
 
 # Include path
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/k3gxx/include
@@ -129,6 +123,7 @@ COMMON_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
 BOARD_RIL_CLASS := ../../../device/samsung/k3gxx/ril
 
 ##TWRP
+#Uncomment this to build TWRP
 #RECOVERY_VARIANT := twrp
 TW_NO_REBOOT_BOOTLOADER := true
 TW_HAS_DOWNLOAD_MODE := true
@@ -172,8 +167,14 @@ BOARD_HDMI_INCAPABLE := true
 # HWCServices
 #BOARD_USES_HWC_SERVICES := true
 
+# Keymaster
+BOARD_USES_TRUST_KEYMASTER := true
+
 #HeartRate
 TARGET_NO_SENSOR_PERMISSION_CHECK := true
+
+# frameworks/native/libs/binder/Parcel.cpp
+COMMON_GLOBAL_CFLAGS += -DDISABLE_ASHMEM_TRACKING
 
 ### FONTS
 EXTENDED_FONT_FOOTPRINT := true
@@ -193,9 +194,6 @@ BOARD_USE_VP8ENC_SUPPORT := true
 
 # Scaler
 BOARD_USES_SCALER := true
-
-# Samsung Gralloc agregado
-#TARGET_SAMSUNG_GRALLOC_EXTERNAL_USECASES := true
 
 # WFD
 #BOARD_USES_WFD_SERVICE := true

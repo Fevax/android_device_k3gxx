@@ -592,7 +592,7 @@ fingerprint_module_t HAL_MODULE_INFO_SYM = {
         .module_api_version = FINGERPRINT_MODULE_API_VERSION_2_0,
         .hal_api_version    = HARDWARE_HAL_API_VERSION,
         .id                 = FINGERPRINT_HARDWARE_MODULE_ID,
-        .name               = "KLTE Fingerprint HAL",
+        .name               = "K3GXX Fingerprint HAL",
         .author             = "ljzyal(ljzyal@gmail.com)",
         .methods            = &fingerprint_module_methods,
     },

@@ -43,13 +43,17 @@ on post-fs-data
     chown system radio /sys/class/camera/rear/rear_camfw
     chown system radio /sys/class/camera/rear/rear_camfw_full
     chown system radio /sys/class/camera/rear/rear_camtype
+	chown system radio /sys/class/camera/rear/rear_checkfw_factory
+	chown system radio /sys/class/camera/rear/rear_checkfw_user
     chown system radio /sys/class/camera/rear/rear_companionfw
     chown system radio /sys/class/camera/rear/rear_companionfw_full
+	chown system radio /sys/class/camera/rear/rear_sensorid
     chown system radio /sys/class/camera/rear/rear_calcheck
     chown system radio /sys/class/camera/rear/isp_core
     chown system radio /sys/class/camera/flash/rear_flash
     chown system radio /sys/class/camera/front/front_camfw
     chown system radio /sys/class/camera/front/front_camtype
+    chown system radio /sys/class/camera/front/front_sensorid
 
     #Permissions for Camera to flush cache buffers
     chown system system /sys/devices/virtual/sec/sec_misc/drop_caches
@@ -587,7 +591,7 @@ service cpboot-daemon /sbin/cbd -d -txmm626 -bh -mh -p 13
     class main
     user root
     group radio cache inet misc audio sdcard_rw log sdcard_r shell
-    seclabel u:r:cbd:s0
+    seclabel u:r:cpboot-daemon:s0
 
 # on userdebug and eng builds, enable kgdb on the serial console
 on property:ro.debuggable=1
@@ -595,13 +599,6 @@ on property:ro.debuggable=1
     write /sys/module/fiq_debugger/parameters/kgdb_enable 1
     
     
-# Create camera ID file for Exynos camera HAL
-service camera_id /system/bin/sh /system/etc/init.exynos.cam.sh
-    class main
-    user root
-    disabled
-    oneshot
-
 service goldfish-setup /system/etc/init.goldfish.sh
     user root
     group root
@@ -610,13 +607,6 @@ service goldfish-setup /system/etc/init.goldfish.sh
 on property:init.svc.bootanim=stopped
     start camera_id    
     
-# SecEDS
-service TvoutService_C /system/bin/bintvoutservice
-     class main
-     user system
-     group graphics
-on property:ro.SecEDS.enable=false
-    stop TvoutService_C
 
 # SENSOR FRAMEWORK : starts fingerprintService
 service vcsFPService /system/bin/vcsFPService
@@ -644,7 +634,7 @@ service cs_service /system/bin/cs
     user system
     group system
     disabled
-
+    seclabel u:r:cpboot-daemon:s0
 on property:sys.mobicoredaemon.enable=true
     start cs_service
 
@@ -688,17 +678,3 @@ on property:ro.securestorage.support=true
     restorecon -R /dev/.secure_storage
     start secure_storage
 
-service playlpm /system/bin/lpm
-    class sec-charger
-    critical
-
-# SSWAP
-service swapon /sbin/sswap -s
-    class core
-    user root
-    group root
-    oneshot
-
-# Reactivation lock
-	service reactived /system/bin/reactived
-	class late_start

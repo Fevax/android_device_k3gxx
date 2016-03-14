@@ -10,3 +10,8 @@ allow kernel sysfs:file setattr;
 allow servicemanager init:dir search;
 allow servicemanager init:file { read open };
 allow servicemanager init:process getattr;
+
+#============= platform_app ==============
+allow platform_app battery_service:service_manager find;
+allow platform_app healthd_service:service_manager find;
+allow platform_app nfc_service:service_manager find;

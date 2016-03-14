@@ -43,7 +43,9 @@
 /dev/video50              0660   media      graphics
 /dev/video51              0660   media      graphics
 /dev/video52              0660   media      graphics
-/dev/m2m1shot_scaler*     0660   media      graphics
+/dev/m2m1shot_scaler0     0660   media      graphics
+/dev/m2m1shot_scaler1     0660   media      graphics
+/dev/m2m1shot_scaler2     0660   media      graphics
 
 # mfc
 /dev/video6               0660   media      media

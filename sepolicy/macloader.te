@@ -27,5 +27,5 @@ allow macloader wifi_efs_file:dir r_dir_perms;
 allow macloader wifi_efs_file:file r_file_perms;
 
 #============= macloader ==============
-#allow macloader system_data_file:file { write create open setattr };
+allow macloader system_data_file:file { write create open setattr };
 
