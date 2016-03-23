@@ -92,6 +92,7 @@ PRODUCT_PACKAGES += \
 #PRODUCT_COPY_FILES += \
 #   $(LOCAL_PATH)/ril/sbin/cbd:root/sbin/cbd
 PRODUCT_PACKAGES += \
+	modemloader \
     cbd \
     
 ###########################################################

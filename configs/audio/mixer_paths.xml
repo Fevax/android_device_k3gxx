@@ -4,18 +4,18 @@
     <!-- ########## Initial mixer settings ########## -->
 
     <!-- Noise gate control -->
-    <ctl name="Noise Gate Switch" value="0" />
-    <ctl name="HPOUT1L NG HPOUT1L Switch" value="0" />
-    <ctl name="HPOUT1R NG HPOUT1R Switch" value="0" />
-    <ctl name="HPOUT2L NG HPOUT2L Switch" value="0" />
-    <ctl name="HPOUT2R NG HPOUT2R Switch" value="0" />
-    <ctl name="HPOUT3L NG HPOUT3L Switch" value="0" />
-    <ctl name="HPOUT3R NG HPOUT3R Switch" value="0" />
-    <ctl name="SPKOUTL NG SPKOUTL Switch" value="0" />
-    <ctl name="SPKOUTR NG SPKOUTR Switch" value="0" />
-    <ctl name="SPKDAT1L NG SPKDAT1L Switch" value="0" />
-    <ctl name="SPKDAT1R NG SPKDAT1R Switch" value="0" />
-    <ctl name="Noise Gate Threshold Volume"  value="3" />
+	<ctl name="Noise Gate Switch" value="0" />
+	<ctl name="HPOUT1L NG HPOUT1L Switch" value="0" />
+	<ctl name="HPOUT1R NG HPOUT1R Switch" value="0" />
+	<ctl name="HPOUT2L NG HPOUT2L Switch" value="0" />
+	<ctl name="HPOUT2R NG HPOUT2R Switch" value="0" />
+	<ctl name="HPOUT3L NG HPOUT3L Switch" value="0" />
+	<ctl name="HPOUT3R NG HPOUT3R Switch" value="0" />
+	<ctl name="SPKOUTL NG SPKOUTL Switch" value="0" />
+	<ctl name="SPKOUTR NG SPKOUTR Switch" value="0" />
+	<ctl name="SPKDAT1L NG SPKDAT1L Switch" value="0" />
+	<ctl name="SPKDAT1R NG SPKDAT1R Switch" value="0" />
+	<ctl name="Noise Gate Threshold Volume" value="3" />
 
     <!-- RCV(Mono) -->
     <ctl name="HPOUT3L Input 1" value="AIF1RX1" />

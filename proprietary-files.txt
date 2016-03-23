@@ -108,11 +108,12 @@ vendor/lib/liblvverx_3.21.13.so
 vendor/lib/liblvvetx_3.21.13.so
 
 ### Camera
-lib/hw/camera.universal5422.so
-lib/libsecnativefeature.so
-lib/libexynoscamera.so
-lib/libhwjpeg.so
-lib/libvdis.so
+#lib/hw/camera.universal5422.so
+#lib/libsecnativefeature.so
+#lib/libexynoscamera.so
+#lib/libexynosv4l2.so
+#lib/libhwjpeg.so
+#lib/libvdis.so
 
 ### BIN
 bin/sensorhubservice
@@ -129,6 +130,13 @@ vendor/lib/libmalicore.bc
 vendor/lib/egl/libGLES_mali.so
 vendor/lib/libRSDriverArm.so
 
+### FingerPrint
+
+lib/libfpasmtztransport.so
+lib/libvalAuth.so
+lib/libvcsfp.so
+lib/libvfmClient.so
+lib/libvfmtztransport.so
 
 ### Sensors
 lib/hw/sensors.universal5422.so
@@ -175,10 +183,10 @@ app/mcRegistry/ffffffffd00000000000000000000004.tlbin
 app/mcRegistry/ffffffffd00000000000000000000016.tlbin
 bin/scranton_RD
 
-#IR
+### IR
 lib/hw/consumerir.default.so
 
-# NFC
+### NFC
 vendor/firmware/libpn547_fw.so
 lib/hw/nfc_nci.universal5422.so
 etc/plmn_se13.bin
@@ -186,11 +194,11 @@ etc/plmn_se13.bin
 
 # no arranca
 
-lib/libexynosv4l2.so
+
 lib/libhr.so
 lib/libsensorhub.so
 lib/libsensorhubservice.so
-bin/cs
+#bin/cs
 bin/mcDriverDaemon
 lib/libgnustl_shared.so
 
@@ -217,10 +225,3 @@ bin/mfgloader
 bin/olsrd
 bin/wlandutservice
 
-#FingerPrint
-
-lib/libfpasmtztransport.so
-lib/libvalAuth.so
-lib/libvcsfp.so
-lib/libvfmClient.so
-lib/libvfmtztransport.so
