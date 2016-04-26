@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <project name="CyanogenMod/android_device_motorola_victara" path="device/motorola/victara" remote="github" revision="refs/heads/cm-13.0" />
+  <project name="CyanogenMod/android_device_qcom_common" path="device/qcom/common" remote="github" revision="refs/heads/cm-13.0" />
+  <project name="CyanogenMod/android_kernel_motorola_msm8974" path="kernel/motorola/msm8974" remote="github" revision="refs/heads/cm-13.0" />
+  <project name="CyanogenMod/android_external_stlport" path="external/stlport" remote="github" revision="refs/heads/cm-13.0" />
+  <project name="CyanogenMod/android_external_sony_boringssl-compat" path="external/sony/boringssl-compat" remote="github" revision="refs/heads/cm-13.0" />
+  <project name="CyanogenMod/android_device_oneplus_bacon" path="device/oneplus/bacon" remote="github" revision="refs/heads/cm-13.0" />
+  <project name="CyanogenMod/android_device_samsung_treltexx" path="device/samsung/treltexx" remote="github" revision="refs/heads/cm-13.0" />
+  <project name="CyanogenMod/android_packages_apps_SamsungServiceMode" path="packages/apps/SamsungServiceMode" remote="github" revision="refs/heads/cm-13.0" />
+  <project name="CyanogenMod/android_hardware_samsung" path="hardware/samsung" remote="github" revision="refs/heads/cm-13.0" />
+  <project name="CyanogenMod/android_hardware_samsung_slsi-cm_exynos" path="hardware/samsung_slsi-cm/exynos" remote="github" revision="refs/heads/cm-13.0" />
+  <project name="CyanogenMod/android_hardware_samsung_slsi-cm_exynos5" path="hardware/samsung_slsi-cm/exynos5" remote="github" revision="refs/heads/cm-13.0" />
+  <project name="CyanogenMod/android_hardware_samsung_slsi-cm_exynos5433" path="hardware/samsung_slsi-cm/exynos5433" remote="github" revision="refs/heads/cm-13.0" />
+  <project name="CyanogenMod/android_hardware_samsung_slsi-cm_openmax" path="hardware/samsung_slsi-cm/openmax" remote="github" revision="refs/heads/cm-13.0" />
+  <project name="CyanogenMod/android_kernel_samsung_trelte" path="kernel/samsung/trelte" remote="github" revision="refs/heads/cm-13.0" />
+  <project name="CyanogenMod/android_device_samsung_nobleltetmo" path="device/samsung/nobleltetmo" remote="github" />
+  <project name="CyanogenMod/android_device_samsung_noblelte-common" path="device/samsung/noblelte-common" remote="github" />
+  <project name="CyanogenMod/android_hardware_samsung_slsi-cm_exynos7420" path="hardware/samsung_slsi-cm/exynos7420" remote="github" />
+  <project name="CyanogenMod/android_kernel_samsung_noble" path="kernel/samsung/noble" remote="github" />
+  <project name="CyanogenMod/android_device_samsung_trelte-common" path="device/samsung/trelte-common" remote="github" />
+</manifest>

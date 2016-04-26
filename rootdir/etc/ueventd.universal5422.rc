@@ -43,6 +43,9 @@
 /dev/video50              0660   media      graphics
 /dev/video51              0660   media      graphics
 /dev/video52              0660   media      graphics
+/dev/m2m1shot_scaler0     0660   media      graphics
+/dev/m2m1shot_scaler1     0660   media      graphics
+/dev/m2m1shot_scaler2     0660   media      graphics
 
 # mfc
 /dev/video6               0660   media      media
@@ -109,25 +112,37 @@
 /dev/mobicore             0700   system     system
 /dev/mobicore-user        0666   radio     system
 
+# rfkill
+/dev/rfkill               0660   root       wifi
+
 # Secure MEM driver
 /dev/s5p-smem             0660   system     system
 
-# vfs
-/dev/vfsspi        0660   system     system
+# for PL2303 driver
+/dev/ttyUSB*              0660   system     usb
+
+# Reactivation Lock
+/dev/block/mmcblk0rpmb	0660	system	system
+
+# NFC
+/dev/pn547                0660   nfc        nfc
+/dev/sec-nfc              0660   nfc        nfc
 
 /dev/block/mmcblk0p8      0660   system     system
 # sensor sysfs properties
 /sys/devices/virtual/input/input*	poll_delay	0660	system	radio
 /sys/devices/virtual/input/input*	enable		0660	system	radio
 
+# fingerprint sensor
+/dev/vfsspi        0660   system     system
+
 # USB Accessories (printer and so on) - duki994
-/dev/ttyUSB*              0660   system     usb
 /dev/usb/lp*              0660   system     usb
 
 # Sensorhub IIO
 /dev/ssp_sensorhub        0660   system     system
-/dev/iio:device*          0660   system  system
+/dev/iio:device*          0660   system     system
 /sys/devices/12d20000.spi/spi_master/spi0/spi0.0/iio:device*    buffer/enable       0660    system    system
 /sys/devices/12d20000.spi/spi_master/spi0/spi0.0/iio:device*    buffer/length       0660    system    system
-/sys/bus/iio/devices/iio:device*    0664   system     radio
+/sys/bus/iio/devices/iio:device*    0664    system     radio
 

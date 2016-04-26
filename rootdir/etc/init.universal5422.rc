@@ -6,49 +6,16 @@ on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
 on init
+    export LD_SHIM_LIBS "/system/lib/omx/libOMX.Exynos.AVC.Encoder.so|/system/lib/libsamsung_symbols.so:/system/lib/libexynoscamera.so|libsamsung_symbols.so:/system/bin/gpsd|libdmitry.so"
     mkdir /preload 0771 system system
 
-    # See storage config details at http://source.android.com/tech/storage/
-    mkdir /mnt/media_rw/extSdCard 0700 media_rw media_rw
-    mkdir /mnt/media_rw/UsbDriveA 0700 media_rw media_rw
-    mkdir /mnt/media_rw/UsbDriveB 0700 media_rw media_rw
-    mkdir /mnt/media_rw/UsbDriveC 0700 media_rw media_rw
-    mkdir /mnt/media_rw/UsbDriveD 0700 media_rw media_rw
-    mkdir /mnt/media_rw/UsbDriveE 0700 media_rw media_rw
-    mkdir /mnt/media_rw/UsbDriveF 0700 media_rw media_rw
-    
-    # See storage config details at http://source.android.com/tech/storage/
-    mkdir /mnt/shell/emulated 0700 shell shell
-    mkdir /storage/emulated 0555 root root    
-
-    export EXTERNAL_STORAGE /storage/emulated/legacy
-    export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
-    export EMULATED_STORAGE_TARGET /storage/emulated
-
-    # Support legacy paths
-    symlink /storage/emulated/legacy /sdcard
-    symlink /storage/emulated/legacy /mnt/sdcard
-    symlink /storage/emulated/legacy /storage/sdcard0
-    symlink /mnt/shell/emulated/0 /storage/emulated/legacy
-
-    # map "real" external storages paths also in same way. backwards compatibility.
-    symlink /storage/extSdCard /mnt/extSdCard
-    symlink /storage/UsbDriveA /mnt/UsbDriveA
-    symlink /storage/UsbDriveB /mnt/UsbDriveB
-    symlink /storage/UsbDriveC /mnt/UsbDriveC
-    symlink /storage/UsbDriveD /mnt/UsbDriveD
-    symlink /storage/UsbDriveE /mnt/UsbDriveE
-    symlink /storage/UsbDriveF /mnt/UsbDriveF
-
-    export SECONDARY_STORAGE /storage/extSdCard
-    
-    mkdir /storage/extSdCard 0700 root root
-    mkdir /storage/UsbDriveA 0700 root root
-    mkdir /storage/UsbDriveB 0700 root root
-    mkdir /storage/UsbDriveC 0700 root root
-    mkdir /storage/UsbDriveD 0700 root root
-    mkdir /storage/UsbDriveE 0700 root root
-    mkdir /storage/UsbDriveF 0700 root root
+    symlink /sdcard /mnt/sdcard
+    symlink /sdcard /storage/sdcard0
+    symlink /sdcard1 /storage/sdcard1
+    symlink /sdcard1 /mnt/extSdCard
+    symlink /sdcard1 /mnt/sdcard1
+    symlink /sdcard1 /external_sd
+    symlink /storage/usbdisk /mnt/usbdisk
 
     symlink /data/app /factory
 
@@ -56,6 +23,9 @@ on init
     symlink /dev/block/mmcblk0p13 /dev/mbin0
     restorecon /dev/mbin0
     symlink  /sys/devices/12110000.usb/ehci_power /dev/ehci_power
+
+# Support Preload install apks
+    mkdir /preload 0771 system system
 
 # Make param link
     symlink /dev/block/mmcblk0p8 /dev/block/param
@@ -73,13 +43,17 @@ on post-fs-data
     chown system radio /sys/class/camera/rear/rear_camfw
     chown system radio /sys/class/camera/rear/rear_camfw_full
     chown system radio /sys/class/camera/rear/rear_camtype
+	chown system radio /sys/class/camera/rear/rear_checkfw_factory
+	chown system radio /sys/class/camera/rear/rear_checkfw_user
     chown system radio /sys/class/camera/rear/rear_companionfw
     chown system radio /sys/class/camera/rear/rear_companionfw_full
+	chown system radio /sys/class/camera/rear/rear_sensorid
     chown system radio /sys/class/camera/rear/rear_calcheck
     chown system radio /sys/class/camera/rear/isp_core
     chown system radio /sys/class/camera/flash/rear_flash
     chown system radio /sys/class/camera/front/front_camfw
     chown system radio /sys/class/camera/front/front_camtype
+    chown system radio /sys/class/camera/front/front_sensorid
 
     #Permissions for Camera to flush cache buffers
     chown system system /sys/devices/virtual/sec/sec_misc/drop_caches
@@ -101,7 +75,10 @@ on boot
     chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/state
     chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/type
 
-    # SSWAP
+# MSP FactoryApp
+    mkdir /efs/FactoryApp 0775 system system
+
+# SSWAP
     write /proc/sys/vm/swappiness 130
 
     # Reduce reserved lowmem from ~48MB to ~12MB
@@ -138,10 +115,30 @@ on boot
 	#write /proc/sys/vm/min_free_kbytes 32768
 	#write /proc/sys/vm/min_free_order_shift 1
 
+    # Allow to access debugfs for system:system
+    chown system system /sys/kernel/debug
 
     # Set up kernel tracing, but disable it by default
     chmod 0222 /sys/kernel/debug/tracing/trace_marker
     write /sys/kernel/debug/tracing/tracing_on 0
+
+###############################################################################
+# System LSI
+# Comment : add permission to device driver
+
+# NFC : Permissions for NFC
+    chmod 0660 /dev/sec-nfc
+# NFC : change owner
+    chown nfc nfc /dev/sec-nfc
+# NFC : create data/nfc for nv storage
+    mkdir /data/nfc 0700 nfc nfc
+    mkdir /data/nfc/param 0700 nfc nfc
+
+# Set up nfc test option
+    setprop snfc.test.fwdownload 2
+    setprop snfc.test.power      sec
+    setprop snfc.test.tag        sec
+###############################################################################
 
     # PMS DVFS
     chown radio system /sys/power/cpufreq_table
@@ -154,8 +151,8 @@ on boot
     chmod 0664 /sys/power/cpufreq_max_limit
     chmod 0664 /sys/power/cpufreq_min_limit
     chmod 0664 /sys/power/enable_dm_hotplug
-    chmod 664 /sys/power/ipa/control_temp
-    chmod 664 /sys/power/ipa/hotplug_out_threshold
+    chmod 0664 /sys/power/ipa/control_temp
+    chmod 0664 /sys/power/ipa/hotplug_out_threshold
     chown radio system /sys/devices/platform/exynos5-devfreq-mif/devfreq/exynos5-devfreq-mif/available_frequencies
     chown radio system /sys/devices/platform/exynos5-devfreq-int/devfreq/exynos5-devfreq-int/available_frequencies
     chown radio system /sys/devices/platform/exynos5-devfreq-isp/devfreq/exynos5-devfreq-isp/available_frequencies
@@ -350,8 +347,8 @@ on boot
     chmod 0770 /efs/prov_data
     chown radio system /efs/prov_data/dev_root
     chmod 0770 /efs/prov_data/dev_root
-#chown radio system /efs/prov_data/knox
-#chmod 0770 /efs/prov_data/knox
+    chown radio system /efs/prov_data/knox
+    chmod 0770 /efs/prov_data/knox
     chown radio system /efs/prov_data/dev_root/dev_root.dat
     chmod 0640 /efs/prov_data/dev_root/dev_root.dat
     chown radio system /efs/prov/libdevkm.lock
@@ -366,7 +363,7 @@ on boot
 
 on fs
     mount_all /fstab.universal5422
-    setprop ro.crypto.fuse_sdcard true
+#    setprop ro.crypto.fuse_sdcard true
 
     chown radio radio /sys/devices/virtual/misc/multipdp/waketime
     chmod 0660 /sys/devices/virtual/misc/umts_dm0/dm_state
@@ -392,10 +389,12 @@ on fs
 
 # Fingerprint
     mkdir /dev/validity 0770 system system
+    mkdir /data/validity 0770 system system
+
+    # Fingerprint_sensor
+    chown system radio /sys/class/fingerprint/fingerprint/type_check
 
 # SENSORS
-# Fingerprint_sensor
-    chown system radio /sys/class/fingerprint/fingerprint/type_check
 # Accelerometer_sensor
     chown system radio /sys/class/sensors/accelerometer_sensor/raw_data
     chown system radio /sys/class/sensors/accelerometer_sensor/calibration
@@ -540,6 +539,11 @@ on fs
 # Permissions for gpio_keys
     chown radio system /sys/class/sec/sec_key/wakeup_keys
     write /sys/class/sec/sec_key/wakeup_keys 116,172
+    chown system system /sys/devices/gpio_keys.9/input/input7/enabled
+    chown system system /sys/devices/gpio_keys.10/input/input8/enabled
+    chown system system /sys/devices/gpio_keys.11/input/input9/enabled
+#true one
+    chown system system /sys/devices/gpio_keys.16/input/input14/enabled
 
 # terminal mode
 	chmod 0660 /sys/class/android_usb/android0/terminal_version
@@ -571,51 +575,11 @@ service exyrngd /system/bin/exyrngd -b
     class main
     oneshot
 
-#Private Mode
-service privatemode /system/bin/sdcard -r /data/privatemode /mnt/shell/privatemode 1000 1000
-    class late_start
-    oneshot
-
-
-# virtual sdcard daemon running as media_rw (1023)
-service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
-    class late_start
-    oneshot
-    
-service fuse_extSdCard /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d -f /mnt/media_rw/extSdCard /storage/extSdCard
-    class late_start
-    disabled
-    oneshot
-
-service fuse_UsbDriveA /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/UsbDriveA /storage/UsbDriveA
-    class late_start
-    disabled
-    oneshot
-
-service fuse_UsbDriveB /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/UsbDriveB /storage/UsbDriveB
-    class late_start
-    disabled
-    oneshot
-
-service fuse_UsbDriveC /system/bin/sdcard -u 1023 -g 1023 -d -f /mnt/media_rw/UsbDriveC /storage/UsbDriveC
-    class late_start
-    disabled
-    oneshot
-
-service fuse_UsbDriveD /system/bin/sdcard -u 1023 -g 1023 -d -f /mnt/media_rw/UsbDriveD /storage/UsbDriveD
-    class late_start
-    disabled
-    oneshot
-
-service fuse_UsbDriveE /system/bin/sdcard -u 1023 -g 1023 -d -f /mnt/media_rw/UsbDriveE /storage/UsbDriveE
-    class late_start
-    disabled
-    oneshot
-
-service fuse_UsbDriveF /system/bin/sdcard -u 1023 -g 1023 -d -f /mnt/media_rw/UsbDriveF /storage/UsbDriveF
-    class late_start
-    disabled
-    oneshot
+# MobiCore startup
+service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF000000000000000000000001.drbin -r /system/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin -r /system/app/mcRegistry/ffffffffd00000000000000000000016.tlbin
+    class core
+    user system
+    group system
 
 # Set watchdog timer to 30 seconds and pet it every 10 seconds to get a 20 second margin
 service watchdogd /sbin/watchdogd 10 20
@@ -627,7 +591,7 @@ service cpboot-daemon /sbin/cbd -d -txmm626 -bh -mh -p 13
     class main
     user root
     group radio cache inet misc audio sdcard_rw log sdcard_r shell
-    seclabel u:r:cbd:s0
+    seclabel u:r:cpboot-daemon:s0
 
 # on userdebug and eng builds, enable kgdb on the serial console
 on property:ro.debuggable=1
@@ -635,23 +599,14 @@ on property:ro.debuggable=1
     write /sys/module/fiq_debugger/parameters/kgdb_enable 1
     
     
-# Create camera ID file for Exynos camera HAL
-service camera_id /system/bin/sh /system/etc/init.exynos.cam.sh
-    class main
+service goldfish-setup /system/etc/init.goldfish.sh
     user root
-    disabled
+    group root
     oneshot
 
 on property:init.svc.bootanim=stopped
     start camera_id    
     
-# SecEDS
-service TvoutService_C /system/bin/bintvoutservice
-     class main
-     user system
-     group graphics
-on property:ro.SecEDS.enable=false
-    stop TvoutService_C
 
 # SENSOR FRAMEWORK : starts fingerprintService
 service vcsFPService /system/bin/vcsFPService
@@ -659,12 +614,19 @@ service vcsFPService /system/bin/vcsFPService
     user system
     group system
 
+
+service fingerprintd /system/bin/fingerprintd
+    class late_start
+    user system
+    group input
+	
 # GPS
 service gpsd /system/bin/gpsd -c /system/etc/gps.xml
     class main
     user gps
     group system inet net_raw
     ioprio be 0
+    seclabel u:r:gpsd:s0
 
 # CS service
 service cs_service /system/bin/cs
@@ -672,7 +634,7 @@ service cs_service /system/bin/cs
     user system
     group system
     disabled
-
+    seclabel u:r:cpboot-daemon:s0
 on property:sys.mobicoredaemon.enable=true
     start cs_service
 
@@ -716,13 +678,3 @@ on property:ro.securestorage.support=true
     restorecon -R /dev/.secure_storage
     start secure_storage
 
-# SSWAP
-service swapon /sbin/sswap -s
-    class core
-    user root
-    group root
-    oneshot
-
-# Reactivation lock
-	service reactived /system/bin/reactived
-	class late_start

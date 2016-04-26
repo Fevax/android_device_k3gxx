@@ -1,34 +1,36 @@
+#
+# system.prop for k3gxx
+#
+ro.product.model=SM-G900H
+ro.product.brand=samsung
+ro.product.name=k3gxx
+ro.product.device=k3g
 ro.hardware=universal5422
 ro.arch=exynos5422
 ro.chipname=universal5422
 ro.zygote=zygote32
-persist.timed.enable=true
-keyguard.no_require_sim=true
-drm.service.enabled=true
-ro.hdcp2.rx=tz
-ro.secwvk=220
 
 # Media
 ro.sf.lcd_density=480
-ro.opengles.version=196608
-media.enable-commonsource=true
-persist.hdmi.hdcp_enabled=1
-ro.securestorage.support=false
 
 # Radio
 rild.libargs=-d /dev/ttyS0
 rild.libpath=/system/lib/libsec-ril.so
 ro.telephony.ril_class=k3gxxRIL
-#ro.telephony.default_network=0
-#telephony.lteOnCdmaDevice=0
 
+ro.ril.hsxpa=1
+ro.ril.gprsclass=10
+ro.ril.telephony.mqanelements=5
 
-# Default USB mode
+#
+# HWC
+#
+debug.hwc.winupdate=1
+debug.hwc.otf=1
+
+ro.securestorage.support=false
 persist.sys.isUsbOtgEnabled=true
-persist.sys.usb.config=mtp
-debug.db.uid=100000
-ro.adb.secure=0
-
-# Wifi
-wifi.interface=wlan0
-#wlan.wfd.hdcp=disable
+# Default USB mode
+persist.service.adb.enable=1                                                    
+persist.service.debuggable=1
+persist.sys.usb.config=mtp,adb

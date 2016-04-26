@@ -1,0 +1,17 @@
+
+#============= init ==============
+allow init device:fifo_file { read open };
+
+#============= kernel ==============
+allow kernel self:capability chown;
+allow kernel sysfs:file setattr;
+
+#============= servicemanager ==============
+allow servicemanager init:dir search;
+allow servicemanager init:file { read open };
+allow servicemanager init:process getattr;
+
+#============= platform_app ==============
+allow platform_app battery_service:service_manager find;
+allow platform_app healthd_service:service_manager find;
+allow platform_app nfc_service:service_manager find;
