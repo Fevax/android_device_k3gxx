@@ -278,10 +278,10 @@
             The Audio part of the profile will not be used since time lapse mode
             does not capture audio
       -->
-      <Audio codec="aac"
-             bitRate="256000"
-             sampleRate="48000"
-             channels="2" />
+     <Audio codec="aac"
+            bitRate="256000"
+            sampleRate="48000"
+            channels="2" />
     </EncoderProfile>
 
     <EncoderProfile quality="timelapse1080p" fileFormat="mp4" duration="30">
@@ -443,10 +443,10 @@
              height="144"
              frameRate="30" />
 
-       <!--
+      <!--
              The Audio part of the profile will not be used since time lapse mode
              does not capture audio
-       -->
+      -->
       <Audio codec="aac"
              bitRate="128000"
              sampleRate="48000"
@@ -535,11 +535,6 @@
          If a codec is not enabled, it is invisible to the applications
          In other words, the applications won't be able to use the codec
          or query the capabilities of the codec at all if it is disabled
-    -->
-
-    <!--
-         FIXME : we only check Mpeg4 encorder cap and other codec doesn't check
-                 codec cap
     -->
     <VideoEncoderCap name="h264" enabled="true"
         minBitRate="64000" maxBitRate="50000000"

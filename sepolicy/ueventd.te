@@ -1,1 +1,5 @@
-allow ueventd sysfs:file { relabelto };
+# /dev/block/mmcblk0p[0-9]
+allow ueventd emmcblk_device:blk_file create_file_perms;
+
+# /sys/devices/virtual/misc/multipdp/uevent
+allow ueventd sysfs_multipdp_writable:file rw_file_perms;
